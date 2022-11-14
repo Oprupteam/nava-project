@@ -1,0 +1,104 @@
+p {
+  font-family: Lato;
+}
+
+.star {
+  color: red
+}
+
+table {
+  width: 90%;
+  margin: auto;
+  margin-top: 25px;
+}
+
+.btn-edit {
+  text-align: right;
+}
+
+h2 {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.table-header {
+  width: 90%;
+  margin: auto;
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+.button-add-row {
+  background: #1b9e1b;
+  color: #ffffff;
+}
+
+.button-remove-rows {
+  background: red;
+  color: #ffffff;
+  margin-right: 5px;
+}
+th{
+text-align: center !important;
+font-size: 15px;
+}
+td{
+text-align: center !important;
+font-size: 15px;
+}
+.button-remove {
+  color: red;
+}
+
+::ng-deep .mat-form-field-infix {
+  width: 100% !important;
+}
+
+.form-input {
+  padding-right: 5px;
+}
+
+.deleteRow {
+  margin-bottom: 5vh !important;
+}
+
+.calculate {
+  width: 5%;
+  margin-bottom: 2%;
+}
+
+.calculate td {
+  border: 1px black solid;
+  min-width: 100px;
+  font-size: 1.2em;
+  text-align: center;
+  padding: 5px;
+}
+
+.invoiceFooter {
+  display: flex;
+  justify-content: space-around;
+}
+
+.mat-header-cell{
+padding: 5px !important;
+}
+
+
+.select2-container{
+ width: 100%!important;
+ }
+ .select2-search--dropdown .select2-search__field {
+ width: 98%;
+ }
+
+
+ ::ng-deep .my-class .modal-dialog {
+  max-width: 70% !important;
+  // width:  150% !important;
+}
+
+.li{
+  border-bottom: 2px solid #4ca86a;
+  height: 30px;
+}

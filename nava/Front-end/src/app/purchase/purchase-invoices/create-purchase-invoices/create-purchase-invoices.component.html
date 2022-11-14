@@ -1,0 +1,801 @@
+<app-page-header title="{{ 'purchaseInvoices' | translate }}" [items]="['purchaseInvoices' | translate]"
+  active_item="{{ 'add' | translate }}"></app-page-header>
+
+<div class="row row-sm">
+  <div class="col-lg-12 col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <form [formGroup]="form" >
+          <div class="border m-2 p-2">
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="col-lg my-2 row align-items-center">
+                  <p class="mg-b-10  col-lg-6">
+                  {{ "invoicesNumber" | translate }}
+                  </p>
+                  <input readonly class="form-control input col-lg-6 my-1" name="InvoicesNumber" id="InvoicesNumber"
+                    placeholder="{{ 'InvoicesNumber' | translate }}" type="text"
+                    [(ngModel)]="purchaseInvoicesData.invoicesNumber" [ngModelOptions]="{standalone: true}" />
+                </div>
+
+                <div class="col-lg my-1 row align-items-center">
+                  <p class="mg-b-10  col-lg-6">
+                    {{ "vendorNumber" | translate }}<span class="tx-danger">*</span>
+                  </p>
+                  <input class="form-control input col-lg-6 my-1" name="vendorNumber" id="vendorNumber"
+                    placeholder="{{ 'vendorNumber' | translate }}" type="text"
+                    formControlName="vendorNumber"
+                    [ngClass]="{ 'is-invalid': submitted && f['vendorNumber'].errors }"
+                    [(ngModel)]="purchaseInvoicesData.vendorNumber" />
+                    <div *ngIf="submitted && f['vendorNumber'].errors" class="invalid-feedback">
+                      <div class="text-end"
+                      *ngIf="f['vendorNumber'].errors['required']">{{'isRequired'|translate}}</div>
+                    </div>
+                </div>
+
+                <div class="col-lg my-1 row align-items-center">
+                  <p class="mg-b-10  col-lg-6">{{
+                    "invoicesDate" | translate}}<span class="tx-danger">*</span></p>
+                  <mat-form-field appearance="fill" class="col-md-6 p-0 my-1">
+                    <mat-label>{{ "DD/MM/YYYY" | translate }}</mat-label>
+                    <input id="InvoicesDate" name="InvoicesDate" #InvoicesDate
+                    formControlName="invoicesDate"
+                    [ngClass]="{ 'is-invalid': submitted && f['invoicesDate'].errors }"
+                    [(ngModel)]="purchaseInvoicesData.invoicesDate" matInput [matDatepicker]="picker" />
+                    <div *ngIf="submitted && f['invoicesDate'].errors" class="invalid-feedback">
+                      <div class="text-end"
+                      *ngIf="f['invoicesDate'].errors['required']">{{'isRequired'|translate}}</div>
+                    </div>
+                    <mat-datepicker-toggle matSuffix [for]="picker" class="input-mini"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-lg my-1 row align-items-center">
+                  <p class="mg-b-10 tx-semibold col-lg-6">
+                    {{ "purchaseInvoicesType" | translate}}<span class="tx-danger">*</span>
+                  </p>
+                  <div class="col-xl-3">
+                    <label class="mg-b-5-f">
+                      <input type="radio"
+                      formControlName="purchaseInvoicesType"
+                      [ngClass]="{ 'is-invalid': submitted && f['purchaseInvoicesType'].errors }"
+                      [(ngModel)]="purchaseInvoicesData.purchaseInvoicesType
+                      " value="1" name="purchaseInvoicesType" id="purchaseInvoicesType"/>
+                      <span class="m-1">{{ "receivables" | translate }}</span>
+                    </label>
+                  </div>
+                  <div class="col-xl-3">
+                    <label class="mg-b-5-f">
+                      <input type="radio"
+                      formControlName="purchaseInvoicesType"
+                      [ngClass]="{ 'is-invalid': submitted && f['purchaseInvoicesType'].errors }"
+                      [(ngModel)]="purchaseInvoicesData.purchaseInvoicesType
+                      " value="2" name="purchaseInvoicesType" id="purchaseInvoicesType" />
+                      <span class="m-1">{{ "cash" | translate }}</span>
+                      <div *ngIf="submitted && f['purchaseInvoicesType'].errors" class="invalid-feedback">
+                        <div class="text-end"
+                        *ngIf="f['purchaseInvoicesType'].errors['required']">{{'isRequired'|translate}}</div>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-4">
+                <div class="col-lg my-1 row align-items-center">
+                  <p class="mg-b-10  col-lg-6">
+                    {{ "purchaseInvoicesNumber" | translate }}<span class="tx-danger">*</span>
+                  </p>
+                  <input class="form-control input col-lg-6 my-1" name="purchaseInvoicesNumber"
+                    id="purchaseInvoicesNumber" placeholder="{{ 'purchaseInvoicesNumber' | translate }}" type="text"
+                    formControlName="purchaseInvoicesNumber"
+                    [ngClass]="{ 'is-invalid': submitted && f['purchaseInvoicesNumber'].errors }"
+                    [(ngModel)]="purchaseInvoicesData.purchaseInvoicesNumber" />
+                    <div *ngIf="submitted && f['purchaseInvoicesNumber'].errors" class="invalid-feedback">
+                      <div class="text-end"
+                      *ngIf="f['purchaseInvoicesNumber'].errors['required']">{{'isRequired'|translate}}</div>
+                    </div>
+                </div>
+
+                <div class="col-lg my-1 row align-items-center">
+                  <p class="mg-b-10  col-lg-6">
+                    {{ "purchaseInvoicesTax" | translate }}<span class="tx-danger">*</span>
+                  </p>
+                  <input class="form-control input col-lg-6 my-1" name="purchaseInvoicesTax" id="purchaseInvoicesTax"
+                    placeholder="{{ 'purchaseInvoicesTax' | translate }}" type="text"
+                    formControlName="purchaseInvoicesTax"
+                    [ngClass]="{ 'is-invalid': submitted && f['purchaseInvoicesTax'].errors }"
+                    [(ngModel)]="purchaseInvoicesData.purchaseInvoicesTax" />
+                    <div *ngIf="submitted && f['purchaseInvoicesTax'].errors" class="invalid-feedback">
+                      <div class="text-end"
+                      *ngIf="f['purchaseInvoicesTax'].errors['required']">{{'isRequired'|translate}}</div>
+                    </div>
+                </div>
+
+                <div class="col-lg my-1 row align-items-center">
+                  <p class="mg-b-10  col-lg-6">
+                    {{ "vendorVatNumber" | translate }}<span class="tx-danger">*</span>
+                  </p>
+                  <input class="form-control input col-lg-6 my-1" name="vendorVatNumber" id="vendorVatNumber"
+                    placeholder="{{ 'vendorVatNumber' | translate }}" type="text"
+                    formControlName="vendorVatNumber"
+                    [ngClass]="{ 'is-invalid': submitted && f['vendorVatNumber'].errors }"
+                    [(ngModel)]="purchaseInvoicesData.vendorVatNumber" />
+                    <div *ngIf="submitted && f['vendorVatNumber'].errors" class="invalid-feedback">
+                      <div class="text-end"
+                      *ngIf="f['vendorVatNumber'].errors['required']">{{'isRequired'|translate}}</div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg my-1 row align-items-center">
+                  <p class="mg-b-10  col-lg-6">{{
+                    "purchaseInvoicesDate" | translate
+                    }}<span class="tx-danger">*</span></p>
+                  <mat-form-field appearance="fill" class="col-md-6 p-0 my-1">
+                    <mat-label>{{ "DD/MM/YYYY" | translate }}</mat-label>
+                    <input id="purchaseInvoicesDate" name="purchaseInvoicesDate" #purchaseInvoicesDate
+                    formControlName="purchaseInvoicesDate"
+                        [ngClass]="{ 'is-invalid': submitted && f['purchaseInvoicesDate'].errors }"
+                    [(ngModel)]="purchaseInvoicesData.purchaseInvoicesDate" matInput [matDatepicker]="picker2" />
+                    <div *ngIf="submitted && f['purchaseInvoicesDate'].errors" class="invalid-feedback">
+                      <div class="text-end"
+                      *ngIf="f['purchaseInvoicesDate'].errors['required']">{{'isRequired'|translate}}</div>
+                    </div>
+
+                    <mat-datepicker-toggle matSuffix [for]="picker2" class="input-mini"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                  </mat-form-field>
+
+                </div>
+
+
+              </div>
+
+              <div class="col-lg-4">
+
+                <div class="col-lg my-1 row align-items-center">
+                  <p class="mg-b-10  col-lg-6">
+                    {{ "cost" | translate }}<span class="tx-danger">*</span>
+                  </p>
+                  <input class="form-control input col-lg-6 my-1" name="cost" id="cost"
+                    placeholder="{{ 'cost' | translate }}" type="text"
+                    formControlName="cost"
+                    [ngClass]="{ 'is-invalid': submitted && f['cost'].errors }"
+                    [(ngModel)]="purchaseInvoicesData.cost" />
+                    <div *ngIf="submitted && f['cost'].errors" class="invalid-feedback">
+                      <div class="text-end"
+                      *ngIf="f['cost'].errors['required']">{{'isRequired'|translate}}</div>
+                    </div>
+                </div>
+                <div class="col-lg my-1 row align-items-center">
+                  <p class="mg-b-10  col-lg-6">
+                    {{ "lastPurchasePrice" | translate }}<span class="tx-danger">*</span>
+                  </p>
+                  <input class="form-control input col-lg-6 my-1" name="lastPurchasePrice" id="lastPurchasePrice"
+                    placeholder="{{ 'lastPurchasePrice' | translate }}" type="text"
+                    formControlName="lastPurchasePrice"
+                    [ngClass]="{ 'is-invalid': submitted && f['lastPurchasePrice'].errors }"
+                    [(ngModel)]="purchaseInvoicesData.lastPurchasePrice" />
+                    <div *ngIf="submitted && f['lastPurchasePrice'].errors" class="invalid-feedback">
+                      <div class="text-end"
+                      *ngIf="f['lastPurchasePrice'].errors['required']">{{'isRequired'|translate}}</div>
+                    </div>
+                </div>
+                <div class="col-lg my-1 row align-items-center">
+                  <p class="mg-b-10  col-lg-6">
+                    {{ "quantityAvailable" | translate }}<span class="tx-danger">*</span>
+                  </p>
+                  <input class="form-control input col-lg-6 my-1" name="quantityAvailable" id="quantityAvailable"
+                    placeholder="{{ 'quantityAvailable' | translate }}" type="text"
+                    formControlName="quantityAvailable"
+                    [ngClass]="{ 'is-invalid': submitted && f['quantityAvailable'].errors }"
+                    [(ngModel)]="purchaseInvoicesData.quantityAvailable" />
+                    <div *ngIf="submitted && f['quantityAvailable'].errors" class="invalid-feedback">
+                      <div class="text-end"
+                      *ngIf="f['quantityAvailable'].errors['required']">{{'isRequired'|translate}}</div>
+                    </div>
+                </div>
+
+
+              </div>
+
+            </div>
+          </div>
+        </form>
+        <hr class="" style="color:  #4ca86a; height: 1px" />
+      <!-- <div class="card-body"> -->
+        <div class="border m-2 p-2">
+          <div class="mb-2">
+            <div class="my-1">
+              <button class="btn bg-black-8 text-white" style="background-color: #4ca86a"
+                (click)="Select2Open(select2modal)">
+                {{ "addItem" | translate }}
+              </button>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-striped border">
+                <tr class="text-center li">
+                  <td scope="col">{{'itemCode' | translate}}</td>
+                  <td scope="col">{{'barCode' | translate}}</td>
+                  <td scope="col">{{'itemName' | translate}}</td>
+                  <!-- <td scope="col">{{'unit' | translate}}</td> -->
+                  <td scope="col">{{'stroeCode' | translate}}</td>
+                  <td scope="col">{{'storePlace' | translate}}</td>
+                  <td scope="col">{{'stockInStore' | translate}}</td>
+                  <td scope="col">{{'quantityPurchaseInvoices' | translate}}</td>
+
+
+
+                  <td scope="col">{{'totalBeforeTax' | translate}}</td>
+                  <td scope="col">{{'totalAfterTax' | translate}}</td>
+                  <!-- <td scope="col">{{'totalAfterTax' | translate}}</td> -->
+                  <!-- <td scope="col">{{'unitAfterTax' | translate}}</td> -->
+                  <td scope="col">{{'discountPercentage' | translate}}</td>
+                  <!-- <td scope="col">{{'net' | translate}}</td> -->
+                  <td scope="col">{{'expiryDateItem' | translate}}</td>
+                  <td scope="col" data-html2canvas-ignore="true" class="noPrint">{{'action' | translate}}</td>
+                </tr>
+
+                <tbody class="table-group-divider">
+                  <tr *ngFor="let item of purchaseInvoicesDetails">
+                    <td>{{item.items.itemCode}}</td>
+                    <td>{{item.items.barCode}}
+                      <!-- <ngx-barcode [bc-value]="item.items.barCode" [bc-line-color]="lineColor" bc-element-type="svg"
+                        [bc-width]="width" [bc-height]="height" [bc-display-value]="displayValue"
+                        [bc-font-options]="fontOptions" [bc-font]="font" [bc-text-align]="textAlign"
+                        [bc-text-position]="textPosition" [bc-text-margin]="textMargin" [bc-font-size]="fontSize"
+                        [bc-background]="background" [bc-margin]="margin" [bc-margin-top]="marginTop"
+                        [bc-margin-bottom]="marginBottom" [bc-margin-left]="marginLeft" [bc-margin-right]="marginRight">
+                      </ngx-barcode> -->
+                    </td>
+                    <td>{{item.items.itemName}}</td>
+                    <!-- <td>{{item.items.unit.unitName}}</td> -->
+                    <td>{{item.store.stroeCode}}</td>
+                    <td>{{item.store.storePlace}}</td>
+                    <td>{{item.items.quantity}}</td>
+                    <td>{{item.quantityPurchaseInvoices}}</td>
+
+                    <td>{{item.totalBeforeTax}}</td>
+                    <!-- <td>{{item.totalAfterTax}}</td> -->
+                    <td>{{item.totalAfterTax}}</td>
+                    <!-- <td>{{item.unitAfterTax}}</td> -->
+                    <td>{{item.discountPercentage}}</td>
+                    <!-- <td>{{item.net}}</td> -->
+                    <td>{{item.expiryDateItem}}</td>
+                    <td data-html2canvas-ignore="true" class="noPrint">
+                      <a class="btn btn-icon-text" (click)="Select2Update(select2modal2,item)"><i
+                          class="fe fe-edit text-dark bd-black"></i></a>
+                      <button class="btn btn-icon-text" (click)="deletePartner(item)"><i
+                          class="fe fe-trash-2 text-dark bd-black"></i></button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+
+          <!-- </div> -->
+        </div>
+      </div>
+      <!-- <div class="card-body"> -->
+        <hr class="" style="color:  #4ca86a; height: 1px" />
+<br>
+
+   <!-- <div class="border m-2 p-2" *ngIf="!isLoggedItem"> -->
+    <div class="border m-2 p-2">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="col-lg  row align-items-center">
+            <p class="mg-b-10  col-lg-6">
+            {{ "costCenter" | translate }}
+            </p>
+            <input  class="form-control input col-lg-6 my-1" name="costCenter" id="costCenter"
+              placeholder="{{ 'costCenter' | translate }}" type="text"
+              [(ngModel)]="LocalPurchaceOrderItemData.costCenter" [ngModelOptions]="{standalone: true}" />
+          </div>
+
+          <div class="col-lg  row align-items-center">
+            <p class="mg-b-10  col-lg-6">
+            {{ "purchasingAccount" | translate }}
+            </p>
+            <input  class="form-control input col-lg-6 my-1" name="purchasingAccount" id="purchasingAccount"
+              placeholder="{{ 'purchasingAccount' | translate }}" type="text"
+              [(ngModel)]="LocalPurchaceOrderItemData.purchasingAccount" [ngModelOptions]="{standalone: true}" />
+          </div>
+
+
+          <div class="col-lg  row align-items-center">
+            <p class="mg-b-10  col-lg-6">
+            {{ "fundAccount" | translate }}
+            </p>
+            <input  class="form-control input col-lg-6 my-1" name="fundAccount" id="fundAccount"
+              placeholder="{{ 'fundAccount' | translate }}" type="text"
+              [(ngModel)]="LocalPurchaceOrderItemData.fundAccount" [ngModelOptions]="{standalone: true}" />
+          </div>
+
+
+          <div class="col-lg  row align-items-center">
+            <p class="mg-b-10  col-lg-6">
+            {{ "taxCalculation" | translate }}
+            </p>
+            <input  class="form-control input col-lg-6 my-1" name="taxCalculation" id="taxCalculation"
+              placeholder="{{ 'taxCalculation' | translate }}" type="text"
+              [(ngModel)]="LocalPurchaceOrderItemData.taxCalculation" [ngModelOptions]="{standalone: true}" />
+          </div>
+
+
+
+        </div>
+
+        <div class="col-lg-6">
+          <div class="col-lg  row align-items-center">
+            <p class="mg-b-10  col-lg-4">
+            {{ "purchasingAmount" | translate }}
+            </p>
+            <input  class="form-control input col-lg-6 my-1" name="purchasingAmount" id="purchasingAmount"
+              placeholder="{{ 'purchasingAmount' | translate }}" type="text"
+              [(ngModel)]="LocalPurchaceOrderItemData.purchasingAmount" readonly [ngModelOptions]="{standalone: true}" />
+          </div>
+
+          <div class="col-lg  row align-items-center">
+            <p class="mg-b-10 col-lg-4">
+            {{ "purchasingDiscount" | translate }}
+            </p>
+            <input  class="form-control input col-lg-6 my-1" name="purchasingDiscount" id="purchasingDiscount"
+              placeholder="{{ 'purchasingDiscount' | translate }}" type="text" (change)="calculatePurchasingAmount()"
+              [(ngModel)]="LocalPurchaceOrderItemData.purchasingDiscount" readonly [ngModelOptions]="{standalone: true}" />
+          </div>
+
+          <div class="col-lg  row align-items-center">
+            <p class="mg-b-10  col-lg-4">
+            {{ "purchasingTax" | translate }}
+            </p>
+            <input  class="form-control input col-lg-6 my-1" name="purchasingTax" id="purchasingTax"
+              placeholder="{{ 'purchasingTax' | translate }}" type="text"
+              [(ngModel)]="LocalPurchaceOrderItemData.purchasingTax" readonly [ngModelOptions]="{standalone: true}" />
+          </div>
+
+          <div class="col-lg  row align-items-center">
+            <p class="mg-b-10  col-lg-4">
+            {{ "purchasingTotal" | translate }}
+            </p>
+            <input  class="form-control input col-lg-6 my-1" name="purchasingTotal" id="purchasingTotal"
+              placeholder="{{ 'purchasingTotal' | translate }}" type="text"
+              [(ngModel)]="LocalPurchaceOrderItemData.purchasingTotal" readonly [ngModelOptions]="{standalone: true}" />
+          </div>
+          <div class="col-lg  row align-items-center">
+            <p class="mg-b-10  col-lg-4">
+            {{ "purchasingNet" | translate }}
+            </p>
+            <input  class="form-control input col-lg-6 my-1" name="purchasingNet" id="purchasingNet"
+              placeholder="{{ 'purchasingNet' | translate }}" type="text"
+              [(ngModel)]="LocalPurchaceOrderItemData.purchasingNet" readonly [ngModelOptions]="{standalone: true}" />
+          </div>
+
+        </div>
+        <!-- </div> -->
+      </div>
+
+
+      <div class="">
+        <button style="background-color: #4ca86a;" class="btn text-white" type="submit" (click)="addLocalPurchaceOrderItem()">{{'save' | translate}}</button>
+        <a style="background-color:#84ba95;" routerLink="/purchaseInvoices/purchaseInvoices" class="btn bg-black-3 text-white mx-2" type="submit">{{'cancel' | translate}}</a>
+    </div>
+
+   </div>
+    </div>
+</div>
+
+  </div>
+<!-- </div> -->
+</div>
+
+
+<ng-template #select2modal let-modal>
+  <!-- Select2 modal -->
+  <div class="modal-header">
+    <h6 class="modal-title">{{ "add" | translate }}</h6>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form *ngIf="purchaseInvoicesDetailsData">
+      <div class="row">
+        <div class="col-lg-6">
+
+          <div class="col-lg my-1 row align-items-center">
+            <p class="mg-b-10 tx-semibold col-lg-5">
+              {{ "itemName" | translate }}
+            </p>
+            <ng-select (change)="getItemByItemCode($event)" [(ngModel)]="purchaseInvoicesDetailsData.items.itemsId"
+              name="itemsId" id="itemsId" class="p-0 my-1 col-7">
+              <ng-option *ngFor="let item of items" value="{{ item.itemsId }}">
+                {{ item.itemName }}
+              </ng-option>
+            </ng-select>
+          </div>
+          <div class="col-lg my-1 row align-items-center">
+            <p class="mg-b-10 tx-semibold col-lg-5">
+              {{ "stroeCode" | translate }}
+            </p>
+            <ng-select (change)="getStoreByStoreCode($event)" [(ngModel)]="purchaseInvoicesDetailsData.store.storeId"
+              name="storeId" id="storeId" class="p-0 my-1 col-7">
+              <ng-option *ngFor="let stores of store" value="{{ stores.storeId }}">
+                {{ stores.stroeCode }}
+              </ng-option>
+            </ng-select>
+          </div>
+
+          <div *ngIf="!isLoggedIn" class="col-lg my-1 row align-items-center">
+            <p class="mg-b-10 tx-semibold col-lg-5">
+              {{ "stockInStore" | translate }}
+            </p>
+            <input class="form-control input col-lg-7 my-1" name="quantity" id="quantity"
+              placeholder="  {{ 'quantity' | translate }}" type="text" readonly [value]="itemsDetails.quantity" />
+          </div>
+
+          <div class="col-lg row my-1 align-items-center">
+            <p class="mg-b-10 tx-semibold col-lg-5">
+              {{ "quantityPurchaseInvoices" | translate
+              }}<span class="tx-danger">*</span>
+            </p>
+            <input class="form-control input col-lg-7 my-1" name="quantityPurchaseInvoices"
+              id="quantityPurchaseInvoices" placeholder="{{ 'quantityPurchaseInvoices' | translate }}" type="text"
+              [(ngModel)]="purchaseInvoicesDetailsData.quantityPurchaseInvoices" (change)="calculateTotalBeforeTax()" />
+          </div>
+
+
+          <div class="col-lg row my-1 align-items-center">
+            <p class="mg-b-10 tx-semibold col-lg-5">
+              {{ "unitBeforeTax" | translate
+              }}<span class="tx-danger">*</span>
+            </p>
+            <input class="form-control input col-lg-7 my-1" name="unitBeforeTax" id="unitBeforeTax"
+              placeholder="{{ 'unitBeforeTax' | translate }}" type="text"
+              [(ngModel)]="purchaseInvoicesDetailsData.unitBeforeTax" (change)="calculateTotalBeforeTax()"/>
+          </div>
+          <div class="col-lg row my-1 align-items-center">
+            <p class="mg-b-10 tx-semibold col-lg-5">
+              {{ "discountPercentage" | translate
+              }}<span class="tx-danger">*</span>
+            </p>
+            <input class="form-control input col-lg-7 my-1" name="discountPercentage" id="discountPercentage"
+              placeholder="{{ 'discountPercentage' | translate }}" type="text"
+              [(ngModel)]="purchaseInvoicesDetailsData.discountPercentage" (change)="calculateTotalBeforeTax()" />
+          </div>
+          <div class="col-lg row my-1 align-items-center">
+            <p class="mg-b-10 tx-semibold col-lg-5">
+              {{ "totalBeforeTax" | translate
+              }}<span class="tx-danger">*</span>
+            </p>
+            <input class="form-control input col-lg-7 my-1" name="totalBeforeTax" id="totalBeforeTax"
+              placeholder="{{ 'totalBeforeTax' | translate }}" type="text"
+              [(ngModel)]="purchaseInvoicesDetailsData.totalBeforeTax" readonly />
+          </div>
+
+
+
+          <div class="col-lg row my-1 align-items-center">
+            <p class="mg-b-10 tx-semibold col-lg-5">
+              {{ "totalAfterTax" | translate
+              }}<span class="tx-danger">*</span>
+            </p>
+            <input class="form-control input col-lg-7 my-1" name="totalAfterTax" id="totalAfterTax"
+              placeholder="{{ 'totalAfterTax' | translate }}" type="text"
+              [(ngModel)]="purchaseInvoicesDetailsData.totalAfterTax" readonly/>
+          </div>
+
+          <!-- <div class="col-lg row my-1 align-items-center">
+            <p class="mg-b-10 tx-semibold col-lg-5">
+              {{ "net" | translate
+              }}<span class="tx-danger">*</span>
+            </p>
+            <input class="form-control input col-lg-7 my-1" name="net" id="net" placeholder="{{ 'net' | translate }}"
+              type="text" [(ngModel)]="purchaseInvoicesDetailsData.net" />
+          </div> -->
+          <div class="col-lg row my-1 align-items-center">
+            <p class="mg-b-10 tx-semibold col-lg-5">
+              {{
+              "expiryDateItem" | translate
+              }}<span class="tx-danger">*</span></p>
+            <mat-form-field appearance="fill" class="col-md-6 p-0 my-1">
+              <mat-label>{{ "DD/MM/YYYY" | translate }}</mat-label>
+              <input type="date" id="expiryDateItem" name="expiryDateItem" #expiryDateItem
+                [(ngModel)]="purchaseInvoicesDetailsData.expiryDateItem" matInput />
+
+              <!-- <mat-datepicker-toggle matSuffix [for]="picker" class="input-mini"></mat-datepicker-toggle>
+
+                <mat-datepicker #picker></mat-datepicker> -->
+            </mat-form-field>
+          </div>
+
+        </div>
+        <div class="col-lg-6">
+          <div *ngIf="!isLoggedIn2" class="col-lg my-1 row align-items-center">
+            <p class="mg-b-10 tx-semibold col-lg-5">
+              {{ "storePlace" | translate }}
+            </p>
+            <input class="form-control input col-lg-7 my-1" name="storePlace" id="storePlace"
+              placeholder="  {{ 'storePlace' | translate }}" type="text" readonly
+              [value]="storeByStoreCode.storePlace" />
+          </div>
+          <div *ngIf="!isLoggedIn">
+
+            <div class="col-lg my-1 row align-items-center">
+              <p class="mg-b-10 tx-semibold col-lg-5">
+                {{ "barCode" | translate }}
+              </p>
+              <div class="modal-body text-center col-lg-7 my-1">
+                <ngx-barcode [bc-value]="itemsDetails.barCode" [bc-line-color]="lineColor" bc-element-type="svg"
+                  [bc-width]="1" [bc-height]="30" [bc-display-value]="displayValue" [bc-font-options]="fontOptions"
+                  [bc-font]="font" [bc-text-align]="textAlign" [bc-text-position]="textPosition"
+                  [bc-text-margin]="textMargin" [bc-font-size]="fontSize" [bc-background]="background"
+                  [bc-margin]="margin" [bc-margin-top]="marginTop" [bc-margin-bottom]="marginBottom"
+                  [bc-margin-left]="marginLeft" [bc-margin-right]="marginRight"></ngx-barcode>
+              </div>
+            </div>
+
+            <div class="col-lg my-1 row align-items-center">
+              <p class="mg-b-10 tx-semibold col-lg-5">
+                {{ "itemCode" | translate }}
+              </p>
+              <input class="form-control input col-lg-7 my-1" name="itemCode" id="itemCode"
+                placeholder="  {{ 'itemCode' | translate }}" type="text" readonly [value]="itemsDetails.itemCode" />
+            </div>
+
+
+            <div class="col-lg my-1 row align-items-center">
+              <p class="mg-b-10 tx-semibold col-lg-5">
+                {{ "categoryName" | translate }}
+              </p>
+              <input class="form-control input col-lg-7 my-1" name="categoryName" id="categoryName"
+                placeholder="  {{ 'categoryName' | translate }}" type="text" readonly
+                [value]="itemsDetails.category.categoryName" />
+            </div>
+
+            <div class="col-lg my-1 row align-items-center">
+              <p class="mg-b-10 tx-semibold col-lg-5">
+                {{ "vendorName" | translate }}
+              </p>
+              <input class="form-control input col-lg-7 my-1" name="vendorName" id="vendorName"
+                placeholder="{{ 'vendorName' | translate }}" type="text" readonly
+                [value]="itemsDetails.vendor.vendorName" />
+            </div>
+            <div class="col-lg my-1 row align-items-center">
+              <p class="mg-b-10 tx-semibold col-lg-5">
+                {{ "unit" | translate }}
+              </p>
+              <input class="form-control input col-lg-7 my-1" name="unit" id="unit"
+                placeholder="{{ 'unit' | translate }}" type="text" readonly [value]="itemsDetails.unit.unitName" />
+            </div>
+
+
+            <div class="col-lg my-1 row align-items-center">
+              <p class="mg-b-10 tx-semibold col-lg-5">
+                {{ "tax" | translate }}
+              </p>
+              <input class="form-control input col-lg-7 my-1" name="unit" id="unit"
+                placeholder="{{ 'tax' | translate }}" type="text" readonly [value]="itemsDetails.tax" />
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" style="background-color: #84ba95" class="btn bg-black-3 text-white"
+      (click)="modal.close('Close click')">
+      {{ "close" | translate }}
+    </button>
+    <button class="btn bg-black-8 text-white" style="background-color: #4ca86a" (click)="addPurchaseInvoices()"
+      type="button">
+      {{ "save" | translate }}
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #select2modal2 let-modal>
+  <!-- Select2 modal -->
+  <div class="modal-header">
+    <h6 class="modal-title">{{ "update" | translate }}</h6>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form *ngIf="purchaseInvoicesDetailsData">
+      <div class="row">
+        <div class="col-lg-6">
+
+          <div class="col-lg my-1 row align-items-center">
+            <p class="mg-b-10 tx-semibold col-lg-5">
+              {{ "itemName" | translate }}
+            </p>
+            <ng-select (change)="getItemByItemCode($event)" [(ngModel)]="purchaseInvoicesDetailsData.items.itemsId"
+              name="itemsId" id="itemsId" class="p-0 my-1 col-7">
+              <ng-option *ngFor="let item of items" value="{{ item.itemsId }}">
+                {{ item.itemName }}
+              </ng-option>
+            </ng-select>
+          </div>
+          <div class="col-lg my-1 row align-items-center">
+            <p class="mg-b-10 tx-semibold col-lg-5">
+              {{ "stroeCode" | translate }}
+            </p>
+            <ng-select (change)="getStoreByStoreCode($event)" [(ngModel)]="purchaseInvoicesDetailsData.store.storeId"
+              name="storeId" id="storeId" class="p-0 my-1 col-7">
+              <ng-option *ngFor="let stores of store" value="{{ stores.storeId }}">
+                {{ stores.stroeCode }}
+              </ng-option>
+            </ng-select>
+          </div>
+
+          <div *ngIf="!isLoggedIn" class="col-lg my-1 row align-items-center">
+            <p class="mg-b-10 tx-semibold col-lg-5">
+              {{ "stockInStore" | translate }}
+            </p>
+            <input class="form-control input col-lg-7 my-1" name="quantity" id="quantity"
+              placeholder="  {{ 'quantity' | translate }}" type="text" readonly [value]="itemsDetails.quantity" />
+          </div>
+
+          <div class="col-lg row my-1 align-items-center">
+            <p class="mg-b-10 tx-semibold col-lg-5">
+              {{ "quantityPurchaseInvoices" | translate
+              }}<span class="tx-danger">*</span>
+            </p>
+            <input class="form-control input col-lg-7 my-1" name="quantityPurchaseInvoices"
+              id="quantityPurchaseInvoices" placeholder="{{ 'quantityPurchaseInvoices' | translate }}" type="text"
+              [(ngModel)]="purchaseInvoicesDetailsData.quantityPurchaseInvoices" (change)="calculateTotalBeforeTax()" />
+          </div>
+
+
+          <div class="col-lg row my-1 align-items-center">
+            <p class="mg-b-10 tx-semibold col-lg-5">
+              {{ "unitBeforeTax" | translate
+              }}<span class="tx-danger">*</span>
+            </p>
+            <input class="form-control input col-lg-7 my-1" name="unitBeforeTax" id="unitBeforeTax"
+              placeholder="{{ 'unitBeforeTax' | translate }}" type="text"
+              [(ngModel)]="purchaseInvoicesDetailsData.unitBeforeTax" (change)="calculateTotalBeforeTax()"/>
+          </div>
+          <div class="col-lg row my-1 align-items-center">
+            <p class="mg-b-10 tx-semibold col-lg-5">
+              {{ "discountPercentage" | translate
+              }}<span class="tx-danger">*</span>
+            </p>
+            <input class="form-control input col-lg-7 my-1" name="discountPercentage" id="discountPercentage"
+              placeholder="{{ 'discountPercentage' | translate }}" type="text"
+              [(ngModel)]="purchaseInvoicesDetailsData.discountPercentage" (change)="calculateTotalBeforeTax()" />
+          </div>
+          <div class="col-lg row my-1 align-items-center">
+            <p class="mg-b-10 tx-semibold col-lg-5">
+              {{ "totalBeforeTax" | translate
+              }}<span class="tx-danger">*</span>
+            </p>
+            <input class="form-control input col-lg-7 my-1" name="totalBeforeTax" id="totalBeforeTax"
+              placeholder="{{ 'totalBeforeTax' | translate }}" type="text"
+              [(ngModel)]="purchaseInvoicesDetailsData.totalBeforeTax" readonly />
+          </div>
+
+
+
+          <div class="col-lg row my-1 align-items-center">
+            <p class="mg-b-10 tx-semibold col-lg-5">
+              {{ "totalAfterTax" | translate
+              }}<span class="tx-danger">*</span>
+            </p>
+            <input class="form-control input col-lg-7 my-1" name="totalAfterTax" id="totalAfterTax"
+              placeholder="{{ 'totalAfterTax' | translate }}" type="text"
+              [(ngModel)]="purchaseInvoicesDetailsData.totalAfterTax" readonly/>
+          </div>
+
+          <!-- <div class="col-lg row my-1 align-items-center">
+            <p class="mg-b-10 tx-semibold col-lg-5">
+              {{ "net" | translate
+              }}<span class="tx-danger">*</span>
+            </p>
+            <input class="form-control input col-lg-7 my-1" name="net" id="net" placeholder="{{ 'net' | translate }}"
+              type="text" [(ngModel)]="purchaseInvoicesDetailsData.net" />
+          </div> -->
+          <div class="col-lg row my-1 align-items-center">
+            <p class="mg-b-10 tx-semibold col-lg-5">
+              {{
+              "expiryDateItem" | translate
+              }}<span class="tx-danger">*</span></p>
+            <mat-form-field appearance="fill" class="col-md-6 p-0 my-1">
+              <mat-label>{{ "DD/MM/YYYY" | translate }}</mat-label>
+              <input type="date" id="expiryDateItem" name="expiryDateItem" #expiryDateItem
+                [(ngModel)]="purchaseInvoicesDetailsData.expiryDateItem" matInput />
+
+              <!-- <mat-datepicker-toggle matSuffix [for]="picker" class="input-mini"></mat-datepicker-toggle>
+
+                <mat-datepicker #picker></mat-datepicker> -->
+            </mat-form-field>
+          </div>
+
+        </div>
+        <div class="col-lg-6">
+          <div *ngIf="!isLoggedIn2" class="col-lg my-1 row align-items-center">
+            <p class="mg-b-10 tx-semibold col-lg-5">
+              {{ "storePlace" | translate }}
+            </p>
+            <input class="form-control input col-lg-7 my-1" name="storePlace" id="storePlace"
+              placeholder="  {{ 'storePlace' | translate }}" type="text" readonly
+              [value]="storeByStoreCode.storePlace" />
+          </div>
+          <div *ngIf="!isLoggedIn">
+
+            <div class="col-lg my-1 row align-items-center">
+              <p class="mg-b-10 tx-semibold col-lg-5">
+                {{ "barCode" | translate }}
+              </p>
+              <div class="modal-body text-center col-lg-7 my-1">
+                <ngx-barcode [bc-value]="itemsDetails.barCode" [bc-line-color]="lineColor" bc-element-type="svg"
+                  [bc-width]="1" [bc-height]="30" [bc-display-value]="displayValue" [bc-font-options]="fontOptions"
+                  [bc-font]="font" [bc-text-align]="textAlign" [bc-text-position]="textPosition"
+                  [bc-text-margin]="textMargin" [bc-font-size]="fontSize" [bc-background]="background"
+                  [bc-margin]="margin" [bc-margin-top]="marginTop" [bc-margin-bottom]="marginBottom"
+                  [bc-margin-left]="marginLeft" [bc-margin-right]="marginRight"></ngx-barcode>
+              </div>
+            </div>
+
+            <div class="col-lg my-1 row align-items-center">
+              <p class="mg-b-10 tx-semibold col-lg-5">
+                {{ "itemCode" | translate }}
+              </p>
+              <input class="form-control input col-lg-7 my-1" name="itemCode" id="itemCode"
+                placeholder="  {{ 'itemCode' | translate }}" type="text" readonly [value]="itemsDetails.itemCode" />
+            </div>
+
+
+            <div class="col-lg my-1 row align-items-center">
+              <p class="mg-b-10 tx-semibold col-lg-5">
+                {{ "categoryName" | translate }}
+              </p>
+              <input class="form-control input col-lg-7 my-1" name="categoryName" id="categoryName"
+                placeholder="  {{ 'categoryName' | translate }}" type="text" readonly
+                [value]="itemsDetails.category.categoryName" />
+            </div>
+
+            <div class="col-lg my-1 row align-items-center">
+              <p class="mg-b-10 tx-semibold col-lg-5">
+                {{ "vendorName" | translate }}
+              </p>
+              <input class="form-control input col-lg-7 my-1" name="vendorName" id="vendorName"
+                placeholder="{{ 'vendorName' | translate }}" type="text" readonly
+                [value]="itemsDetails.vendor.vendorName" />
+            </div>
+            <div class="col-lg my-1 row align-items-center">
+              <p class="mg-b-10 tx-semibold col-lg-5">
+                {{ "unit" | translate }}
+              </p>
+              <input class="form-control input col-lg-7 my-1" name="unit" id="unit"
+                placeholder="{{ 'unit' | translate }}" type="text" readonly [value]="itemsDetails.unit.unitName" />
+            </div>
+
+
+            <div class="col-lg my-1 row align-items-center">
+              <p class="mg-b-10 tx-semibold col-lg-5">
+                {{ "tax" | translate }}
+              </p>
+              <input class="form-control input col-lg-7 my-1" name="unit" id="unit"
+                placeholder="{{ 'tax' | translate }}" type="text" readonly [value]="itemsDetails.tax" />
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" style="background-color: #84ba95" class="btn bg-black-3 text-white"
+      (click)="modal.close('Close click')">
+      {{ "close" | translate }}
+    </button>
+    <button style="background-color: #4ca86a" class="btn bg-black-8 text-white" (click)="addPurchaseInvoices()"
+      type="button">
+      {{ "save" | translate }}
+    </button>
+  </div>
+</ng-template>

@@ -1,0 +1,68 @@
+Enter only numbers
+Enter only 10 digits
+--------------------------------------------------
+form: FormGroup = new FormGroup({
+
+    vendorAccountantNumber:new FormControl(''),
+  vendorCode: new FormControl(''),
+  vendorName: new FormControl(''),
+  contactPerson: new FormControl(''),
+  contactNumber:new FormControl(''),
+  });
+--------------------------------------------------
+public fb: FormBuilder, // Form Builder service for Reactive forms
+--------------------------------------------------------------------
+ this.form = this.fb.group(
+      {
+
+        vendorAccountantNumber:[null, Validators.compose([
+          Validators.required,
+           Validators.pattern('^([0-9]+)$')
+        ])],
+        vendorCode: [null, Validators.compose([
+          Validators.required,
+           Validators.pattern('^([0-9]+)$')
+        ])],
+        vendorName: [null, Validators.compose([
+          Validators.required,
+          Validators.pattern('^([a-zA-Z\s]+)$')
+        ])],
+        contactPerson: [null, Validators.compose([
+          Validators.required,
+          Validators.pattern('^([0-9]+)$')
+        ])],
+        contactNumber:[null, Validators.compose([
+          Validators.required,
+         Validators.pattern('^([0-9]){10}$')
+        ])]
+
+
+
+      }
+
+    )
+---------------------------------------------------------------------------
+
+submitted = false;
+  get f(): { [key: string]: AbstractControl } {
+    return this.form.controls;
+  }
+---------------------------------------------
+this.submitted = true;
+    if (this.form.invalid) {
+      return;
+    }
+---------------------------------------
+[formGroup]="form"
+--------------------------------------------------------------------------
+formControlName="contactNumber"
+                  [ngClass]="{ 'is-invalid': submitted && f['contactNumber'].errors }" 
+----------------------------------------------------------------------------------------
+<div *ngIf="submitted && f['vendorAccountantNumber'].errors" class="invalid-feedback">
+  <div
+  *ngIf="f['vendorAccountantNumber'].errors['required']">Is required</div>
+</div>
+-----------------------------
+<div *ngIf="f['vendorName'].errors['pattern']">Enter only characters</div>
+----------------------------------------
+ <div *ngIf="f['vendorCode'].errors['pattern']">Enter only numbers</div>

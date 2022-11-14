@@ -1,0 +1,56 @@
+.li{
+  border-bottom: 2px solid #ddda66;
+  height: 30px;
+
+  th{
+
+ padding: 8px 0 !important;
+  font-weight: bold;
+  border-bottom: 2px solid #ddda66 !important;
+
+  }
+}
+th{
+  text-align: center !important;
+
+}
+td{
+  text-align: center !important;
+}
+
+// tbody{
+//   td{
+//       padding: 0px;
+//       text-align: center;
+//   }
+// }
+@media print {
+  .noPrint{
+    display:  none !important;
+  }
+
+}
+
+table {
+  width: 100%;
+
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+
+}
+
+td, th {
+  // width: 10%;
+  text-align: center !important;
+  font-family:cairo ;
+  // padding: 5px;
+
+
+}
+/* _text.scss:12 */
+.text-nowrap   { white-space: nowrap !important; }
+
+

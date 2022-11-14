@@ -1,0 +1,192 @@
+<app-page-header  [items]="['chartAccount'|translate]" [active_item]="'add'|translate"></app-page-header>
+<div class="row row-sm">
+  <div class="col-xl-12">
+    <div class="card overflow-visible custom-card">
+      <div class="card-body p-0">
+        <div class="table-responsive rounded-top">
+          <form class="pos-relative p-4">
+              <div class="noprint form-group form-inline d-flex justify-content-between">
+                  <!-- <div>
+                    {{'fullTextSearch'|translate}}<input class="form-control ms-2" (keyup)="filterData($event)" type="text" name="searchTerm" [(ngModel)]="service.searchTerm"/>
+                    <span class="ml-3" *ngIf="service.loading$ | async">{{'loading'|translate}}</span>
+                  </div> -->
+                  <div class="table-btns">
+
+                    <!-- <a _ngcontent-xjy-c134="" routerLink="../add" type="button" style="background-color: #5666c0;" class="btn my-2 btn-icon-text d-inline-block m-2">
+                      <i _ngcontent-xjy-c134="" class="fe fe-plus text-white bg-transparent"></i>
+                      <span _ngcontent-xjy-c134="" class="text-white">{{'add'|translate}}</span>
+                    </a> -->
+
+
+                    <button class="btn bg-black-8 text-white mb-2 float-end" style="background-color: #5666c0;"
+                    [routerLink]="['/ChartAccount/ChartAccount/add']" type="submit">{{'add'|translate}}</button>
+
+
+                    <button _ngcontent-xjy-c134=""  (click)="generatePDF()" type="button" class="btn my-2 btn-icon-text  text-white" style="margin-right: 5px; padding: 5px;background-color: #7886d3;"><i _ngcontent-aph-c190="" class="mdi mdi-file-pdf text-white bg-transparent fs-18 p-0 me-1"></i>PDF</button>
+
+                    <!-- <button _ngcontent-xjy-c134="" type="button" class="btn btn-info my-2 btn-icon-text" style="margin-right: 5px; padding: 5px;">CSV</button> -->
+
+                    <button _ngcontent-xjy-c134="" (click)="ExportTOExcel() " type="button" class="btn my-2 btn-icon-text text-white" style="margin-right: 5px; padding: 5px; background-color: #7886d3;"><i _ngcontent-rtg-c190="" class="mdi mdi-file-excel bg-transparent text-white fs-18 p-0 me-1"></i>XLS</button>
+                    <button _ngcontent-xjy-c134="" type="button" class="btn my-2 btn-icon-text" style="margin-right: 5px; padding: 0px; background-color: #7886d3;"><i _ngcontent-xjy-c134="" class="fe fe-printer bg-transparent text-white p-2 m-2" (click)="printPage()"></i></button>
+
+                  </div>
+              </div>
+
+              <div class="theChart">
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                  <ng-container matColumnDef="code" style="width:10px ;"  >
+                    <th mat-header-cell *matHeaderCellDef  >
+                      <span [style.paddingLeft.px]="40"> {{'accountCode' | translate}} </span>
+                    </th>
+                    <td mat-cell *matCellDef="let data"
+                    [style.color]="data.expandable ? 'red' : 'black'"
+                    [style.fontWeight]="data.expandable ? '600' : ''">
+
+
+
+                      {{data.name.slice(0,data.name.indexOf('-'))}}
+                    </td>
+                  </ng-container>
+                  <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef>
+                      <span [style.paddingLeft.px]="40"> {{'accounts' | translate}} </span>
+                    </th>
+                    <td mat-cell *matCellDef="let data" [style.color]="data.expandable ? 'red' : 'black'"
+                    [style.fontWeight]="data.expandable ? '600' : ''" >
+                      <button mat-icon-button
+                              [style.visibility]="!data.expandable ? 'hidden' : ''"
+                              [style.color]="data.expandable ? 'red' : 'black'"
+                              [style.marginLeft.px]="data.level * 32"
+                              (click)="treeControl.toggle(data)">
+                        <mat-icon class="mat-icon-rtl-mirror">
+                          {{treeControl.isExpanded(data) ? 'remove' : 'add'}}
+                        </mat-icon>
+                      </button>
+
+                      {{data.name.slice(data.name.indexOf('-')+1)}}
+                    </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="count">
+                    <th mat-header-cell *matHeaderCellDef> {{'ACTIONS' | translate}} </th>
+                    <td mat-cell *matCellDef="let data"> <button   class="btn btn-gray shicon" (click)="onEditAccountById(data)" ><i class="fe fe-edit me-2 sicon "></i>{{'EDIT' | translate}}</button>
+                      &nbsp;&nbsp;
+                      <!-- <button class="btn btn-dark shicon" (click)="onPrintAccountById(data)"><i class="fe fe-eye me-2 sicon "></i>{{'VIEW' | translate}}&{{'PRINT' | translate}}</button> </td> -->
+                  </ng-container>
+
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+              </div>
+
+            </form>
+        </div>
+      </div>
+    </div>
+  </div></div>
+  <ng-template #select1modal let-modal>
+    <!-- Select2 modal -->
+    <div class="modal-header">
+      <h6 class="modal-title">  {{ "addAccount" | translate }}</h6>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      </button>
+    </div>
+    <div class="modal-body">
+      <form (ngSubmit)="onAddAccounts()" [formGroup]="form" class="form-horizontal">
+
+
+        <div class="m-3 row">
+          <div class="col-md-12">
+            <label for="" class="form-label">{{'mainAccount' | translate}}<span style="font-size: large;color: red;">*</span></label>
+            <select name="parentAccount"
+            formControlName="parentAccount"
+          [ngClass]="{ 'is-invalid': submitted && f['parentAccount'].errors }"
+          #parentAccount
+
+            [(ngModel)]="coaData.parentAccount"
+          class="form-control form-select"
+          (change)="GenerateAccountCode($event)">
+          <option value ="0">{{'notAssigned' | translate}}<span style="font-size: large;color: red;">*</span></option>
+              <option *ngFor="let acc of mainAccounts" [value] ="acc.accountCode">{{acc.accountCode}}| {{acc.accountName}}</option>
+
+          </select>
+          <div *ngIf="submitted && f['parentAccount'].errors" class="invalid-feedback">
+            <div *ngIf="f['parentAccount'].errors['required']">{{'isReqired'|translate}}.</div></div>
+          </div>
+        </div>
+        <div class="m-3 row">
+          <div class="col-md-6">
+            <label for="" class="form-label">{{'accountCode' | translate}}<span style="font-size: large;color: red;">*</span></label>
+            <input type="text" #accountCode
+
+            formControlName="accountCode"
+              [ngClass]="{ 'is-invalid': submitted && f['accountCode'].errors }"
+
+
+            [(ngModel)]="coaData.accountCode" id="accountCode" name="accountCode" class="form-control mt-2 text-line" placeholder="" >
+
+            <div *ngIf="submitted && f['accountCode'].errors" class="invalid-feedback">
+              <div *ngIf="f['accountCode'].errors['required']">{{'isReqired'|translate}}.</div>
+              <div *ngIf="f['accountCode'].errors['pattern']">Must be only numbers</div>
+            </div>
+
+
+          </div>
+
+        </div>
+        <div class="m-3 row">
+          <div class="col-md-6">
+            <label for="" class="form-label">{{'accountName' | translate}}<span style="font-size: large;color: red;">*</span></label>
+            <input type="text" #accountName
+
+            formControlName="accountName"
+              [ngClass]="{ 'is-invalid': submitted && f['accountName'].errors }"
+
+
+            [(ngModel)]="coaData.accountName" id="accountName" name="accountName" class="form-control mt-2 text-line" placeholder="" >
+
+            <div *ngIf="submitted && f['accountName'].errors" class="invalid-feedback">
+              <div *ngIf="f['accountName'].errors['required']">{{'isReqired'|translate}}.</div>
+            </div>
+
+
+          </div>
+
+        </div>
+        <div class="m-3 row">
+          <div class="col-md-6">
+            <label for="" class="form-label">{{'accountType' | translate}}<span style="font-size: large;color: red;">*</span></label>
+            <select name="accountType"
+            formControlName="accountType"
+          [ngClass]="{ 'is-invalid': submitted && f['accountType'].errors }"
+          #accountType
+
+            [(ngModel)]="coaData.accountType"
+          class="form-control form-select">
+            <option  (ngModel)='coaData.accountType' value="main">{{'main' | translate}}</option>
+            <option  (ngModel)='coaData.accountType' value="sub">{{'subAccount' | translate}}</option>
+            </select>
+            <div *ngIf="submitted && f['accountType'].errors" class="invalid-feedback">
+              <div *ngIf="f['accountType'].errors['required']">{{'isReqired'|translate}}.</div></div>
+          </div>
+
+        </div>
+        <div class="m-3 row">
+          <div class="col-md-12">
+            <label for="" class="form-label">{{'Description' | translate}}</label>
+            <textarea [ngModelOptions]="{standalone: true}" #description [(ngModel)]="coaData.accountDescription" class="form-control mt-2 text-line" id="description" name="description" id="" cols="50" rows="8" placeholder=""></textarea>
+          </div>
+        </div>
+        <div class="card-header">
+          <button type="submit" id="add-bank-form" class="btn btn-dark m-3">{{'SAVE' | translate}}</button>
+          <a [routerLink]="['/finance/coa/coa']" class="btn btn-light">{{'DISCARD' | translate}}</a>
+        </div>
+        </form>
+    </div>
+    <!-- <div class="modal-footer">
+      <button type="button"  class="btn bg-black-3 text-white" style="background-color: #7886d3;" (click)="modal.close('Close click')">{{"cancel" | translate }}</button>
+      <button class="btn bg-black-8 text-white" style="background-color: #5666c0;" type="button" (click)="addBank()">{{"save" | translate }} </button>
+    </div> -->
+
+  </ng-template>
+

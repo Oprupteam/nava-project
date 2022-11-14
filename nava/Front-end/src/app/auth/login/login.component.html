@@ -1,0 +1,88 @@
+<!-- Page -->
+<div class="page main-signin-wrapper">
+  <!-- Row -->
+  <div class="row signpages signpage text-center">
+    <div class="col-md-12">
+      <div class="card border-0 card-sign">
+        <div class="login_form rounded-start-11">
+          <div class="container-fluid">
+            <div class="row row-sm">
+              <div class="card-body mt-2 mb-2">
+                <div class="mobilelogo">
+                  <img src="./assets/img/brand/logo-light.png"
+                    class=" header-brand-img text-start float-start mb-4 dark-logo" alt="logo">
+                  <img src="./assets/img/brand/logo-dark.png"
+                    class=" header-brand-img text-start float-start mb-4 light-logo" alt="logo">
+                </div>
+                <div class="clearfix"></div>
+                <form>
+                  <p class="h2 mb-4 font-weight-bold text-black">We Find The New Way</p>
+                  <!-- <p class="mb-4 text-muted tx-13 ms-0 text-start">We Find The New Way</p> -->
+                  <div class="panel desc-tabs border-0 p-0 form m-auto">
+                    <form [formGroup]="loginForm">
+
+                      <div class="form-group text-start">
+                        <!-- <label class="tx-medium">Email</label> -->
+                        <input class="form-control py-4 border-dark login_form_input email" formControlName="email" placeholder="Enter your email"
+                          type="text">
+                        <div *ngIf="loginForm.controls.email?.touched && loginForm.controls.email.errors?.required"
+                          class="text text-danger mt-1">
+                          Email is required
+                        </div>
+                        <div *ngIf="loginForm.controls.email?.touched && loginForm.controls.email.errors?.email"
+                          class="text text-danger mt-1">
+                          Invalid Email
+                        </div>
+                      </div>
+                      <div class="form-group text-start">
+                        <!-- <label class="tx-medium">Password</label> -->
+                        <input class="form-control py-4 border-dark login_form_input password" placeholder="Enter your password" type="password"
+                          formControlName="password">
+                        <div
+                          *ngIf="loginForm.controls.password?.touched && loginForm.controls.password.errors?.required"
+                          class="text text-danger mt-1">
+                          Password is required
+                        </div>
+                      </div>
+                      <div class="pb-2">
+                        <div class="form-check float-start">
+                          <input class="form-check-input border-dark" type="checkbox" value="" id="flexCheckDefault">
+                          <label class="form-check-label" for="flexCheckDefault">
+                            Remember me
+                          </label>
+                        </div>
+                        <a class="float-end">Forgot password?</a>
+                        <div class="clearfix"></div>
+                      </div>
+                      <button class="btn btn-dark bg-black btn-block py-3" 
+                        (click)="login()">LOGIN</button>
+                    </form>
+                  </div>
+                </form>
+                <!-- <div class="text-start mt-4 ms-0 mb-3"> -->
+                  <!-- <div>Don't have an account? <a routerLink="/auth/register">Register Here</a></div> -->
+                <!-- </div> -->
+                <!-- <div class="signin-or-title">
+                  <h5 class="fs-12 mb-1 title tx-normal">or</h5>
+                </div>
+                <div class="pb-1 pt-4">
+                  <div class="text-center socialicons">
+                    <button class="btn ripple btn-primary-transparent rounded-circle"><i
+                        class="mdi mdi-google"></i></button>
+                    <button class="btn ripple btn-success-transparent rounded-circle"><i
+                        class="mdi mdi-facebook"></i></button>
+                    <button class="btn ripple btn-info-transparent rounded-circle"><i
+                        class="mdi mdi-twitter"></i></button>
+                  </div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Row -->
+
+</div>
+<!-- End Page -->

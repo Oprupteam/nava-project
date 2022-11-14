@@ -1,0 +1,711 @@
+<app-page-header title="{{ 'localPurchaceOrder' | translate }}" [items]="['localPurchaceOrder' | translate]"
+  active_item="{{ 'add' | translate }}"></app-page-header>
+<div class="row row-sm">
+  <div class="col-lg-12 col-md-12">
+    <div class="card">
+      <div class="card-body border m-4 p-4">
+
+      <div class="card-body">
+        <form [formGroup]="form">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="col-lg row">
+                <p class="mg-b-10 tx-semibold col-lg-5">
+                    {{ "localPurchaceOrderNumber" | translate }}
+                  </p>
+                  <input readonly class="form-control input col-lg-7 my-1" name="localPurchaceOrderNumber"
+                    id="localPurchaceOrderNumber" placeholder="{{ 'localPurchaceOrderNumber' | translate }}" type="text" [(ngModel)]="localPurchaceOrderData.localPurchaceOrderNumber" [ngModelOptions]="{standalone: true}" />
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="col-lg row  align-items-center">
+                  <label for="" class="mg-b-10 tx-semibold col-lg-5">{{ "localPurchaceOrderData" | translate }}
+                    <span class="tx-danger">*</span></label>
+                  <mat-form-field appearance="fill" class="col-md-6 p-0 my-1">
+                    <mat-label>{{ "DD/MM/YYYY" | translate }}</mat-label>
+                    <input id="localPurchaceOrderDate" name="localPurchaceOrderDate" #localPurchaceOrderDate
+                    formControlName="localPurchaceOrderDate" [ngClass]="{
+                      'is-invalid': submitted && f['localPurchaceOrderDate'].errors
+                    }"
+                    [(ngModel)]="localPurchaceOrderData.localPurchaceOrderDate
+                      " matInput [matDatepicker]="picker" />
+
+                      <div *ngIf="submitted && f['localPurchaceOrderDate'].errors" class="invalid-feedback">
+                        <div class="text-end" *ngIf="f['localPurchaceOrderDate'].errors['required']">
+                          {{ "isRequired" | translate }}
+                        </div>
+                      </div>
+
+
+                    <mat-datepicker-toggle matSuffix [for]="picker" class="input-mini"></mat-datepicker-toggle>
+
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                </div>
+              </div>
+
+
+              <div class="col-lg-6">
+                <div class="col-lg row align-items-center">
+                  <p class="tx-semibold col-lg-5">
+                  {{ "vendor" | translate
+                  }}<span class="tx-danger">*</span>
+                </p>
+                <ng-select
+                formControlName="vendorId" [ngClass]="{
+                  'is-invalid': submitted && f['vendorId'].errors
+                }"
+                  [(ngModel)]="localPurchaceOrderData.vendor.vendorId" name="vendorId" id="vendorId" class="p-0 col-7" placeholder="-- {{'vendor' | translate }} --">
+                  <ng-option *ngFor="let vendors of vendor" value="{{ vendors.vendorId }}">
+                    {{ vendors.vendorName }}
+                  </ng-option>
+                </ng-select>
+                <div *ngIf="submitted && f['vendorId'].errors" class="invalid-feedback">
+                  <div class="text-end" *ngIf="f['vendorId'].errors['required']">
+                    {{ "isRequired" | translate }}
+                  </div>
+                </div>
+              </div>
+              </div>
+                <div class="col-lg-6">
+                  <div class="col-lg my-1 row align-items-center">
+                    <p class="mg-b-10 tx-semibold col-lg-5">
+                      {{ "localPurchaceOrderType" | translate
+                      }}<span class="tx-danger">*</span>
+                    </p>
+                    <div class="col-xl-4">
+                      <label class="mg-b-5-f">
+                        <input type="radio"
+                        formControlName="localPurchaceOrderType" [ngClass]="{
+                          'is-invalid': submitted && f['localPurchaceOrderType'].errors}"
+                        [(ngModel)]="localPurchaceOrderData.localPurchaceOrderType
+                          " value="1" name="localPurchaceOrderType" id="localPurchaceOrderType" />
+                        <span class="m-1">{{ "receivables" | translate }}</span>
+                      </label>
+                    </div>
+                    <div class="col-xl-3">
+                      <label class="mg-b-5-f">
+                        <input type="radio"
+                        formControlName="localPurchaceOrderType" [ngClass]="{
+                          'is-invalid': submitted && f['localPurchaceOrderType'].errors
+                        }"
+
+                        [(ngModel)]="
+                            localPurchaceOrderData.localPurchaceOrderType
+                          " value="2" name="localPurchaceOrderType" id="localPurchaceOrderType" />
+
+                        <span class="m-1">{{ "cash" | translate }}</span>
+                        <div *ngIf="submitted && f['localPurchaceOrderType'].errors" class="invalid-feedback">
+                          <div class="text-end" *ngIf="f['localPurchaceOrderType'].errors['required']">
+                            {{ "isRequired" | translate }}
+                          </div>
+                        </div>
+
+                      </label>
+
+                    </div>
+                  </div>
+                </div>
+
+</div>
+<br>
+<br>
+            <div class="card custom-card" id="basic-alert">
+              <div class="card-body px-0">
+                <div class="text-wrap">
+                  <div class="example">
+                    <div class="panel panel-primary tabs-style-1">
+                      <div class=" tab-menu-heading">
+                        <div class="tabs-menu1">
+                          <!-- Tabs -->
+                          <ul ngbNav #nav="ngbNav" [activeId]="1" class="panel-tabs main-nav-line">
+                            <li [ngbNavItem]="1">
+                              <a ngbNavLink>{{'directOrder'|translate}}</a>
+                              <ng-template ngbNavContent>
+                                <div class="card-body">
+                                  <div class="border m-2 p-2">
+                                    <div class="mb-2">
+                                      <div class="my-1">
+                                        <button class="btn bg-black-8 text-white" style="background-color:#4ca86a;"  (click)="Select2Open(select2modal)"> {{'addItem' | translate}}</button>
+                                      </div>
+                                        <div class="table-responsive">
+                                      <table class="table table-striped border">
+
+                                  <tr class="text-center li">
+                                   <td scope="col" >{{'itemName' | translate}}</td>
+                                  <td scope="col" >{{'barCode' | translate}}</td>
+                                  <td scope="col" >{{'category' | translate}}</td>
+                                  <td scope="col" >{{'unit' | translate}}</td>
+                                  <td scope="col" >{{'stockInStore' | translate}}</td>
+                                  <td scope="col" >{{'quantity' | translate}}</td>
+                                  <td scope="col" >{{'purchasingPrice' | translate}}</td>
+                                  <td scope="col" >{{'taxRates' | translate}}</td>
+                                  <td scope="col" >{{'discount' | translate}}</td>
+                                  <td scope="col" >{{'total' | translate}}</td>
+                                  <td scope="col" >{{'description' | translate}}</td>
+
+                                  <td scope="col"  data-html2canvas-ignore="true" class="noPrint">{{'action' | translate}}</td>
+                                </tr>
+                                <tbody class="table-group-divider">
+
+
+                                  <tr *ngFor="let item of itemsDetailsById">
+
+                                    <td>{{item.items.itemName}}</td>
+                                  <td ><ngx-barcode  [bc-value]="item.items.barCode"   [bc-line-color]="lineColor"
+                                    bc-element-type="svg"
+                                   [bc-width]="width" [bc-height]="height" [bc-display-value]="displayValue" [bc-font-options]="fontOptions" [bc-font]="font"
+                                   [bc-text-align]="textAlign" [bc-text-position]="textPosition" [bc-text-margin]="textMargin"
+                                   [bc-font-size]="fontSize" [bc-background]="background"
+                                   [bc-margin]="margin" [bc-margin-top]="marginTop"
+                                   [bc-margin-bottom]="marginBottom" [bc-margin-left]="marginLeft"
+                                   [bc-margin-right]="marginRight"></ngx-barcode></td>
+                                   <td>{{item.items.category.categoryName}}</td>
+                                   <td>{{item.items.unit.unitName}}</td>
+
+
+                                     <td>{{item.items.quantity}}</td>
+                                     <td>{{item.localPurchaceOrderQuantity}}</td>
+                                     <td>{{item.purchasingPrice}}</td>
+                                     <td>{{item.taxRates}}</td>
+                                     <td>{{item.discount}}</td>
+                                     <td>{{item.total}}</td>
+                                     <td>{{item.description}}</td>
+
+                                    <td data-html2canvas-ignore="true" class="noPrint">
+                                      <a class="btn btn-icon-text" (click)="Select2Update(select2modal2,item)"><i
+                                        class="fe fe-edit text-dark bd-black"></i></a>
+                                        <button class="btn btn-icon-text" (click)="deletePartner(item)"><i
+                                          class="fe fe-trash-2 text-dark bd-black"></i></button>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                            </div>
+                          </div>
+                          </div>
+
+                              </ng-template>
+                            </li>
+                            <li [ngbNavItem]="2">
+                              <a ngbNavLink>{{'indirectOrder'|translate}}</a>
+                              <ng-template ngbNavContent>
+
+                                  <div class="border m-2 p-2">
+                                    <div class="row">
+                                      <div class="col-lg-12">
+                                      <div class="col-lg my-1 row align-items-center">
+                                       <p class="mg-b-10 tx-semibold col-lg-5">
+                                      {{ "requestNumber" | translate}}
+                                       </p>
+                                    <ng-select (change)="getItemByRequestNumber($event)"
+                                    [(ngModel)]="localPurchaceOrderDetailsData2.itemRequest.itemRequestId"
+                                    [ngModelOptions]="{standalone: true}"
+                                      name="itemRequestId" id="itemRequestId" class="p-0 my-1 col-5">
+                                      <ng-option *ngFor="let itemByItemRequest of itemRequest"
+                                      value="{{itemByItemRequest.itemRequestId}}">
+                                        {{itemByItemRequest.itemRequestId}}
+                                      </ng-option>
+                                    </ng-select>
+
+                                  </div>
+
+                                  </div>
+
+                                  <!-- <input
+                                  [value]="localPurchaceOrderDetailsData2.localPurchaceOrder.localPurchaceOrderId"> -->
+
+                                </div>
+                                  </div>
+                               <div class="table-responsive">
+                              <table class="table table-striped border">
+                              <tr class="text-center li">
+                                <td scope="col" >{{'itemName' | translate}}</td>
+                                <td scope="col" >{{'barCode' | translate}}</td>
+                                <td scope="col" >{{'category' | translate}}</td>
+                                <td scope="col" >{{'unit' | translate}}</td>
+                                <td scope="col" >{{'stockInStore' | translate}}</td>
+                                <td scope="col" >{{'quantity' | translate}}</td>
+                                <td scope="col" >{{'purchasingPrice' | translate}}</td>
+                                <td scope="col" >{{'taxRates' | translate}}</td>
+                                <td scope="col" >{{'discount' | translate}}</td>
+                                <td scope="col" >{{'total' | translate}}</td>
+                                <td scope="col" >{{'description' | translate}}</td>
+                                <td scope="col"  data-html2canvas-ignore="true" class="noPrint">{{'action' | translate}}</td>
+                                </tr>
+                              <tbody class="table-group-divider">
+                                <tr *ngFor="let itemsRequest of itemsDetailsBy">
+                                <td>{{itemsRequest.items.itemName}}</td>
+                                <td ><ngx-barcode  [bc-value]="itemsRequest.items.barCode" [bc-line-color]="lineColor"
+                                  bc-element-type="svg"
+                                 [bc-width]="width" [bc-height]="height" [bc-display-value]="displayValue" [bc-font-options]="fontOptions" [bc-font]="font"
+                                 [bc-text-align]="textAlign" [bc-text-position]="textPosition" [bc-text-margin]="textMargin"
+                                 [bc-font-size]="fontSize" [bc-background]="background"
+                                 [bc-margin]="margin" [bc-margin-top]="marginTop"
+                                 [bc-margin-bottom]="marginBottom" [bc-margin-left]="marginLeft"
+                                 [bc-margin-right]="marginRight"></ngx-barcode></td>
+                                 <td>{{itemsRequest.items.category.categoryName}}</td>
+                                 <td>{{itemsRequest.items.unit.unitName}}</td>
+                                   <td>{{itemsRequest.items.quantity}}</td>
+                                   <td>{{itemsRequest.localPurchaceOrderQuantity}}</td>
+                                   <td>{{itemsRequest.purchasingPrice}}</td>
+                                   <td>{{itemsRequest.taxRates}}</td>
+                                   <td>{{itemsRequest.discount}}</td>
+                                   <td>{{itemsRequest.total}}</td>
+                                   <td>{{itemsRequest.description}}</td>
+                                   <!-- <td>{{itemsRequest.localPurchaceOrderId}}</td> -->
+                                  <td data-html2canvas-ignore="true" class="noPrint">
+                                    <a class="btn btn-icon-text" (click)="Select2Update2(select2modal22,itemsRequest.localPurchaceOrderDetailsId)"><i
+                                      class="fe fe-edit text-dark bd-black"></i></a>
+                                      <button class="btn btn-icon-text" (click)="deletePartner2(itemsRequest)"><i
+                                        class="fe fe-trash-2 text-dark bd-black"></i></button>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                              </ng-template>
+                            </li>
+
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="panel-body tabs-menu-body main-content-body-right border-top-0 border">
+                        <div [ngbNavOutlet]="nav"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </form>
+
+        <div class="">
+          <!-- <button style="background-color: #4ca86a;" routerLink="/LocalPurchaceOrder/LocalPurchaceOrder" class="btn text-white" type="submit" >{{'save' | translate}}</button> -->
+          <a style="background-color:#84ba95;" routerLink="/LocalPurchaceOrder/LocalPurchaceOrder" class="btn bg-black-3 text-white mx-2" type="submit">{{'cancel' | translate}}</a>
+      </div>
+
+      </div>
+</div>
+ </div>
+</div>
+</div>
+
+
+<ng-template #select2modal let-modal>
+
+      <div class="modal-header">
+        <h6 class="modal-title"> {{'add' | translate}}</h6>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        </button>
+      </div>
+
+
+      <div class="modal-body">
+        <form *ngIf="localPurchaceOrderDetailsData">
+          <div class="row">
+            <div class="col-lg-6">
+            <input hidden [(ngModel)]="localPurchaceOrderDetailsData.localPurchaceOrder.localPurchaceOrderId" name="localPurchaceOrderId" id="localPurchaceOrderId">
+            <!-- <input hidden [(ngModel)]="localPurchaceOrderDetailsData.itemRequest" name="itemRequest" id="itemRequest"> -->
+
+              <div class="col-lg my-1 row align-items-center">
+                <p class="mg-b-10 tx-semibold col-lg-5">
+                  {{ "itemName" | translate}}
+                </p>
+                <ng-select (change)="getItemByItemCode($event)" [(ngModel)]="localPurchaceOrderDetailsData.items.itemsId"
+                  name="itemsId" id="itemsId" class="p-0 my-1 col-7">
+                  <ng-option *ngFor="let item of items" value="{{item.itemsId}}">
+                    {{item.itemName}}
+                  </ng-option>
+                </ng-select>
+
+              </div>
+              <div *ngIf="!isLoggedIn" class="col-lg my-1 row align-items-center">
+                <p class="mg-b-10 tx-semibold col-lg-5">{{'stockInStore' | translate}}</p>
+                <input class="form-control input col-lg-7 my-1" name="quantity" id="quantity"
+                  placeholder="  {{'stockInStore' | translate}}" type="text" readonly
+                  [value]='itemsDetails.quantity'>
+              </div>
+
+              <div class="col-lg row my-1 align-items-center">
+                <p class="mg-b-10 tx-semibold col-lg-5">{{'quantity' | translate}}<span class="tx-danger">*</span>
+                </p>
+                <input class="form-control input col-lg-7 my-1" name="localPurchaceOrderQuantity" id="localPurchaceOrderQuantity"
+                  placeholder="{{'quantity' | translate}}" type="text"
+                  [(ngModel)]='localPurchaceOrderDetailsData.localPurchaceOrderQuantity' (change)="calculate2()">
+
+              </div>
+              <div class="col-lg row my-1 align-items-center">
+                <p class="mg-b-10 tx-semibold col-lg-5">{{'purchasingPrice' | translate}}<span class="tx-danger">*</span>
+                </p>
+                <input class="form-control input col-lg-7 my-1" name="purchasingPrice" id="purchasingPrice"
+                  placeholder="{{'purchasingPrice' | translate}}" type="text"
+                  [(ngModel)]='localPurchaceOrderDetailsData.purchasingPrice' (change)="calculate2()">
+
+              </div>
+              <div class="col-lg row my-1 align-items-center">
+                <p class="mg-b-10 tx-semibold col-lg-5">{{'taxRates' | translate}}<span class="tx-danger">*</span>
+                </p>
+                <input class="form-control input col-lg-7 my-1" name="taxRates" id="taxRates"
+                  placeholder="{{'taxRates' | translate}}" type="text"
+                  [(ngModel)]='localPurchaceOrderDetailsData.taxRates' (change)="calculate2()">
+
+              </div>
+              <div class="col-lg row my-1 align-items-center">
+                <p class="mg-b-10 tx-semibold col-lg-5">{{'discount' | translate}}<span class="tx-danger">*</span>
+                </p>
+                <input class="form-control input col-lg-7 my-1" name="discount" id="discount"
+                  placeholder="{{'discount' | translate}}" type="discount"
+                  [(ngModel)]='localPurchaceOrderDetailsData.discount' (change)="calculate2()">
+              </div>
+
+              <div class="col-lg row my-1 align-items-center">
+                <p class="mg-b-10 tx-semibold col-lg-5">{{'total' | translate}}<span class="tx-danger">*</span>
+                </p>
+                <input class="form-control input col-lg-7 my-1" name="total" id="total"
+                  placeholder="{{'total' | translate}}" type="total"
+                  [(ngModel)]='localPurchaceOrderDetailsData.total' readonly>
+
+              </div>
+              <div class="col-lg row my-1 align-items-center">
+                <p class="mg-b-10 tx-semibold col-lg-5">{{'description' | translate}}<span class="tx-danger">*</span>
+                </p>
+                <input class="form-control input col-lg-7 my-1" name="description" id="description"
+                  placeholder="{{'description' | translate}}" type="description"
+                  [(ngModel)]='localPurchaceOrderDetailsData.description'>
+
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div *ngIf="!isLoggedIn">
+                        <div class="col-lg my-1 row align-items-center">
+                  <p class="mg-b-10 tx-semibold col-lg-5">{{'barCode' | translate}}</p>
+                  <div class="modal-body text-center col-lg-7 my-1">
+
+                    <ngx-barcode  [bc-value]="itemsDetails.barCode" [bc-line-color]="lineColor"
+                           bc-element-type="svg"
+                           [bc-width]="1" [bc-height]="30" [bc-display-value]="displayValue" [bc-font-options]="fontOptions" [bc-font]="font"
+                           [bc-text-align]="textAlign" [bc-text-position]="textPosition" [bc-text-margin]="textMargin"
+                           [bc-font-size]="fontSize" [bc-background]="background"
+                           [bc-margin]="margin" [bc-margin-top]="marginTop"
+                           [bc-margin-bottom]="marginBottom" [bc-margin-left]="marginLeft"
+                           [bc-margin-right]="marginRight"></ngx-barcode>
+                           <!-- <span style="font:2px; color:rgb(23, 23, 23);">{{itemsDetails.barCode}}</span> -->
+
+                  </div>
+                </div>
+
+                <div class="col-lg my-1 row align-items-center">
+                  <p class="mg-b-10 tx-semibold col-lg-5">{{'itemCode' | translate}}</p>
+                  <input class="form-control input col-lg-7 my-1" name="itemCode" id="itemCode"
+                    placeholder="  {{'itemCode' | translate}}" type="text" readonly
+                    [value]='itemsDetails.itemCode'>
+                </div>
+
+
+                <div class="col-lg my-1 row align-items-center">
+                  <p class="mg-b-10 tx-semibold col-lg-5">{{'categoryName' | translate}}</p>
+                  <input class="form-control input col-lg-7 my-1" name="categoryName" id="categoryName"
+                    placeholder="  {{'categoryName' | translate}}" type="text" readonly
+                    [value]='itemsDetails.category.categoryName'>
+                </div>
+
+
+
+
+                <div class="col-lg my-1 row align-items-center">
+                  <p class="mg-b-10 tx-semibold col-lg-5">{{'vendorName' | translate}}</p>
+                  <input class="form-control input col-lg-7 my-1" name="vendorName" id="vendorName"
+                    placeholder="{{'vendorName' | translate}}" type="text" readonly
+                    [value]='itemsDetails.vendor.vendorName'>
+                </div>
+                <div class="col-lg my-1 row align-items-center">
+                  <p class="mg-b-10 tx-semibold col-lg-5">{{'unit' | translate}}</p>
+                  <input class="form-control input col-lg-7 my-1" name="unit" id="unit" placeholder="{{'unit' | translate}}"
+                    type="text" readonly [value]='itemsDetails.unit.unitName'>
+                </div>
+              </div>
+            </div>
+            </div>
+
+        </form>
+        </div>
+
+
+<div class="modal-footer">
+  <button type="button"  style="background-color:#84ba95;"  class="btn bg-black-4 text-white" (click)="modal.close('Close click')">{{'close' | translate}}</button>
+  <button  style="background-color:#4ca86a;" (click)="addLocalPurchaceOrder()" class="btn bg-black-8 text-white" type="button">{{'save' | translate}}</button>
+</div>
+
+</ng-template>
+<ng-template #select2modal2 let-modal>
+
+  <div class="modal-header">
+    <h6 class="modal-title"> {{'update' | translate}}</h6>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    </button>
+  </div>
+
+
+  <div class="modal-body">
+    <form *ngIf="localPurchaceOrderDetailsData">
+      <div class="row">
+        <div class="col-lg-6">
+        <input hidden [(ngModel)]="localPurchaceOrderDetailsData.localPurchaceOrder.localPurchaceOrderId" name="localPurchaceOrderId" id="localPurchaceOrderId">
+        <!-- <input hidden [(ngModel)]="localPurchaceOrderDetailsData.itemRequest" name="itemRequest" id="itemRequest"> -->
+
+          <div class="col-lg my-1 row align-items-center">
+            <p class="mg-b-10 tx-semibold col-lg-5">
+              {{ "itemName" | translate}}
+            </p>
+            <ng-select (change)="getItemByItemCode($event)" [(ngModel)]="localPurchaceOrderDetailsData.items.itemsId"
+              name="itemsId" id="itemsId" class="p-0 my-1 col-7">
+              <ng-option *ngFor="let item of items" value="{{item.itemsId}}">
+                {{item.itemName}}
+              </ng-option>
+            </ng-select>
+
+          </div>
+          <div *ngIf="!isLoggedIn" class="col-lg my-1 row align-items-center">
+            <p class="mg-b-10 tx-semibold col-lg-5">{{'stockInStore' | translate}}</p>
+            <input class="form-control input col-lg-7 my-1" name="quantity" id="quantity"
+              placeholder="  {{'stockInStore' | translate}}" type="text" readonly
+              [value]='itemsDetails.quantity'>
+          </div>
+
+          <div class="col-lg row my-1 align-items-center">
+            <p class="mg-b-10 tx-semibold col-lg-5">{{'quantity' | translate}}<span class="tx-danger">*</span>
+            </p>
+            <input class="form-control input col-lg-7 my-1" name="localPurchaceOrderQuantity" id="localPurchaceOrderQuantity"
+              placeholder="{{'quantity' | translate}}" type="text"
+              [(ngModel)]='localPurchaceOrderDetailsData.localPurchaceOrderQuantity' (change)="calculate2()">
+
+          </div>
+          <div class="col-lg row my-1 align-items-center">
+            <p class="mg-b-10 tx-semibold col-lg-5">{{'purchasingPrice' | translate}}<span class="tx-danger">*</span>
+            </p>
+            <input class="form-control input col-lg-7 my-1" name="purchasingPrice" id="purchasingPrice"
+              placeholder="{{'purchasingPrice' | translate}}" type="text"
+              [(ngModel)]='localPurchaceOrderDetailsData.purchasingPrice' (change)="calculate2()">
+
+          </div>
+          <div class="col-lg row my-1 align-items-center">
+            <p class="mg-b-10 tx-semibold col-lg-5">{{'taxRates' | translate}}<span class="tx-danger">*</span>
+            </p>
+            <input class="form-control input col-lg-7 my-1" name="taxRates" id="taxRates"
+              placeholder="{{'taxRates' | translate}}" type="text"
+              [(ngModel)]='localPurchaceOrderDetailsData.taxRates' (change)="calculate2()">
+
+          </div>
+          <div class="col-lg row my-1 align-items-center">
+            <p class="mg-b-10 tx-semibold col-lg-5">{{'discount' | translate}}<span class="tx-danger">*</span>
+            </p>
+            <input class="form-control input col-lg-7 my-1" name="discount" id="discount"
+              placeholder="{{'discount' | translate}}" type="discount"
+              [(ngModel)]='localPurchaceOrderDetailsData.discount' (change)="calculate2()">
+          </div>
+
+          <div class="col-lg row my-1 align-items-center">
+            <p class="mg-b-10 tx-semibold col-lg-5">{{'total' | translate}}<span class="tx-danger">*</span>
+            </p>
+            <input class="form-control input col-lg-7 my-1" name="total" id="total"
+              placeholder="{{'total' | translate}}" type="total"
+              [(ngModel)]='localPurchaceOrderDetailsData.total' readonly>
+
+          </div>
+          <div class="col-lg row my-1 align-items-center">
+            <p class="mg-b-10 tx-semibold col-lg-5">{{'description' | translate}}<span class="tx-danger">*</span>
+            </p>
+            <input class="form-control input col-lg-7 my-1" name="description" id="description"
+              placeholder="{{'description' | translate}}" type="description"
+              [(ngModel)]='localPurchaceOrderDetailsData.description'>
+
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div *ngIf="!isLoggedIn">
+                    <div class="col-lg my-1 row align-items-center">
+              <p class="mg-b-10 tx-semibold col-lg-5">{{'barCode' | translate}}</p>
+              <div class="modal-body text-center col-lg-7 my-1">
+
+                <ngx-barcode  [bc-value]="itemsDetails.barCode" [bc-line-color]="lineColor"
+                       bc-element-type="svg"
+                       [bc-width]="1" [bc-height]="30" [bc-display-value]="displayValue" [bc-font-options]="fontOptions" [bc-font]="font"
+                       [bc-text-align]="textAlign" [bc-text-position]="textPosition" [bc-text-margin]="textMargin"
+                       [bc-font-size]="fontSize" [bc-background]="background"
+                       [bc-margin]="margin" [bc-margin-top]="marginTop"
+                       [bc-margin-bottom]="marginBottom" [bc-margin-left]="marginLeft"
+                       [bc-margin-right]="marginRight"></ngx-barcode>
+                       <!-- <span style="font:2px; color:rgb(23, 23, 23);">{{itemsDetails.barCode}}</span> -->
+
+              </div>
+            </div>
+
+            <div class="col-lg my-1 row align-items-center">
+              <p class="mg-b-10 tx-semibold col-lg-5">{{'itemCode' | translate}}</p>
+              <input class="form-control input col-lg-7 my-1" name="itemCode" id="itemCode"
+                placeholder="  {{'itemCode' | translate}}" type="text" readonly
+                [value]='itemsDetails.itemCode'>
+            </div>
+
+
+            <div class="col-lg my-1 row align-items-center">
+              <p class="mg-b-10 tx-semibold col-lg-5">{{'categoryName' | translate}}</p>
+              <input class="form-control input col-lg-7 my-1" name="categoryName" id="categoryName"
+                placeholder="  {{'categoryName' | translate}}" type="text" readonly
+                [value]='itemsDetails.category.categoryName'>
+            </div>
+
+
+
+
+            <div class="col-lg my-1 row align-items-center">
+              <p class="mg-b-10 tx-semibold col-lg-5">{{'vendorName' | translate}}</p>
+              <input class="form-control input col-lg-7 my-1" name="vendorName" id="vendorName"
+                placeholder="{{'vendorName' | translate}}" type="text" readonly
+                [value]='itemsDetails.vendor.vendorName'>
+            </div>
+            <div class="col-lg my-1 row align-items-center">
+              <p class="mg-b-10 tx-semibold col-lg-5">{{'unit' | translate}}</p>
+              <input class="form-control input col-lg-7 my-1" name="unit" id="unit" placeholder="{{'unit' | translate}}"
+                type="text" readonly [value]='itemsDetails.unit.unitName'>
+            </div>
+          </div>
+        </div>
+        </div>
+
+    </form>
+    </div>
+
+
+<div class="modal-footer">
+  <button type="button"  style="background-color:#84ba95;"  class="btn bg-black-4 text-white" (click)="modal.close('Close click')">{{'close' | translate}}</button>
+<button  style="background-color:#4ca86a;" (click)="addLocalPurchaceOrder()" class="btn bg-black-8 text-white" type="button">{{'save' | translate}}</button>
+</div>
+
+
+</ng-template>
+<ng-template #select2modal22 let-modal >
+
+      <div class="modal-header">
+        <h6 class="modal-title"> {{'add' | translate}}</h6>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form *ngIf="localPurchaceOrderDetailsData2">
+          <div class="row">
+            <div class="" >
+             <!-- <input  [(ngModel)]='localPurchaceOrderbyId.localPurchaceOrder.localPurchaceOrderId' id="localPurchaceOrderId" name="localPurchaceOrderId"> -->
+              <div class="col-lg row my-1 align-items-center">
+                <p class="mg-b-10 tx-semibold col-lg-5">{{'quantity' | translate}}<span class="tx-danger">*</span>
+                </p>
+                <input class="form-control input col-lg-7 my-1" name="localPurchaceOrderQuantity" id="localPurchaceOrderQuantity"
+                  placeholder="{{'quantity' | translate}}" type="text"
+                  [(ngModel)]='localPurchaceOrderDetailsData2.localPurchaceOrderQuantity' (change)="calculate()">
+
+              </div>
+              <div class="col-lg row my-1 align-items-center">
+                <p class="mg-b-10 tx-semibold col-lg-5">{{'purchasingPrice' | translate}}<span class="tx-danger">*</span>
+                </p>
+                <input class="form-control input col-lg-7 my-1" name="purchasingPrice" id="purchasingPrice"
+                  placeholder="{{'purchasingPrice' | translate}}" type="text"
+                  [(ngModel)]='localPurchaceOrderDetailsData2.purchasingPrice' (change)="calculate()">
+
+              </div>
+              <div class="col-lg row my-1 align-items-center">
+                <p class="mg-b-10 tx-semibold col-lg-5">{{'taxRates' | translate}}<span class="tx-danger">*</span>
+                </p>
+                <input class="form-control input col-lg-7 my-1" name="taxRates" id="taxRates"
+                  placeholder="{{'taxRates' | translate}}" type="text"
+                  [(ngModel)]='localPurchaceOrderDetailsData2.taxRates'(change)="calculate()">
+
+              </div>
+              <div class="col-lg row my-1 align-items-center">
+                <p class="mg-b-10 tx-semibold col-lg-5">{{'discount' | translate}}<span class="tx-danger">*</span>
+                </p>
+                <input class="form-control input col-lg-7 my-1" name="discount" id="discount"
+                  placeholder="{{'discount' | translate}}" type="discount"
+                  [(ngModel)]='localPurchaceOrderDetailsData2.discount' (change)="calculate()">
+              </div>
+
+              <div class="col-lg row my-1 align-items-center">
+                <p class="mg-b-10 tx-semibold col-lg-5">{{'total' | translate}}<span class="tx-danger">*</span>
+                </p>
+                <input class="form-control input col-lg-7 my-1" name="total" id="total"
+                  placeholder="{{'total' | translate}}" type="total"
+                  [(ngModel)]='localPurchaceOrderDetailsData2.total' readonly>
+              </div>
+              <div class="col-lg row my-1 align-items-center">
+                <p class="mg-b-10 tx-semibold col-lg-5">{{'description' | translate}}<span class="tx-danger">*</span>
+                </p>
+                <input class="form-control input col-lg-7 my-1" name="description" id="description"
+                  placeholder="{{'description' | translate}}" type="description"
+                  [(ngModel)]='localPurchaceOrderDetailsData2.description'>
+
+              </div>
+
+
+            </div>
+            <!-- <div class="col-lg-6">
+              <div>
+                  <div class="col-lg my-1 row align-items-center">
+                  <p class="mg-b-10 tx-semibold col-lg-5">{{'barCode' | translate}}</p>
+                  <div class="modal-body text-center col-lg-7 my-1">
+                    <ngx-barcode  [bc-value]="itemsDetailsBy.barCode" [bc-line-color]="lineColor"
+                           bc-element-type="svg"
+                           [bc-width]="1" [bc-height]="30" [bc-display-value]="displayValue" [bc-font-options]="fontOptions" [bc-font]="font"
+                           [bc-text-align]="textAlign" [bc-text-position]="textPosition" [bc-text-margin]="textMargin"
+                           [bc-font-size]="fontSize" [bc-background]="background"
+                           [bc-margin]="margin" [bc-margin-top]="marginTop"
+                           [bc-margin-bottom]="marginBottom" [bc-margin-left]="marginLeft"
+                           [bc-margin-right]="marginRight"></ngx-barcode>
+
+                  </div>
+                </div>
+
+                <div class="col-lg my-1 row align-items-center">
+                  <p class="mg-b-10 tx-semibold col-lg-5">{{'itemCode' | translate}}</p>
+                  <input class="form-control input col-lg-7 my-1" name="itemCode" id="itemCode"
+                    placeholder="  {{'itemCode' | translate}}" type="text" readonly
+                    [value]='itemsDetailsBy.itemCode'>
+                </div>
+
+
+                <div class="col-lg my-1 row align-items-center">
+                  <p class="mg-b-10 tx-semibold col-lg-5">{{'categoryName' | translate}}</p>
+                  <input class="form-control input col-lg-7 my-1" name="categoryName" id="categoryName"
+                    placeholder="  {{'categoryName' | translate}}" type="text" readonly
+                    [value]='itemsDetailsBy.category.categoryName'>
+                </div>
+
+
+
+
+                <div class="col-lg my-1 row align-items-center">
+                  <p class="mg-b-10 tx-semibold col-lg-5">{{'vendorName' | translate}}</p>
+                  <input class="form-control input col-lg-7 my-1" name="vendorName" id="vendorName"
+                    placeholder="{{'vendorName' | translate}}" type="text" readonly
+                    [value]='itemsDetailsBy.vendor.vendorName'>
+                </div>
+                <div class="col-lg my-1 row align-items-center">
+                  <p class="mg-b-10 tx-semibold col-lg-5">{{'unit' | translate}}</p>
+                  <input class="form-control input col-lg-7 my-1" name="unit" id="unit" placeholder="{{'unit' | translate}}"
+                    type="text" readonly [value]='itemsDetailsBy.unit.unitName'>
+                </div>
+              </div>
+            </div> -->
+
+          </div>
+        </form>
+        </div>
+
+
+<div class="modal-footer">
+  <button type="button"  style="background-color:#84ba95;"  class="btn bg-black-4 text-white" (click)="modal.close('Close click')">{{'close' | translate}}</button>
+  <button  style="background-color:#4ca86a;" (click)="addLocalPurchaceOrder2()" class="btn bg-black-8 text-white" type="button">{{'save' | translate}}</button>
+</div>
+
+</ng-template>

@@ -1,0 +1,49 @@
+<app-page-header [items]="['universities'|translate]" [active_item]="'add'|translate"></app-page-header>
+
+<div class="row row-sm">
+    <div class="col-lg-12 col-md-12">
+        <div class="card custom-card">
+            <!-- <div class="d-flex justify-content-between bg-black-2 align-items-center px-4 rounded-top">
+                <h4 class="main-content-label text-black tx-24 py-3">University</h4>
+            </div> -->
+            <div class="card-body">
+                <form [formGroup]="form">
+                    <div class="border m-2 p-2">
+                    <div class="col-lg row my-4">
+                        <p class="mg-b-10 tx-semibold col-lg-2">{{'universityName'|translate}}<span style="color:red ;"> *</span></p>
+                        <input class="form-control col-lg-4" name="universityName" id="universityName" placeholder="{{'universityName'|translate}}" type="text" formControlName="universityName"
+                        [ngClass]="{ 'is-invalid': submitted && f['universityName'].errors }"  [(ngModel)]='universityData.universityName'>
+                        <div *ngIf="submitted && f['universityName'].errors" class="invalid-feedback col-lg-11">
+                            <div class="text-center"
+                            *ngIf="f['universityName'].errors['required']"> {{'isRequired'|translate}}</div>
+                          </div>
+                    </div>
+                    <div class="col-lg my-4 row">
+                        <p class="mg-b-10 tx-semibold col-lg-2" >{{'country'|translate}}<span style="color:red ;"> *</span></p>
+                        <input class="form-control col-lg-4" placeholder="{{'country'|translate}}" name="Country" id="country" rows="3" formControlName="country"
+                        [ngClass]="{ 'is-invalid': submitted && f['country'].errors }"  [(ngModel)]='universityData.country'  >
+                        <div *ngIf="submitted && f['country'].errors" class="invalid-feedback col-lg-11">
+                            <div class="text-center"
+                            *ngIf="f['country'].errors['required']">{{'isRequired'|translate}}</div>
+                          </div>
+                    </div>
+                    <div class="col-lg my-4 row">
+                        <p class="mg-b-10 tx-semibold col-lg-2" >{{'universityType'|translate}}<span style="color:red ;"> *</span></p>
+                        <input class="form-control col-lg-4" placeholder="{{'universityType'|translate}}" name="universityType" id="universityType"  formControlName="universityType"
+                        [ngClass]="{ 'is-invalid': submitted && f['universityType'].errors }"  [(ngModel)]='universityData.universityType'  >
+                        <div *ngIf="submitted && f['universityType'].errors" class="invalid-feedback col-lg-11">
+                            <div class="text-center"
+                            *ngIf="f['universityType'].errors['required']">{{'isRequired'|translate}}</div>
+                          </div>
+                    </div>
+                </div>
+                <hr  class="border border-3" style="color:#ccc;height:1px">
+                    <div class="">
+                        <button class="btn  text-white" type="submit" (click)="addUniversity()" style="background-color: #5666c0;">{{'save'|translate}}</button>
+                        <a routerLink="/university/view" class="btn  text-white mx-2" type="submit" style="background-color: #7886d3;">{{'cancel'|translate}}</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- End Row -->

@@ -1,0 +1,22 @@
+<div class="horizontalMenucontainer">
+    <app-switcher></app-switcher>
+    <div class="page">
+            <!-- // header -->
+            <app-header [hidden]="router.url == '/auth/login'"></app-header>
+            <!-- //sidebar -->
+            <app-sidebar [hidden]="router.url == '/auth/login'" *ngIf="dash=='hr'" appHoverEffectSidebar></app-sidebar>
+
+            <app-sidebar-finance *ngIf="dash=='finance'" appHoverEffectSidebar></app-sidebar-finance>
+
+        <div class="main-content side-content pt-0">
+            <div class="main-container container-fluid" (click)="toggleSwitcherBody()">
+                <div class="inner-body">
+                    <!-- // contetnt  -->
+                    <router-outlet><app-loader></app-loader></router-outlet>
+                </div>
+            </div>
+        </div>
+        <app-right-sidebar></app-right-sidebar>
+        <app-footer [hidden]="router.url == '/auth/login'"></app-footer>
+    </div>
+</div>

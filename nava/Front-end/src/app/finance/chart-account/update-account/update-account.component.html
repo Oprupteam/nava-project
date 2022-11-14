@@ -1,0 +1,99 @@
+<app-page-header [items]="['chartAccount'|translate]" [active_item]="'update'|translate"></app-page-header>
+
+<div class="row row-sm">
+    <div class="col-lg-12 col-md-12">
+        <div class="card custom-card">
+            <!-- <div class="d-flex justify-content-between bg-black-2 align-items-center px-4 rounded-top">
+                <h4 class="main-content-label text-black tx-24 py-3">{{'updateBank'|translate}}</h4>
+            </div> -->
+            <div class="card-body" *ngIf="coaData">
+                <form [formGroup]="form">
+                    <div class="border m-2 p-2">
+                <div class="col-lg row my-4 ">
+                  <div class="col-md-12">
+                    <label for="" class="form-label">{{'mainAccount' | translate}}:</label>
+                    <select
+                    formControlName="parentAccount"
+                  #parentAccount
+                  [ngClass]="{ 'is-invalid': submitted && f['parentAccount'].errors }"
+
+                    [(ngModel)]="coaData.parentAccount"
+                  class="form-control form-select">
+                  <option value ="0">{{'notAssigned' | translate}}</option>
+                      <option *ngFor="let acc of accounts" [value] ="acc.accountCode">{{acc.accountCode}}| {{acc.accountName}}</option>
+                  </select>
+                  <div *ngIf="submitted && f['parentAccount'].errors" class="invalid-feedback">
+                    <div *ngIf="f['parentAccount'].errors['required']">{{'isReqired'|translate}}.</div></div>
+                  </div>
+                </div>
+                <div class="col-lg my-4 row">
+                  <div class="col-md-6">
+                    <label for="" class="form-label">{{'accountCode' | translate}}:</label>
+                    <input type="text" #accountCode
+
+                    formControlName="accountCode"
+                      [ngClass]="{ 'is-invalid': submitted && f['accountCode'].errors }"
+
+
+                    [(ngModel)]="coaData.accountCode" id="accountCode" name="accountCode" class="form-control mt-2 text-line" placeholder="" >
+
+                    <div *ngIf="submitted && f['accountCode'].errors" class="invalid-feedback">
+                      <div *ngIf="f['accountCode'].errors['required']">{{'isReqired'|translate}}.</div>
+                    </div>
+
+
+                  </div>
+                </div>
+                <div class="col-lg my-4 row">
+                  <div class="col-md-6">
+                    <label for="" class="form-label">{{'accountName' | translate}}:</label>
+                    <input type="text" #accountName
+
+                    formControlName="accountName"
+                      [ngClass]="{ 'is-invalid': submitted && f['accountName'].errors }"
+
+
+                    [(ngModel)]="coaData.accountName" id="accountName" name="accountName" class="form-control mt-2 text-line" placeholder="" >
+
+                    <div *ngIf="submitted && f['accountName'].errors" class="invalid-feedback">
+                      <div *ngIf="f['accountName'].errors['required']">{{'isReqired'|translate}}.</div>
+                    </div>
+
+
+                  </div>
+                </div>
+                <div class="col-lg my-4 row">
+                  <div class="col-md-6">
+                    <label for="" class="form-label">{{'accountType' | translate}}:</label>
+                    <select
+                    formControlName="accountType"
+
+                    [ngClass]="{ 'is-invalid': submitted && f['accountType'].errors }"
+                    [(ngModel)]="coaData.accountType"
+                  class="form-control form-select">
+                    <option  (ngModel)='coaData.accountType' value="main">{{'main' | translate}}</option>
+                    <option  (ngModel)='coaData.accountType' value="sub">{{'subAccount' | translate}}</option>
+                    </select>
+                    <div *ngIf="submitted && f['accountType'].errors" class="invalid-feedback">
+                      <div *ngIf="f['accountType'].errors['required']">{{'isReqired'|translate}}.</div></div>
+                  </div>
+                </div>
+
+                <div class="col-lg my-4 row">
+                  <label for="" class="form-label">{{'Description' | translate}}</label>
+                  <textarea [ngModelOptions]="{standalone: true}" #description [(ngModel)]="coaData.accountDescription" class="form-control mt-2 text-line" id="description" name="description" id="" cols="50" rows="8" placeholder=""></textarea>
+
+                </div>
+
+             </div>
+             <hr  class="border border-3" style="color:#ccc;height:1px">
+                <div class="">
+                    <button class="btn  text-white" routerLink="/ChartAccount/ChartAccount" type="submit" (click)="onUpdateAccounts()" style="background-color: #5666c0;">{{'save'|translate}}</button>
+                    <a routerLink="/ChartAccount/ChartAccount" class="btn  text-white mx-2" type="submit" style="background-color: #7886d3;">{{'cancel'|translate}}</a>
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
+    <!-- End Row -->
+

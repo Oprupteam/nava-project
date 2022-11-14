@@ -1,0 +1,63 @@
+
+<app-page-header title="{{'subcategory' | translate}}" [items]="['subcategory'| translate]" active_item="{{'add' | translate}}"></app-page-header>
+
+<div class="row row-sm">
+    <div class="col-lg-12 col-md-12">
+        <div class="card  ">
+            <!-- <div class="d-flex justify-content-between bg-black-2 align-items-center px-4 rounded-top">
+                <h4 class="main-content-label text-black tx-24 py-3">Add SubCategory</h4>
+            </div> -->
+            <div class="card-body">
+                <form [formGroup]="form">
+                  <div class="border m-2 p-2">
+
+                    <div class="col-lg row align-items-center">
+                      <p class="mg-b-10 tx-semibold col-lg-2 form-label">{{'categoryName' | translate}}<span class="tx-danger">*</span></p>
+                      <select formControlName="categoryId"
+                      [ngClass]="{ 'is-invalid': submitted && f['categoryId'].errors }"   [(ngModel)]='SubCategoryData.category.categoryId' name="categoryId" id="categoryId" class="col-lg-4 form-select p-0 my-2"  >
+                          <option
+                          *ngFor="let item of category" value="{{item.categoryId}}">
+                            {{item.categoryName}}
+                        </option>
+                      </select>
+                      <div *ngIf="submitted && f['categoryId'].errors" class="invalid-feedback">
+
+                        <div class="text-center"
+
+
+                        *ngIf="f['categoryId'].errors['required']">{{'isRequired'|translate}}</div>
+                      </div>
+                    </div>
+
+
+                    <div class="col-lg row align-items-center">
+                        <p class="mg-b-10 tx-semibold col-lg-2">{{'subcategoryName' | translate}}<span class="tx-danger">*</span></p>
+                        <input class="form-control col-lg-4" name="subcategoryName" id="subcategoryName" placeholder="{{'subcategoryName' | translate}}"
+                        type="text" formControlName="subcategoryName"
+                        [ngClass]="{ 'is-invalid': submitted && f['subcategoryName'].errors }"  [(ngModel)]='SubCategoryData.subcategoryName'>
+                        <div *ngIf="submitted && f['subcategoryName'].errors" class="invalid-feedback">
+                          <div class="text-center"
+
+                          *ngIf="f['subcategoryName'].errors['required']">{{'isRequired'|translate}}</div>
+                          <!-- <div *ngIf="f['subcategoryName'].errors['pattern']">Enter only characters</div> -->
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg my-4 row align-items-center">
+                        <p class="mg-b-10 tx-semibold col-lg-2" >{{'description' | translate}}</p>
+                        <textarea class="form-control col-lg-4" placeholder="{{'description' | translate}}" name="description"
+                         id="description" rows="3" [(ngModel)]='SubCategoryData.description' [ngModelOptions]="{standalone: true}" ></textarea>
+                    </div>
+                  </div>
+                  <hr  class="border border-3" style="color:#ccc;height:1px">
+
+                    <div class="">
+                        <button style="background-color:#ddda66;" class="btn bg-black-8 text-black" type="submit" (click)="addSubCategory()">{{'save' | translate}}</button>
+                        <a style="background-color:#fcf6b6;" [routerLink]="['/Subcategory/Subcategory']" class="btn bg-black-3 text-black mx-2" type="submit">{{'cancel' | translate}}</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- End Row -->

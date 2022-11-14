@@ -1,0 +1,339 @@
+<app-page-header title="{{'itemRequest' | translate}}" [items]="['itemRequest'| translate]"
+  active_item="{{'update' | translate}}"></app-page-header>
+
+  <div class="row row-sm">
+    <div class="col-lg-12 col-md-12">
+      <div class="card  ">
+        <div class="card-body">
+          <div class="border m-2 p-2">
+          <form *ngIf="ItemRequestDetails">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="col-lg my-2 row align-items-center">
+                    <p class="mg-b-10 tx-semibold col-lg-5">
+                      {{ "requestNumber" | translate
+                      }}
+                    </p>
+                    <input readonly class="form-control input col-lg-7 my-2" name="itemRequestId" id="itemRequestId"
+                    placeholder="{{'requestNumber' | translate}}" type="text"
+                    [(ngModel)]='ItemRequestDetails[0].itemRequest.itemRequestId'  >
+
+                  </div>
+                  </div>
+
+                  <div class="col-lg-6">
+                    <div class="col-lg my-1 row align-items-center">
+                      <p class="mg-b-10 tx-semibold col-lg-5">{{ 'itemRequestDate' | translate }}</p>
+                    <mat-form-field appearance="fill" class="col-md-6 p-0 my-1">
+                      <mat-label>{{'DD/MM/YYYY'| translate}}</mat-label>
+                      <input readonly id="itemRequestDate" name="itemRequestDate" #itemRequestDate
+                        [(ngModel)]="ItemRequestDetails[0].itemRequest.itemRequestDate"   matInput
+                        [matDatepicker]="picker">
+                      <mat-datepicker-toggle matSuffix [for]="picker" class="input-mini"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+
+                    <!-- </div> -->
+                  </div>
+
+                </div>
+
+
+
+               </div>
+
+              </form>
+              <!-- <hr class="" style="color:#ccc;height:1px"> -->
+            </div>
+            <hr class="" style="color:#ccc;height:1px">
+              <div class="border m-2 p-2" *ngIf="ItemRequestDetails">
+
+                <div class="mb-2">
+
+                <div class="my-1">
+                  <button class="btn bg-black-8 text-white" style="background-color:#4ca86a;"  (click)="Select2Open(select2modal)"> {{'addItem' | translate}}</button>
+                </div>
+                <div class="table-responsive">
+                <table class="table table-striped border">
+
+                  <tr class="text-center ">
+
+                    <td scope="col" >{{'quantityPackage' | translate}}</td>
+                    <td scope="col" >{{'stockInStore' | translate}}</td>
+                    <td scope="col" >{{'itemName' | translate}}</td>
+
+
+                    <td scope="col" >{{'category' | translate}}</td>
+                    <td scope="col" >{{'unit' | translate}}</td>
+
+                    <td scope="col" >{{'vendor' | translate}}</td>
+                    <td scope="col" >{{'barCode' | translate}}</td>
+                    <td scope="col"  data-html2canvas-ignore="true" class="noPrint">{{'action' | translate}}</td>
+                  </tr>
+
+                  <tbody class="table-group-divider">
+                    <tr *ngFor="let item of ItemRequestDetails">
+                       <td>{{item.itemRequestQuantity}}</td>
+                       <td>{{item.items.quantity}}</td>
+                       <td>{{item.items.itemName}}</td>
+                      <td>{{item.items.category.categoryName}}</td>
+                      <td>{{item.items.unit.unitName}}</td>
+                      <td>{{item.items.vendor.vendorName}}</td>
+
+                      <td ><ngx-barcode  [bc-value]="item.items.barCode"   [bc-line-color]="lineColor"
+                        bc-element-type="svg"
+                       [bc-width]="width" [bc-height]="height" [bc-display-value]="displayValue" [bc-font-options]="fontOptions" [bc-font]="font"
+                       [bc-text-align]="textAlign" [bc-text-position]="textPosition" [bc-text-margin]="textMargin"
+                       [bc-font-size]="fontSize" [bc-background]="background"
+                       [bc-margin]="margin" [bc-margin-top]="marginTop"
+                       [bc-margin-bottom]="marginBottom" [bc-margin-left]="marginLeft"
+                       [bc-margin-right]="marginRight"></ngx-barcode></td>
+                       <!-- <span style="font:2px; color:rgb(23, 23, 23);">{{item.items.barCode}}</span></td> -->
+
+                      <td data-html2canvas-ignore="true" class="noPrint">
+                        <a class="btn btn-icon-text" (click)="Select2Update(select2modal2,item)"><i
+                          class="fe fe-edit text-dark bd-black"></i></a>
+                      <button class="btn btn-icon-text" (click)="deletePartner(item)"><i
+                          class="fe fe-trash-2 text-dark bd-black"></i></button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+</div>
+                </div>
+                <hr class="" style="color:#ccc;height:1px">
+                <div class="">
+                  <button  class="btn text-white" [routerLink]="['/itemRequest/itemRequest']" style="background-color:#4ca86a;" type="submit">{{'save' | translate}}</button>
+                  <a [routerLink]="['/itemRequest/itemRequest']" class="btn text-white mx-2" style="background-color:#84ba95;"
+                    type="submit">{{'cancel' | translate}}</a>
+                </div>
+  </div>
+
+
+  </div>
+
+                <div class="card-body">
+
+
+
+
+        </div>
+
+
+
+
+  </div>
+  </div>
+
+  <ng-template #select2modal let-modal>
+    <!-- Select2 modal -->
+    <div class="modal-header">
+      <h6 class="modal-title">{{ "addItem" | translate }}</h6>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <form *ngIf="itemRequestDetailsData">
+        <div class="row">
+          <div class="">
+            <input hidden [(ngModel)]="itemRequestDetailsData.itemRequest.itemRequestId"
+              [ngModelOptions]="{ standalone: true }" />
+            <div class="col-lg my-1 row align-items-center">
+              <p class="mg-b-10 tx-semibold col-lg-5">
+                {{ "itemName" | translate }}
+              </p>
+              <ng-select (change)="getItemByItemCode($event)" [(ngModel)]="itemRequestDetailsData.items.itemsId"
+                [ngModelOptions]="{ standalone: true }" name="itemsId" id="itemsId" class="p-0 my-1 col-7">
+                <ng-option *ngFor="let item of items" value="{{ item.itemsId }}">
+                  {{ item.itemName }}
+                </ng-option>
+              </ng-select>
+            </div>
+            <div *ngIf="!isLoggedIn" class="col-lg my-1 row align-items-center">
+              <p class="mg-b-10 tx-semibold col-lg-5">
+                {{ "stockInStore" | translate }}
+              </p>
+              <input class="form-control input col-lg-7 my-1" name="quantity" id="quantity"
+                placeholder="  {{ 'stockInStore' | translate }}" type="text" readonly [value]="itemsDetails.quantity" />
+            </div>
+
+            <div class="col-lg row my-1 align-items-center">
+              <p class="mg-b-10 tx-semibold col-lg-5">
+                {{ "quantityPackage" | translate
+                }}<span class="tx-danger">*</span>
+              </p>
+              <input class="form-control input col-lg-7 my-1" name="quantityPackage" id="quantityPackage"
+                placeholder="{{ 'quantityPackage' | translate }}" type="text"
+                [(ngModel)]="itemRequestDetailsData.itemRequestQuantity" />
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <div *ngIf="!isLoggedIn">
+              <div class="col-lg my-1 row align-items-center">
+                <p class="mg-b-10 tx-semibold col-lg-5">
+                  {{ "barCode" | translate }}
+                </p>
+                <div class="modal-body text-center col-lg-7 my-1">
+                  <ngx-barcode [bc-value]="itemsDetails.barCode" [bc-line-color]="lineColor" bc-element-type="svg"
+                    [bc-width]="1" [bc-height]="30" [bc-display-value]="displayValue" [bc-font-options]="fontOptions"
+                    [bc-font]="font" [bc-text-align]="textAlign" [bc-text-position]="textPosition"
+                    [bc-text-margin]="textMargin" [bc-font-size]="fontSize" [bc-background]="background"
+                    [bc-margin]="margin" [bc-margin-top]="marginTop" [bc-margin-bottom]="marginBottom"
+                    [bc-margin-left]="marginLeft" [bc-margin-right]="marginRight"></ngx-barcode>
+                </div>
+              </div>
+
+              <div class="col-lg my-1 row align-items-center">
+                <p class="mg-b-10 tx-semibold col-lg-5">
+                  {{ "itemCode" | translate }}
+                </p>
+                <input class="form-control input col-lg-7 my-1" name="itemCode" id="itemCode"
+                  placeholder="  {{ 'itemCode' | translate }}" type="text" readonly [value]="itemsDetails.itemCode" />
+              </div>
+
+              <div class="col-lg my-1 row align-items-center">
+                <p class="mg-b-10 tx-semibold col-lg-5">
+                  {{ "categoryName" | translate }}
+                </p>
+                <input class="form-control input col-lg-7 my-1" name="categoryName" id="categoryName"
+                  placeholder="  {{ 'categoryName' | translate }}" type="text" readonly
+                  [value]="itemsDetails.category.categoryName" />
+              </div>
+
+              <div class="col-lg my-1 row align-items-center">
+                <p class="mg-b-10 tx-semibold col-lg-5">
+                  {{ "vendorName" | translate }}
+                </p>
+                <input class="form-control input col-lg-7 my-1" name="vendorName" id="vendorName"
+                  placeholder="{{ 'vendorName' | translate }}" type="text" readonly
+                  [value]="itemsDetails.vendor.vendorName" />
+              </div>
+              <div class="col-lg my-1 row align-items-center">
+                <p class="mg-b-10 tx-semibold col-lg-5">
+                  {{ "unit" | translate }}
+                </p>
+                <input class="form-control input col-lg-7 my-1" name="unit" id="unit"
+                  placeholder="{{ 'unit' | translate }}" type="text" readonly [value]="itemsDetails.unit.unitName" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" style="background-color: #84ba95" class="btn bg-black-3 text-white"
+        (click)="modal.close('Close click')">
+        {{ "close" | translate }}
+      </button>
+      <button style="background-color: #4ca86a" class="btn bg-black-8 text-white" (click)="addItemRequestDetails()"
+        type="button">
+        {{ "save" | translate }}
+      </button>
+    </div>
+  </ng-template>
+  <ng-template #select2modal2 let-modal>
+    <!-- Select2 modal -->
+    <div class="modal-header">
+      <h6 class="modal-title">{{ "update" | translate }}</h6>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <form *ngIf="itemRequestDetailsData">
+        <div class="row">
+          <div class="">
+            <input hidden [(ngModel)]="itemRequestDetailsData.itemRequest.itemRequestId"
+              [ngModelOptions]="{ standalone: true }" />
+            <div class="col-lg my-1 row align-items-center">
+              <p class="mg-b-10 tx-semibold col-lg-5">
+                {{ "itemName" | translate }}
+              </p>
+              <ng-select (change)="getItemByItemCode($event)" [(ngModel)]="itemRequestDetailsData.items.itemsId"
+                [ngModelOptions]="{ standalone: true }" name="itemsId" id="itemsId" class="p-0 my-1 col-7">
+                <ng-option *ngFor="let item of items" value="{{ item.itemsId }}">
+                  {{ item.itemName }}
+                </ng-option>
+              </ng-select>
+            </div>
+            <div *ngIf="!isLoggedIn" class="col-lg my-1 row align-items-center">
+              <p class="mg-b-10 tx-semibold col-lg-5">
+                {{ "stockInStore" | translate }}
+              </p>
+              <input class="form-control input col-lg-7 my-1" name="quantity" id="quantity"
+                placeholder="  {{ 'stockInStore' | translate }}" type="text" readonly [value]="itemsDetails.quantity" />
+            </div>
+
+            <div class="col-lg row my-1 align-items-center">
+              <p class="mg-b-10 tx-semibold col-lg-5">
+                {{ "quantityPackage" | translate
+                }}<span class="tx-danger">*</span>
+              </p>
+              <input class="form-control input col-lg-7 my-1" name="quantityPackage" id="quantityPackage"
+                placeholder="{{ 'quantityPackage' | translate }}" type="text"
+                [(ngModel)]="itemRequestDetailsData.itemRequestQuantity" />
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <div *ngIf="!isLoggedIn">
+              <div class="col-lg my-1 row align-items-center">
+                <p class="mg-b-10 tx-semibold col-lg-5">
+                  {{ "barCode" | translate }}
+                </p>
+                <div class="modal-body text-center col-lg-7 my-1">
+                  <ngx-barcode [bc-value]="itemsDetails.barCode" [bc-line-color]="lineColor" bc-element-type="svg"
+                    [bc-width]="1" [bc-height]="30" [bc-display-value]="displayValue" [bc-font-options]="fontOptions"
+                    [bc-font]="font" [bc-text-align]="textAlign" [bc-text-position]="textPosition"
+                    [bc-text-margin]="textMargin" [bc-font-size]="fontSize" [bc-background]="background"
+                    [bc-margin]="margin" [bc-margin-top]="marginTop" [bc-margin-bottom]="marginBottom"
+                    [bc-margin-left]="marginLeft" [bc-margin-right]="marginRight"></ngx-barcode>
+                </div>
+              </div>
+
+              <div class="col-lg my-1 row align-items-center">
+                <p class="mg-b-10 tx-semibold col-lg-5">
+                  {{ "itemCode" | translate }}
+                </p>
+                <input class="form-control input col-lg-7 my-1" name="itemCode" id="itemCode"
+                  placeholder="  {{ 'itemCode' | translate }}" type="text" readonly [value]="itemsDetails.itemCode" />
+              </div>
+
+              <div class="col-lg my-1 row align-items-center">
+                <p class="mg-b-10 tx-semibold col-lg-5">
+                  {{ "categoryName" | translate }}
+                </p>
+                <input class="form-control input col-lg-7 my-1" name="categoryName" id="categoryName"
+                  placeholder="  {{ 'categoryName' | translate }}" type="text" readonly
+                  [value]="itemsDetails.category.categoryName" />
+              </div>
+
+              <div class="col-lg my-1 row align-items-center">
+                <p class="mg-b-10 tx-semibold col-lg-5">
+                  {{ "vendorName" | translate }}
+                </p>
+                <input class="form-control input col-lg-7 my-1" name="vendorName" id="vendorName"
+                  placeholder="{{ 'vendorName' | translate }}" type="text" readonly
+                  [value]="itemsDetails.vendor.vendorName" />
+              </div>
+              <div class="col-lg my-1 row align-items-center">
+                <p class="mg-b-10 tx-semibold col-lg-5">
+                  {{ "unit" | translate }}
+                </p>
+                <input class="form-control input col-lg-7 my-1" name="unit" id="unit"
+                  placeholder="{{ 'unit' | translate }}" type="text" readonly [value]="itemsDetails.unit.unitName" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" style="background-color: #84ba95" class="btn bg-black-4 text-white"
+        (click)="modal.close('Close click')">
+        {{ "close" | translate }}
+      </button>
+      <button style="background-color: #4ca86a" class="btn bg-black-8 text-white"
+        (click)="addItemRequestDetails(); modal.close()" type="button">
+        {{ "save" | translate }}
+      </button>
+    </div>
+  </ng-template>

@@ -1,0 +1,42 @@
+<app-page-header  [items]="['insuranceCompany'|translate]" [active_item]="'add'|translate"></app-page-header>
+
+<div class="row row-sm">
+    <div class="col-lg-12 col-md-12">
+        <div class="card custom-card">
+            <!-- <div class="d-flex justify-content-between bg-black-2 align-items-center px-4 rounded-top">
+                <h4 class="main-content-label text-black tx-24 py-3">{{'Add_Medical_insurance_company'|translate}}</h4>
+            </div> -->
+            <div class="card-body">
+
+                <form [formGroup]="form" >
+                    <div class="border m-2 p-2">
+                    <div class="col-lg row my-4">
+                        <p class="mg-b-10 tx-semibold col-lg-3">{{'insuranceCompanyName'|translate}}<span style="color:red ;"> *</span></p>
+                        <input class="form-control col-lg-4" name="insuranceCompanyName" id="insuranceCompanyName" placeholder="{{'insuranceCompanyName'|translate}}" type="text" formControlName="insuranceCompanyName"
+                        [ngClass]="{ 'is-invalid': submitted && f['insuranceCompanyName'].errors }"   [(ngModel)]='insuranceCompanyData.insuranceCompanyName'>
+                        <div *ngIf="submitted && f['insuranceCompanyName'].errors" class="invalid-feedback col-lg-11">
+                            <div class="text-center"ass="" *ngIf="f['insuranceCompanyName'].errors['required']">{{'isRequired'|translate}}</div>
+                            <div class="text-center" *ngIf="f['insuranceCompanyName'].errors['pattern']">Enter only characters</div>
+                          </div>
+                    </div>
+                    <div class="col-lg my-4 row">
+                        <p class="mg-b-10 tx-semibold col-lg-3" >{{'description'|translate}}</p>
+                        <textarea class="form-control col-lg-4" placeholder="{{'description'|translate}}" name="insuranceCompanyDescription" id="insuranceCompanyDescription" rows="3" formControlName="insuranceCompanyDescription"
+                        [ngClass]="{ 'is-invalid': submitted && f['insuranceCompanyDescription'].errors }"  [(ngModel)]='insuranceCompanyData.insuranceCompanyDescription'  ></textarea>
+                        <div *ngIf="submitted && f['insuranceCompanyDescription'].errors" class="invalid-feedback">
+                            <div
+                            *ngIf="f['insuranceCompanyDescription'].errors['required']">{{'isRequired'|translate}}</div>
+                          </div>
+                    </div>
+
+                </div>
+                <hr  class="border border-3" style="color:#ccc;height:1px">
+                <div class="">
+                    <button class="btn bg-black-8 text-white" type="submit" (click)="addInsuranceCompany()" style="background-color: #5666c0;">{{'save'|translate}}</button>
+                    <a routerLink="/insurance-company/view" class="btn  text-white mx-2" type="submit" style="background-color: #7886d3;">{{'cancel'|translate}}</a>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- End Row -->

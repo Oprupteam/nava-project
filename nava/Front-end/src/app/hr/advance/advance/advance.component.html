@@ -1,0 +1,70 @@
+<app-page-header  [items]="['advance'|translate]" [active_item]="'view'|translate" class="noprint"></app-page-header>
+<div class="row row-sm">
+    <div class="col-xl-12">
+      <div class="card overflow-visible custom-card">
+        <div class="card-body p-0">
+          <div class="table-responsive rounded-top">
+            <form class="pos-relative p-4">
+                <div class="noprint form-group form-inline d-flex justify-content-between">
+                    <div>
+                      {{'fullTextSearch'|translate}}<input class="form-control ms-2" (keyup)="filterData($event)" type="text" name="searchTerm" [(ngModel)]="service.searchTerm"/>
+                      <span class="ml-3" *ngIf="service.loading$ | async">{{'loading'|translate}}</span>
+                    </div>
+                    <div class="table-btns">
+
+                      <a _ngcontent-xjy-c134="" routerLink="../advance-request" type="button" style="background-color: #5666c0;" class="btn my-2 btn-icon-text d-inline-block m-2">
+                        <i _ngcontent-xjy-c134="" class="fe fe-plus text-white bg-transparent"></i>
+                        <span _ngcontent-xjy-c134="" class="text-white">{{'add'|translate}}</span>
+                      </a>
+                      <button _ngcontent-xjy-c134=""  (click)="generatePDF() " type="button" class="btn my-2 btn-icon-text  text-white" style="margin-right: 5px; padding: 5px;background-color: #7886d3;"><i _ngcontent-aph-c190="" class="mdi mdi-file-pdf text-white bg-transparent fs-18 p-0 me-1"></i>PDF</button>
+
+                      <!-- <button _ngcontent-xjy-c134="" type="button" class="btn btn-info my-2 btn-icon-text" style="margin-right: 5px; padding: 5px;">CSV</button> -->
+
+                      <button _ngcontent-xjy-c134="" (click)="ExportTOExcel() " type="button" class="btn my-2 btn-icon-text text-white" style="margin-right: 5px; padding: 5px; background-color: #7886d3;"><i _ngcontent-rtg-c190="" class="mdi mdi-file-excel bg-transparent text-white fs-18 p-0 me-1"></i>XLS</button>
+                      <button _ngcontent-xjy-c134="" type="button" class="btn my-2 btn-icon-text" style="margin-right: 5px; padding: 0px; background-color: #7886d3;"><i _ngcontent-xjy-c134="" class="fe fe-printer bg-transparent text-white p-2 m-2" (click)="printPage()"></i></button>
+
+                    </div>
+                </div>
+
+               
+                <div  class="table-responsive" #TABLE #table id="advanceprint" #advanceprint>
+                  <table class="demo-table table-bordered   table-shopping-cart  table-header-line" mat-table matSort [dataSource]="advances" >
+                     <ng-container matColumnDef="nameAr" >
+                       <th mat-header-cell width="10%" *matHeaderCellDef class="font-weight-bold text-black li">{{'nameAr' | translate}}</th>
+                       <td mat-cell *matCellDef="let advance">{{ advance.employee.employeeNameAr }}</td>
+                     </ng-container>
+                     <ng-container matColumnDef="submissionDate">
+                       <th mat-header-cell width="10%" *matHeaderCellDef class="font-weight-bold text-black li">{{'submissionDate' | translate}}</th>
+                       <td mat-cell *matCellDef="let advance">{{advance.submissionDate}}</td>
+                     </ng-container>
+                     <ng-container matColumnDef="advanceAmount">
+                        <th mat-header-cell width="10%" *matHeaderCellDef class="font-weight-bold text-black li">{{'advanceAmount' | translate}}</th>
+                        <td mat-cell *matCellDef="let advance">{{ advance.advanceAmount }}</td>
+                      </ng-container>
+                      <ng-container matColumnDef="numberOfInstallment">
+                        <th mat-header-cell width="10%" *matHeaderCellDef class="font-weight-bold text-black li">{{'numberOfInstallment' | translate}}</th>
+                        <td mat-cell *matCellDef="let advance">{{ advance.numberOfInstallment }}</td>
+                      </ng-container>
+                      <ng-container matColumnDef="monthlyPayment">
+                        <th mat-header-cell width="10%" *matHeaderCellDef class="font-weight-bold text-black li">{{'monthlyPayment' | translate}}</th>
+                        <td mat-cell *matCellDef="let advance">{{ advance.monthlyPayment }}</td>
+                      </ng-container>
+                     <ng-container matColumnDef="action" >
+                       <th mat-header-cell width="15%" *matHeaderCellDef class="font-weight-bold text-black li" data-html2canvas-ignore="true"> {{'action' | translate}} </th>
+                       <td mat-cell *matCellDef="let advance" data-html2canvas-ignore="true" >
+                       <!-- <a class="btn btn-icon-text" routerLink="../update/{{advance.advanceId}}"><i class="fe fe-edit text-dark bd-black" ngbTooltip="{{'update'|translate}}"></i></a> -->
+                       <!-- <button class="btn btn-icon-text" (click)="deleteAdvance(advance.advanceId)"><i class="fe fe-trash-2 text-dark bd-black" ngbTooltip="{{'delete'|translate}}"></i></button> -->
+                      <p style="color: rgb(178, 178, 69);">{{'pending' | translate}}</p>
+                      </td> 
+                     </ng-container>
+                     <tr mat-header-row *matHeaderRowDef="displayedColumns"class="aaa"></tr>
+                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                   </table></div>
+                 <mat-paginator class="noprint" #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25,50, 100]" data-html2canvas-ignore="true">
+                </mat-paginator>
+
+              </form>
+          </div>
+        </div>
+      </div>
+    </div></div>

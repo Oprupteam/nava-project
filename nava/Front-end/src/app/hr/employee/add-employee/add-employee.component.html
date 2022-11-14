@@ -1,0 +1,226 @@
+<app-page-header title="{{'employeeInformation'|translate}}" [items]="['employee'|translate]"
+[active_item]="'add'|translate"></app-page-header>
+
+<div class="row row-sm">
+<div class="col-lg-12 col-md-12">
+  <div class="card custom-card">
+
+    <div class="card-body">
+      <form [formGroup]="form">
+
+
+        <div class="row  align-items-start  border m-2 p-4">
+          <div class="col-lg-6 row mb-3">
+
+            <p class="mg-b-10 tx-sm col-lg-5 mb-1">{{'employeeId'|translate}}<span style="color:red ;"> *</span></p>
+            <input readonly class="form-control  col-6 mb-1 mg-l-15" type="text" formControlName="employeeCode"
+              [ngClass]="{ 'is-invalid': submitted && f['employeeCode'].errors }"
+              [(ngModel)]='employeeData.employeeCode' name="employeeCode" id="employeeCode">
+            <div *ngIf="submitted && f['employeeCode'].errors" class="invalid-feedback col-lg-11">
+              <div class="text-center" ass="" *ngIf="f['employeeCode'].errors['required']">{{'isRequired'|translate}}
+              </div>
+            </div>
+
+
+            <p class="mg-b-10 tx-sm col-lg-5 mb-1 ">{{'nameAr'|translate}}<span style="color:red ;"> *</span></p>
+            <input class="form-control col-6 mb-1 mg-l-15" formControlName="employeeNameAr"
+              [ngClass]="{ 'is-invalid': submitted && f['employeeNameAr'].errors }" type="text"
+              [(ngModel)]='employeeData.employeeNameAr' name="employeeNameAr" id="employeeNameAr">
+            <div *ngIf="submitted && f['employeeNameAr'].errors" class="invalid-feedback col-lg-11">
+              <div class="text-center" ass="" *ngIf="f['employeeNameAr'].errors['required']">
+                {{'isRequired'|translate}}</div>
+            </div>
+
+
+
+            <p class="mg-b-10 tx-sm col-lg-5 mb-1 ">{{'nameEn'|translate}}<span style="color:red ;"> *</span></p>
+            <input class="form-control  col-6 mb-1 mg-l-15" type="text" formControlName="employeeName"
+              [ngClass]="{ 'is-invalid': submitted && f['employeeName'].errors }"
+              [(ngModel)]='employeeData.employeeName' name="employeeName" id="employeeName">
+            <div *ngIf="submitted && f['employeeName'].errors" class="invalid-feedback col-lg-11">
+              <div class="text-center" ass="" *ngIf="f['employeeName'].errors['required']">{{'isRequired'|translate}}
+              </div>
+            </div>
+
+            <p class="mg-b-10 tx-sm col-lg-5 mb-1">{{'passportNumber'|translate}}<span style="color:red ;"> *</span>
+            </p>
+            <input class="form-control  col-6 mb-1 mg-l-15" type="text" formControlName="passportNumber"
+              [ngClass]="{ 'is-invalid': submitted && f['passportNumber'].errors }"
+              [(ngModel)]='employeeData.passportNumber' name="passportNumber" id="passportNumber">
+            <div *ngIf="submitted && f['passportNumber'].errors" class="invalid-feedback col-lg-11">
+              <div class="text-center" ass="" *ngIf="f['passportNumber'].errors['required']">
+                {{'isRequired'|translate}}</div>
+            </div>
+
+
+            <p class="mg-b-10 tx-sm col-lg-5 mb-1 ">{{'dateOfJoin'|translate}}<span style="color:red ;"> *</span></p>
+            <input class="form-control col-6  mb-1 mg-l-15" type="date" formControlName="dateOfJoin"
+              [ngClass]="{ 'is-invalid': submitted && f['dateOfJoin'].errors }" [(ngModel)]='employeeData.dateOfJoin'
+              name="dateOfJoin" id="dateOfJoin">
+            <div *ngIf="submitted && f['dateOfJoin'].errors" class="invalid-feedback col-lg-11">
+              <div class="text-center" ass="" *ngIf="f['dateOfJoin'].errors['required']">{{'isRequired'|translate}}
+              </div>
+            </div>
+
+            <p class="mg-b-10 tx-sm col-lg-5 mb-1">{{'jobStatus' | translate}}<span style="color:red ;"> *</span></p>
+            <!-- <input class="form-control col-7 mb-2" type="text"  [(ngModel)]='employeeData.jobStatus' name="jobStatus" id="jobStatus" > -->
+            <ng-select formControlName="jobStatus" [ngClass]="{ 'is-invalid': submitted && f['jobStatus'].errors }"
+              [(ngModel)]='employeeData.jobStatus' class=" col-7  btn-sm mb-1" name="jobStatus" id="jobStatus">
+
+              <ng-option value="onTheJob">{{'onTheJob' | translate}}</ng-option>
+              <ng-option value="quit">{{'quit' | translate}}</ng-option>
+
+            </ng-select>
+            <div *ngIf="submitted && f['jobStatus'].errors" class="invalid-feedback col-lg-11">
+              <div class="text-center" ass="" *ngIf="f['jobStatus'].errors['required']">{{'isRequired'|translate}}
+              </div>
+            </div>
+
+            <p class="mg-b-10 tx-sm col-lg-5 mb-1">{{'gender' | translate}}<span style="color:red ;"> *</span></p>
+            <!-- <input class="form-control col-7 mb-2" type="text"
+            [(ngModel)]='employeeData.gender' > -->
+            <ng-select formControlName="gender" [ngClass]="{ 'is-invalid': submitted && f['gender'].errors }"
+              [(ngModel)]='employeeData.gender' class="col-7  btn-sm mb-1" name="gender" id="gender">
+
+              <ng-option value="male">{{'male' | translate}}</ng-option>
+              <ng-option value="fMale">{{'fMale' | translate}}</ng-option>
+
+            </ng-select>
+            <div *ngIf="submitted && f['gender'].errors" class="invalid-feedback col-lg-11">
+              <div class="text-center" ass="" *ngIf="f['gender'].errors['required']">{{'isRequired'|translate}}</div>
+            </div>
+            <p class="mg-b-10 tx-sm col-lg-5 mb-1">{{'nationality' | translate}}<span style="color:red ;"> *</span></p>
+            <ng-select formControlName="nationality"
+              [ngClass]="{ 'is-invalid': submitted && f['nationality'].errors }"
+              [(ngModel)]='employeeData.nationality' class="col-7  btn-sm mb-1" name="nationality" id="nationality">
+              <span>
+                <ng-option *ngFor="let item of countryList" value="{{item.name}}">
+                  {{item.name}}
+                </ng-option>
+              </span>
+            </ng-select>
+            <div *ngIf="submitted && f['nationality'].errors" class="invalid-feedback col-lg-11">
+              <div class="text-center" ass="" *ngIf="f['nationality'].errors['required']">{{'isRequired'|translate}}
+              </div>
+            </div>
+
+
+            <p class="mg-b-10 tx-sm col-lg-5 mb-1">{{'employeeType' | translate}}<span style="color:red ;"> *</span>
+            </p>
+            <ng-select formControlName="employeeTypes" [ngClass]="{ 'is-invalid': submitted && f['employeeTypes'].errors }" [(ngModel)]="employeeData.employeeTypes" name="employeeTypes" id="employeeTypes"
+              class="col-7  btn-sm mb-1">
+              <ng-option value="1">{{'maneger' | translate}}</ng-option>
+              <ng-option value="2">{{'headOfDepartment' | translate}}</ng-option>
+              <ng-option value="3">{{'employee' | translate}}</ng-option>
+              </ng-select>
+              <div *ngIf="submitted && f['employeeTypes'].errors" class="invalid-feedback col-lg-11">
+                <div class="text-center" ass="" *ngIf="f['employeeTypes'].errors['required']">
+                  {{'isRequired'|translate}}</div>
+              </div>
+
+
+              <p class="mg-b-10 tx-sm col-lg-5 mb-1 ">{{'vacationNumber'|translate}}</p>
+              <input class="form-control col-6 mb-1 mg-l-15" type="text" [ngModelOptions]="{standalone: true}"
+                [(ngModel)]='employeeData.vacationNumber' name="vacationNumber" id="vacationNumber" readonly>
+            </div>
+
+          <div class="col-lg-6 row mb-2 ">
+            <div class="my-img">
+
+
+                <ngx-dropzone [multiple]="false" (change)="onPreviewFileSelect($event)"
+                  class="w-50  p-2  mx-auto  mb-4  ">
+
+                  <ngx-dropzone-label>
+                    <div class="">
+                      <h4>{{'add_photo' | translate}}</h4>
+                    </div>
+                  </ngx-dropzone-label>
+                  <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of filesPreview"
+                    [file]="f" [removable]="true" (removed)="onPreviewFileRemove(f)">
+
+                  </ngx-dropzone-image-preview>
+                </ngx-dropzone>
+
+                </div>
+
+            <p class="mg-b-10 tx-sm col-lg-5 mb-1 ">{{'dateOfBirth' | translate}}<span style="color:red ;"> *</span>
+            </p>
+            <input class="form-control col-6  mb-1 mg-l-15" type="date" formControlName="dateOfBirth"
+              [ngClass]="{ 'is-invalid': submitted && f['dateOfBirth'].errors }"
+              [(ngModel)]='employeeData.dateOfBirth' id="dateOfBirth" name="dateOfBirth">
+            <div *ngIf="submitted && f['dateOfBirth'].errors" class="invalid-feedback col-lg-11">
+              <div class="text-center" ass="" *ngIf="f['dateOfBirth'].errors['required']">{{'isRequired'|translate}}
+              </div>
+            </div>
+
+
+            <p class="mg-b-10 tx-sm col-lg-5 mb-1 ">{{'placeOfBirth' | translate}}<span style="color:red ;"> *</span>
+            </p>
+
+            <ng-select formControlName="placeOfBirth"
+              [ngClass]="{ 'is-invalid': submitted && f['placeOfBirth'].errors }"
+              [(ngModel)]='employeeData.placeOfBirth' class="col-7  btn-sm mb-1" name="placeOfBirth"
+              id="placeOfBirth">
+              <span>
+                <ng-option *ngFor="let item of countryList" value="{{item.code}}">
+                  {{item.name}}
+                </ng-option>
+              </span>
+
+            </ng-select>
+            <div *ngIf="submitted && f['placeOfBirth'].errors" class="invalid-feedback col-lg-11">
+              <div class="text-center" ass="" *ngIf="f['placeOfBirth'].errors['required']">{{'isRequired'|translate}}
+              </div>
+            </div>
+
+
+            <p class="mg-b-10 tx-sm col-lg-5 mb-1">{{'religion' | translate}}<span style="color:red ;"> *</span></p>
+
+            <ng-select formControlName="religion" [ngClass]="{ 'is-invalid': submitted && f['religion'].errors }"
+              [(ngModel)]='employeeData.religion' class="col-7  btn-sm mb-1" name="religion" id="religion">
+              <ng-option value="muslim">{{'muslim' | translate}}</ng-option>
+              <ng-option value="christian">{{'christian' | translate}}</ng-option>
+              <ng-option value="others">{{'others' | translate}}</ng-option>
+            </ng-select>
+            <div *ngIf="submitted && f['religion'].errors" class="invalid-feedback col-lg-11">
+              <div class="text-center" ass="" *ngIf="f['religion'].errors['required']">{{'isRequired'|translate}}
+              </div>
+            </div>
+
+            <p class="mg-b-10 tx-sm col-lg-5 mb-1">{{'maritalStatus' | translate}}<span style="color:red ;"> *</span>
+            </p>
+
+            <ng-select formControlName="maritalStatus"
+              [ngClass]="{ 'is-invalid': submitted && f['maritalStatus'].errors }"
+              [(ngModel)]='employeeData.maritalStatus' class=" col-7  btn-sm mb-1 " name="maritalStatus"
+              id="maritalStatus">
+              <ng-option value="married">{{'married' | translate}}</ng-option>
+              <ng-option value="single">{{'single' | translate}}</ng-option>
+              <ng-option value="others">{{'others' | translate}}</ng-option>
+            </ng-select>
+            <div *ngIf="submitted && f['maritalStatus'].errors" class="invalid-feedback col-lg-11">
+              <div class="text-center" ass="" *ngIf="f['maritalStatus'].errors['required']">{{'isRequired'|translate}}
+              </div>
+            </div>
+
+          </div>
+          <hr class="border border-3" style="color:#ccc;height:1px">
+
+
+
+
+          <div class="">
+            <button class="btn bg-black-8 text-white" style="background-color: #5666c0;" type="submit"
+              (click)="addEmployee()">{{'save'|translate}}</button>
+            <a routerLink="/employee/view" class="btn bg-black-3 text-white mx-2" style="background-color: #7886d3;"
+              type="submit">{{'cancel'|translate}}</a>
+          </div>
+
+         </div>
+       </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Row -->

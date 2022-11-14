@@ -1,0 +1,92 @@
+<app-page-header  [items]="['sections'|translate]" [active_item]="'view'|translate"></app-page-header>
+<div class="row row-sm">
+    <div class="col-xl-12">
+      <div class="card overflow-visible custom-card">
+        <div class="card-body p-0">
+          <div class="table-responsive rounded-top">
+            <!-- <div class="d-flex justify-content-between bg-black-2 align-items-center px-4 rounded-top">
+              <h4 class="main-content-label text-black tx-24">{{'section'|translate}}</h4>
+
+            </div> -->
+            <form class="pos-relative p-4">
+                <div class="noprint form-group form-inline d-flex justify-content-between">
+                    <div>
+                      {{'fullTextSearch'|translate}}<input class="form-control ms-2" (keyup)="filterData($event)" type="text" name="searchTerm" [(ngModel)]="service.searchTerm" />
+                      <span class="ml-3" *ngIf="service.loading$ | async">{{'loading'|translate}}</span>
+                    </div>
+                    <div class="table-btns">
+                      <a _ngcontent-xjy-c134="" routerLink="../add" type="button" class="btn  my-2 m-2 btn-icon-text d-inline-block" style="background-color: #5666c0;">
+                        <i _ngcontent-xjy-c134="" class="fe fe-plus text-white bg-transparent"></i>
+                        <span _ngcontent-xjy-c134="" class="text-white">{{'add'|translate}}</span>
+                      </a>
+                      <button _ngcontent-xjy-c134="" (click)="generatePDF() " type="button" class="btn my-2 btn-icon-text text-white" style="margin-right: 5px; padding: 5px;background-color: #7886d3;"><i _ngcontent-aph-c190="" class="mdi mdi-file-pdf text-white bg-transparent fs-18 p-0 me-1"></i>PDF</button>
+                      <!-- <button _ngcontent-xjy-c134="" type="button" class="btn btn-info my-2 btn-icon-text" style="margin-right: 5px; padding: 5px;">CSV</button> -->
+                      <button _ngcontent-xjy-c134="" (click)="ExportTOExcel()" type="button" class="btn my-2 btn-icon-text text-white" style="margin-right: 5px; padding: 5px;background-color: #7886d3;"><i _ngcontent-rtg-c190="" class="mdi mdi-file-excel bg-transparent text-white fs-18 p-0 me-1"></i>XLS</button>
+                      <button _ngcontent-xjy-c134=""   type="button" class="btn my-2 btn-icon-text " style="margin-right: 5px; padding: 0px;background-color: #7886d3;"><i _ngcontent-xjy-c134="" class="fe fe-printer bg-transparent text-white p-2 m-2" (click)="printPage()"></i></button>
+
+                    </div>
+                </div>
+
+                <!-- <table class="table table-bordered table-shopping-cart"#TABLE #table id="sectionprint" #sectionprint>
+                    <tr class="p-4 text-center table-header-line">
+                      <th scope="col">{{'number'|translate}}</th>
+                      <th scope="col" >{{'section'|translate}}</th>
+                      <th scope="col" >{{'department'|translate}}</th>
+                      <th class="noprint" scope="col" >{{'action'|translate}}</th>
+                    </tr>
+                  <tbody class="table-group-divider text-center">
+                    <tr *ngFor="let section of sections;let i = index">
+                      <td>{{i+1}}</td>
+                      <td>{{section.sectionName}}</td>
+                      <td>{{section.department.departmentName}}</td>
+                      <td class="noprint">
+                        <a class="btn btn-icon-text" routerLink="../update/{{section.sectionId}}"><i class="fe fe-edit text-dark bd-black" ngbTooltip="{{'Update'|translate}}"></i></a>
+                        <button class="btn btn-icon-text" (click)="deleteSection(section.sectionId)"><i class="fe fe-trash-2 text-dark bd-black" ngbTooltip="{{'delete'|translate}}"></i></button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div class="noprint d-flex justify-content-between p-2">
+                  <ngb-pagination
+                    [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">
+                  </ngb-pagination>
+                  <ng-select class="" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+                    <ng-option ng-option-selected value="0">--Select--</ng-option>
+
+                  </ng-select>
+                </div> -->
+                <div  class="table-responsive" #TABLE #table id="sectionprint" #sectionprint>
+                  <table class="demo-table table-bordered   table-shopping-cart  table-header-line" mat-table matSort [dataSource]="sections" >
+                     <ng-container matColumnDef="number" >
+                       <th mat-header-cell width="10%" *matHeaderCellDef class="font-weight-bold text-black li">{{'number' | translate}}</th>
+                       <td mat-cell *matCellDef="let section">{{ section.sectionId }}</td>
+                     </ng-container>
+                     <ng-container matColumnDef="section">
+                       <th mat-header-cell width="10%" *matHeaderCellDef class="font-weight-bold text-black li">{{'section' | translate}}</th>
+                       <td mat-cell *matCellDef="let section">{{ section.sectionName }}</td>
+                     </ng-container>
+                     <ng-container matColumnDef="department">
+                      <th mat-header-cell width="10%" *matHeaderCellDef class="font-weight-bold text-black li">{{'department' | translate}}</th>
+                      <td mat-cell *matCellDef="let section">{{ section.department.departmentName }}</td>
+                    </ng-container>
+                     <ng-container matColumnDef="action" >
+                       <th mat-header-cell width="15%" *matHeaderCellDef class="font-weight-bold text-black li" data-html2canvas-ignore="true"> {{'action' | translate}} </th>
+                       <td mat-cell *matCellDef="let section" data-html2canvas-ignore="true" >
+                       <a class="btn btn-icon-text" routerLink="../update/{{section.sectionId}}"><i class="fe fe-edit text-dark bd-black" ngbTooltip="{{'update'|translate}}"></i></a>
+                       <button class="btn btn-icon-text" (click)="deleteSection(section.sectionId)"><i class="fe fe-trash-2 text-dark bd-black" ngbTooltip="{{'delete'|translate}}"></i></button></td>
+                     </ng-container>
+                     <tr mat-header-row *matHeaderRowDef="displayedColumns" class="aaa"></tr>
+                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                   </table></div>
+                 <mat-paginator class="noprint" #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25,50, 100]" data-html2canvas-ignore="true">
+                </mat-paginator>
+   
+
+
+
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>

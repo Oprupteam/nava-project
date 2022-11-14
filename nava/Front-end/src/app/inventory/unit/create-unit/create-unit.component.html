@@ -1,0 +1,46 @@
+<app-page-header title="{{'unit' | translate}}" [items]="['unit'| translate]" active_item="{{'add' | translate}}"></app-page-header>
+
+<div class="row row-sm">
+  <div class="col-lg-12 col-md-12">
+    <div class="card  ">
+       <div class="card-body">
+
+
+        <form [formGroup]="form">
+          <div class="border m-2 p-2">
+            <div class="col-lg row my-2 align-items-center">
+              <p class="mg-b-10 tx-semibold col-lg-2">{{'unitName' | translate}}<span class="tx-danger">*</span></p>
+              <input class="form-control col-lg-4" name="unitName" id="unitName" placeholder="{{'unitName'|translate}}" type="text"
+              formControlName="unitName"
+                  [ngClass]="{ 'is-invalid': submitted && f['unitName'].errors }"
+                [(ngModel)]='UnitData.unitName'>
+                <div *ngIf="submitted && f['unitName'].errors" class="invalid-feedback">
+                  <div class="text-center"
+                  *ngIf="f['unitName'].errors['required']">{{'isRequired'|translate}}</div>
+                  <!-- <div *ngIf="f['unitName'].errors['pattern']">Enter only characters</div> -->
+                </div>
+              </div>
+
+            <div class="col-lg my-2 row align-items-center">
+              <p class="mg-b-10 tx-semibold col-lg-2">{{'description' | translate}}</p>
+              <textarea class="form-control col-lg-4" placeholder="{{'description'|translate}}" name="description" id="description"
+                rows="3" [(ngModel)]='UnitData.description' [ngModelOptions]="{standalone: true}"></textarea>
+            </div>
+
+
+          </div>
+
+          <hr  class="border border-3" style="color:#ccc;height:1px">
+
+          <div class="mx-3">
+            <button style="background-color:#ddda66;" class="btn bg-black-8 text-black" type="submit" (click)="addUnit()">{{'save' | translate}}</button>
+            <a style="background-color:#fcf6b6;" [routerLink]="['/unit/unit']" class="btn bg-black-3   text-black mx-2" type="submit">{{'cancel' | translate}}</a>
+          </div>
+
+        </form>
+
+
+      </div>
+    </div>
+  </div>
+  <!-- End Row -->

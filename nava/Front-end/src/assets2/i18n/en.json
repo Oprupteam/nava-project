@@ -1,0 +1,335 @@
+{
+
+
+    "action" : "Action",
+    "save" : "Save",
+    "clickheretoaddapicture" : "Click here to add a picture",
+    "errorwhiledeletingData" : "Error while deleting Data",
+
+    "yes" : "Yes",
+    "addItem" : "Add Item",
+    "itemRequestDate" : "Request Date",
+    "requestNumber" : "Request Number",
+    "quantityPackage" : "Quantity Package",
+    "generate" : "Generate",
+    "itemNameEn" : "Item NameEn",
+    "success" : "Success",
+   "deleteData":"Data Is Deleted",
+    "no" : "No",
+    "tax" : "Tax",
+    "taxfree" : "Tax Free",
+    "netprice" : "Total Price",
+    "search" : "Search",
+    "quantity" : "Quantity",
+    "upload" : "Upload",
+    "ItemPicture" : "Item Picture",
+    "store" : "Store",
+    "subcategory" : "Sub Category",
+    "stroeCode" : "Store Code",
+    "storePlace" : "Store Place",
+    "storekeeper" : "Store keeper",
+    "storeContact" : "Store Contact",
+    "description" : "Description",
+    "categoryName" : "Category Name",
+    "unit" : "Unit",
+    "items" : "Items",
+    "lastBuyingPrice" : "Last Buying Price",
+    "expiryDate" : "Expiry Date",
+    "sellingPrice" : "Selling Price",
+    "buyingPrice" : "Buying Price",
+    "view" : "View",
+    "itemCode" : "Item Code",
+    "itemName" : "Item Name",
+    "barCode" : "BarCode",
+    "countryOfOrigin" : "Country Of Origin",
+    "edit" : "Edit",
+    "loading..." : "Loading...",
+    "vendor" : "Vendor",
+    "contactNumber" : "Contact Number",
+    "contactNumber " : "Vendor",
+    "contactPerson" : "Contact Person",
+    "vendorName" : "Vendor Name",
+    "vendorAccountant": "Vendor Accountant",
+
+    "unitName" : "Unit Name",
+    "S.No" : "S.No ",
+    "areyousuretodeletetherecord" : "Are you sure to delete the record?",
+    "qualification" : "ََQualification",
+
+    "enterOnlyNumbers":"Only Numbers",
+
+
+
+  "insuranceCompany" : "Insurance Company",
+  "insuranceCompanies" : "Insurances",
+
+  "cancel":"Cancel",
+  "DD/MM/YYYY":"DD/MM/YYYY",
+  "close":"Close",
+  "itemRequest":"Item Request",
+  "itemNameAr":"Item NameAr",
+
+  "managment":"Managment",
+
+  "update":"Update",
+  "delete":"Delete",
+
+
+  "bankName":"Bank Name",
+
+  "addBank":"Add Bank",
+  "updateBank":"Update Bank",
+
+  "Name":"Name",
+  "gender":"Gender",
+  "City":"City",
+  "OP":"OP",
+  "isRequired":"Is required",
+  "add":"Add",
+
+  "fullTextSearch":"Full text search:",
+
+
+  "insuranceCompanyName":"Insurance Company Name",
+  "addAInsuranceCompany":"Add a insurance company",
+  "updateIInsuranceCompany":"Update a insurance company",
+  "passportNumber":"passport number",
+
+
+
+  "salaryObjectName":"Salary object Name",
+  "salaryObject":"Salary objects ",
+  "addSalaryObject":"Add Salary object",
+
+
+  "startDate":"Start Date",
+  "endDate":"End Date ",
+
+
+  "management":" Management",
+  "mangmentName":"Mangment Name",
+  "higherManagement":"Higher Management",
+  "administrativeAffairs":"Administrative_Affairs",
+  "financialManagement":"financial management",
+  "salesAdministration":"Sales Administration",
+  "purchaseManagement":"Purchase management",
+  "followUpDepartment":"Follow-up management",
+  "yyyy_mm_dd":"yyyy-mm-dd",
+  "loading":"Loading...",
+  "topManagement":"Top Management",
+
+
+
+
+  "major":"Majors",
+  "addMajor":"Add Major",
+  "majorName":"Major Name",
+  "updateMajor":"Update Major",
+
+
+
+  "qualifications":"Qualifications",
+  "qualificationsName":"Qualifications Name",
+
+  "univarsity":"Univarsity",
+
+  "universities":"Universities",
+  "universityName":"University Name",
+  "country":"Country",
+  "universityType":"University Type",
+  "basicInformation":"Basic Information",
+  "companyName":"Company name",
+  "commercialFeature":"Commercial feature",
+  "companyLogo":"Company logo",
+  "commercialRegistrationInformation":"Commercial registration information",
+  "CommerciaNo":"Commercia No",
+  "commercialname":"Commercial name",
+  "releaseDate":"Release date",
+  "municipalLicenseInformation":"Municipal license information",
+
+
+  "Are you Sure to delete The Record":"Are you Sure to delete The Record",
+  "Error while Deleting Data":"Error while Deleting Data",
+  "Data Is Deleted" : "Data is Deleted",
+  "employeeType":"employeeType",
+  "bank":"bank",
+  "department":"Department",
+  "departmentName":"Department Name ",
+  "jobTitle":"Job Title",
+  "jobTitleName":"Job Title Name",
+  "sections":"Sections",
+  "section":"Section",
+  "sectionName":"Section Name",
+  "name":"name",
+  "number":"S.No",
+  "moreDetails":"More Details",
+  "banks":"Banks",
+  "nameAr":"Name Ar",
+  "employeeCode":"Employee Code",
+  "address":"Address",
+  "jobInformation":"Job Information",
+  "experience":"Experience",
+  "insurancePolicyNum":"Insurance Policy Num",
+  "insurancePolicyType":"Insurance Policy Type",
+  "issueDate":"Issue Date",
+  "expiryData":"Expiry Data",
+  "insurancePolicyDegree":"Insurance Policy Degree",
+  "email":"Email Address",
+  "phoneNumber":" Phone Number",
+  "univarsitis":"Univarsitis",
+  "company":"Company",
+  "position":"Position",
+  "addInsuranceCompany":"Add Insurance Company",
+  "addAddress":"Add Address",
+  "addQualification":"Add Qualification",
+  "addJobInformation":"Add Job Information",
+
+  "addExperience" : "Add Experience",
+  "addResidence" : "Add Residence",
+  "addVisa" : "Add Visa",
+  "addMedicalTest" : "Add MedicalTest",
+  "residence" : "Residence",
+  "residenceNumber" : "Residence Number",
+  "jobBYResidence" : "Job by Residence",
+  "residenceIssueDate" : "Residence IssueDate",
+  "residenceExpiryDate" : "Residence Expiry Date",
+  "sponsorTransferDate" : "Guarantor Transfer Date",
+  "hijriSponsorTransferDate" : "Hijri Sponsor Transfer Date",
+  "visa" : "Visa",
+  "visaName" : "Visa Name",
+  "visaType" : "Visa Type",
+  "jobByVisa" : "Job Visa",
+  "entryDate" : "Entry Date",
+  "visaIssueDate" : "Visa Issue Date",
+  "visaExpiryDate" : "Visa Expiry Date",
+  "medicalTest" : "Medical Test",
+  "medicalTestNumber" : "Medical Test Number",
+  "medicalTestResult" : "Medical Test Result",
+  "procedureDate" : "Procedure Date",
+  "medicalResultDate" : "Medical Result Date",
+
+
+  "employeeInformation":"Employee Information",
+  "employeeId":"employee Id",
+  "jobStatus":"Job status",
+  "male":"fale",
+  "fMale":"fmale",
+
+  "add_photo":"add your photo",
+  "dateOfBirth":"date of birth",
+  "placeOfBirth":"place of birth",
+  "religion":"religion",
+  "maritalStatus":"marital status",
+  "muslim":"Muslim",
+ "christian":"Christian",
+ "others":"others",
+ "married":"married",
+ "single":"single",
+ "onTheJob":"on the job",
+ "quit":"quit",
+ "nationality":"nationality",
+
+
+
+  "employee":"Employee",
+  "university":"University",
+
+  "dashboard" : "Dashboard",
+
+  "vacation":"Vacation",
+  "benefitType":"Benefit Type",
+  "leaves":"Leaves",
+
+
+  "personalImge":"Personal Imge",
+  "maneger":"Maneger",
+   "headOfDepartment":"Head Of Department",
+   "nameEn":"NameEn",
+   
+   "vacationNumber":"Vacation Number",
+
+
+  "localPurchaceOrderType" : "Type",
+    "localPurchaceOrderNumber" : "Purchase Number",
+    "localPurchaceOrderData" : "Data",
+    "localPurchaceOrder" : "Local Purchase Order",
+
+
+
+  "taxRates" : "Tax Rates",
+  "discount" : "Discount",
+  "total" : "Total",
+
+  "cash" : "Cash",
+  "receivables" : "Receivables",
+  "print" : "Print",
+  "purchasingPrice" : "Purchasing Price"
+
+  "purchasingPrice" : "Purchasing Price",
+
+
+
+  "ErrorWhileUpdatingSheet":"Error While Updating Sheet",
+  "SheetisUpdated":"Sheet is Updated",
+  "Attendenceisexist":"Attendence is Exist",
+  "AttendenceisAdded":"Attendence is Added",
+   "ErrorWhileAddingAttendence":"Error While Adding Attendence",
+   "ErrorAttContract":"Adding the attendence has been faild, please make sure this employee have contract",
+  "AttendHour" : "Total ATT. Hours",
+  "overTime" : "Over Time",
+  "AttDate":"Date",
+  "AttDay":"Day",
+  "ATT":"ATT.",
+  "ATTValue":"Value",
+  "OverTime":"O.T.",
+  "OverTimeValue":"O.T.Value",
+  "TotalAttValue":"Total ATT.V",
+  "TotalOverTime":"Total O.T Hours",
+  "TotalOverTimeValue":"Total O.T.V",
+  "TotalAmount":"Total Amount",
+  "employeeName":"Employee Name",
+
+
+
+  "benefits":"Benefits",
+  "addbenefits":"Add Benefits",
+  "additionalTerms":"Additional terms",
+  "addadditionalTerms":"Add Additional terms",
+
+  "print":"Print",
+
+  "contracts":"Contracts",
+  "vacationType":"Vacation Type",
+  "contract":"Contracts",
+  "contractType":"Contract Type",
+  "contractStart":"Contract Start",
+  "contractEnd":"Contract End",
+
+  "type":"Type",
+  "amount":"Amount",
+  "exchangeValue":"Exchange Value",
+  "deductionValue":"Deduction Value",
+  "total":"Total",
+  "leavesDescription":"Leaves Description",
+  "benefit":"Benefit",
+  "leavesType":"Leaves Type",
+  "accountcodeisexist,trytochangeit!":"account code is exist,try to change it!",
+
+
+
+  "localPurchaceOrderType" : "Type",
+    "localPurchaceOrderNumber" : "Purchase Number",
+    "localPurchaceOrderData" : "Data",
+    "localPurchaceOrder" : "Local Purchase Order",
+    "timeSheet" : "Timesheet",
+    "date" : "Date",
+    "salary" : "Salary"
+
+
+
+
+
+
+
+  }
+

@@ -1,0 +1,120 @@
+<app-page-header  [items]="['employee'|translate]" [active_item]="'view'|translate" class="noprint"></app-page-header>
+<div class="row row-sm">
+    <div class="col-xl-12">
+      <div class="card overflow-visible custom-card">
+        <div class="card-body p-0">
+          <div class="table-responsive rounded-top">
+            <form class="pos-relative p-4">
+                <div class="noprint form-group form-inline d-flex justify-content-between">
+                    <div>
+                      {{'fullTextSearch'|translate}}<input class="form-control ms-2" type="text"  (keyup)="filterData($event)" name="searchTerm" [(ngModel)]="service.searchTerm"/>
+                      <span class="ml-3" *ngIf="service.loading$ | async">{{'loading'|translate}}</span>
+                    </div>
+                    <div class="table-btns">
+                      <a _ngcontent-xjy-c134="" routerLink="../add" type="button" class="btn my-2 m-2 btn-icon-text d-inline-block" style="background-color: #5666c0;">
+                        <i _ngcontent-xjy-c134="" class="fe fe-plus text-white bg-transparent"></i>
+                        <span _ngcontent-xjy-c134="" class="text-white">{{'add'|translate}}</span>
+                      </a>
+                      <button _ngcontent-xjy-c134="" (click)="generatePDF() " type="button" class="btn my-2 btn-icon-text text-white" style="margin-right: 5px; padding: 5px;background-color: #7886d3;"><i _ngcontent-aph-c190="" class="mdi mdi-file-pdf text-white bg-transparent fs-18 p-0 me-1"></i>PDF</button>
+                      <!-- <button _ngcontent-xjy-c134="" type="button" class="btn btn-info my-2 btn-icon-text" style="margin-right: 5px; padding: 5px;">CSV</button> -->
+                      <button _ngcontent-xjy-c134="" (click)="ExportTOExcel()" type="button" class="btn my-2 btn-icon-text text-white" style="margin-right: 5px; padding: 5px;background-color: #7886d3;"><i _ngcontent-rtg-c190="" class="mdi mdi-file-excel bg-transparent text-white fs-18 p-0 me-1"></i>XLS</button>
+                      <button _ngcontent-xjy-c134=""   type="button" class="btn my-2 btn-icon-text" style="margin-right: 5px; padding: 0px;background-color: #7886d3;"><i _ngcontent-xjy-c134="" class="fe fe-printer bg-transparent text-white p-2 m-2" (click)="printPage()"></i></button>
+
+                    </div>
+                </div>
+
+                <!-- <table class="table table-bordered table-shopping-cart" #TABLE #table id="employeeprint" #employeeprint>
+                  <tr class="p-4 text-center table-header-line">
+                    <th scope="col">{{'number'|translate}}</th>
+                    <th scope="col" (sort)="onSort($event)">{{'name'|translate}}</th>
+                    <th scope="col" (sort)="onSort($event)">{{'nameAr'|translate}}</th>
+                    <th scope="col" (sort)="onSort($event)">{{'dateOfJoin'|translate}}</th>
+                    <th scope="col" (sort)="onSort($event)">{{'gender'|translate}}</th>
+                    <th  class="noprint" scope="col" (sort)="onSort($event)">{{'action'|translate}}</th>
+                  </tr>
+                  <tbody class="table-group-divider">
+                    <tr *ngFor="let employee of employees;">
+
+                      <td>{{employee.employeeId}}</td>
+                      <td>{{employee.employeeName}}</td>
+                      <td>{{employee.employeeNameAr}}</td>
+                      <td>{{employee.dateOfJoin}}</td>
+                      <td>{{employee.gender}}</td>
+                      <td class="noprint">
+                        <a class="btn btn-icon-text" routerLink="../update/{{employee.employeeId}}"><i class="fe fe-edit text-dark bd-black "ngbTooltip="{{'update'|translate}}"></i></a>
+                        <button class="btn btn-icon-text" (click)="deleteEmployee(employee.employeeId)"><i class="fe fe-trash-2 text-dark bd-black"ngbTooltip="{{'delete'|translate}}"></i></button>
+                        <a class="btn btn-icon-text" routerLink="../more-details/{{employee.employeeId}}"><i class="fe fe-edit text-dark bd-black "ngbTooltip="{{'moreDetails'|translate}}"></i></a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div class="noprint d-flex justify-content-between p-2">
+                  <ngb-pagination
+                    [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">
+                  </ngb-pagination>
+                  <ng-select class="" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+                    <ng-option ng-option-selected value="0">--Select--</ng-option>
+
+                  </ng-select>
+                </div> -->
+
+                <div class="table-responsive"   #TABLE #table id="employeeprint" #employeeprint>
+                  <table class="demo-table table-bordered   table-shopping-cart  table-header-line" mat-table matSort [dataSource]="employees" >
+                     <ng-container matColumnDef="number" >
+                       <th mat-header-cell width="10%"  *matHeaderCellDef class="font-weight-bold text-black li">{{'number' | translate}}</th>
+                       <td mat-cell *matCellDef="let employee">{{ employee.employeeId }}</td>
+                     </ng-container>
+                     <ng-container matColumnDef="personalImge" class="font-weight-bold text-black li" >
+                      <th mat-header-cell  *matHeaderCellDef width="10%" class="font-weight-bold text-black li">{{'personalImge' | translate}}</th>
+                      <!-- <td mat-cell *matCellDef="let employee" class="d-flex justify-content-center m-sm-2"><img src="assets/img/upload/{{employee.image}}" alt="" class="rounded" height="80" width="90"></td> -->
+                      <td mat-cell *matCellDef="let employee" class="d-flex justify-content-center m-sm-2"><img src="../uploadFile/{{employee.image}}" alt="" class="rounded" height="80" width="90"></td>
+                    </ng-container>
+                     <ng-container matColumnDef="name" >
+                       <th mat-header-cell width="10%"  *matHeaderCellDef class="font-weight-bold text-black li">{{'name' | translate}}</th>
+                       <td mat-cell *matCellDef="let employee">{{ employee.employeeName }}</td>
+                     </ng-container>
+                     <ng-container matColumnDef="nameAr">
+                      <th mat-header-cell width="10%"  *matHeaderCellDef class="font-weight-bold text-black li">{{'nameAr' | translate}}</th>
+                      <td mat-cell *matCellDef="let employee">{{ employee.employeeNameAr }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="dateOfJoin">
+                      <th mat-header-cell width="10%" *matHeaderCellDef class="font-weight-bold text-black li">{{'dateOfJoin' | translate}}</th>
+                      <td mat-cell *matCellDef="let employee">{{ employee.dateOfJoin }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="gender">
+                      <th mat-header-cell width="10%" *matHeaderCellDef class="font-weight-bold text-black li">{{'gender' | translate}}</th>
+                      <td mat-cell *matCellDef="let employee">{{ employee.gender }}</td>
+                    </ng-container>
+
+                     <ng-container matColumnDef="action" >
+
+
+
+                       <th mat-header-cell width="18%" *matHeaderCellDef class="font-weight-bold text-black li" data-html2canvas-ignore="true"> {{'action' | translate}} </th>
+
+                       <td mat-cell *matCellDef="let employee" data-html2canvas-ignore="true" >
+                       <a class="btn btn-icon-text" class="my-action" routerLink="../update/{{employee.employeeId}}"><i class="fe fe-edit text-dark bd-black" ngbTooltip="{{'update'|translate}}"></i></a>
+                       <a class="btn btn-icon-text" class="my-action" routerLink="../more-details/{{employee.employeeId}}"><i class="fe fe-user text-dark bd-black" ngbTooltip="{{'moreDetails'|translate}}"></i></a>
+                       <a class="btn btn-icon-text" class="my-action" routerLink="../contract/{{employee.employeeId}}"><i class="fe fe-file" ngbTooltip="{{'contracts'|translate}}"></i></a>
+                       <a class="btn btn-icon-text" class="my-action" (click)="deleteEmployee(employee.employeeId)"><i class="fe fe-trash-2 text-dark bd-black" ngbTooltip="{{'delete'|translate}}"></i></a>
+                       <a class="btn btn-icon-text" class="my-action" routerLink="../more-details/{{employee.employeeId}}"><i class="fe fe-edit text-dark bd-black" ngbTooltip="{{'moreDetails'|translate}}"></i></a>
+                      </td>
+
+
+
+
+
+
+                      </ng-container>
+                     <tr mat-header-row *matHeaderRowDef="displayedColumns"class="li"></tr>
+                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                   </table></div>
+                 <mat-paginator class="noprint" #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25,50, 100]" data-html2canvas-ignore="true">
+                </mat-paginator>
+
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>

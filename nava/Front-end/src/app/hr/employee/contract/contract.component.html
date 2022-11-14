@@ -1,0 +1,328 @@
+<app-page-header [items]="['contracts'|translate]" [active_item]="'add'|translate" class="noprint"></app-page-header>
+
+<div class="row row-sm">
+    <div class="card custom-card">
+        <div class="col-lg-12 col-md-12">
+            <div class="card-body">
+                <div class="border">
+                    <div class="row justify-content-evenly p-1 pt-4">
+                        <div class="row col-lg-4 my-1" *ngIf="employees">
+                            <p class="tx-semibold col-lg-4"> {{'nameAr'|translate}} :</p>
+                            <input class="form-control col-lg-8" type="text" disabled
+                                [value]="employees.employeeNameAr">
+                        </div>
+                        <div class="row col-lg-4 my-1" *ngIf="employees">
+                            <p class="tx-semibold col-lg-4"> {{'name'|translate}}</p>
+                            <input class="form-control col-lg-8" type="text" disabled [value]="employees.employeeName">
+                        </div>
+                        <div class="row col-lg-4 my-1" *ngIf="employees">
+                            <p class="tx-semibold col-lg-4">{{'passportNumber'|translate}}</p>
+                            <input class="form-control col-lg-8" type="text" disabled
+                                [value]="employees.passportNumber">
+                        </div>
+                        <div class="row col-lg-4 my-1" *ngIf="empResidence">
+                            <p class="tx-semibold col-lg-4">{{'residenceNumber'|translate}}</p>
+                            <input class="form-control col-lg-8" type="text" disabled
+                                [value]="empResidence.residenceNumber">
+                        </div>
+                        <div class="row col-lg-4 my-1" *ngIf="addresses">
+                            <p class="tx-semibold col-lg-4">{{'phoneNumber'|translate}}</p>
+                            <input class="form-control col-lg-8" type="text" disabled [value]="addresses.phoneNumber">
+                        </div>
+                        <div class="row col-lg-4 my-1 mb-2" *ngIf="addresses">
+                            <p class="tx-semibold col-lg-4">{{'address'|translate}}</p>
+                            <input class="form-control col-lg-8" type="text" disabled [value]="addresses.addressName">
+                        </div>
+                    </div>
+                    <hr class="border border-3 my-4" style="color:#ccc;height:1px">
+                    <div class="row justify-content-evenly p-1">
+                        <div class="row col-lg-4 my-1">
+                            <p class="tx-semibold col-lg-4">{{'contractType'|translate}}</p>
+                            <input class="form-control col-lg-8" type="text" [(ngModel)]="contractData.contractType">
+                        </div>
+                        <div class="row col-lg-4 my-1">
+                            <p class="tx-semibold col-lg-4">{{'contractStart'|translate}}</p>
+                            <input class="form-control col-lg-8" type="date" [(ngModel)]="contractData.startDate">
+                        </div>
+                        <div class="row col-lg-4 my-1">
+                            <p class="tx-semibold col-lg-4">{{'contractEnd'|translate}}</p>
+                            <input class="form-control col-lg-8" type="date" [(ngModel)]="contractData.endDate">
+                        </div>
+                    </div>
+                    <div class="text-end m-2">
+                        <button class="btn text-white m-2" style="background-color: #5666c0;" type="submit"
+                            (click)="addContract()"
+                            [hidden]="contractData.contractType === '' || contractData.startDate === '' || contractData.endDate === '' || hid"
+                            >{{'save'|translate}}</button>
+                        <button class="btn text-white m-2" style="background-color: #5666c0;" type="submit"
+                            [hidden]="tabs"
+                            (click)="print()">{{'print'|translate}}</button>
+                        <a routerLink="/employee/view" class="btn text-white m-2" style="background-color: #7886d3;"
+                            type="submit">{{'cancel'|translate}}</a>
+                    </div>
+                </div>
+                <div class="panel panel-primary tabs-style-1 mt-4" [hidden]="tabs">
+                    <div class=" tab-menu-heading">
+                        <div class="tabs-menu1">
+                            <!-- Tabs -->
+                            <ul ngbNav #nav="ngbNav" [activeId]="1" class="panel-tabs main-nav-line">
+                                <li [ngbNavItem]="1">
+                                    <a ngbNavLink>{{'vacation'|translate}}</a>
+                                    <ng-template ngbNavContent>
+                                        <button class="btn bg-black-8 text-white mb-2 float-end"
+                                            style="background-color: #5666c0;" (click)="Select2Open(select1modal)"
+                                            type="submit">{{'add'|translate}}</button>
+                                        <div class="table-responsive">
+                                            <table class="table table-striped border">
+                                                <tr class="p-4 text-center aaa ">
+                                                    <th scope="col">{{'number'|translate}}</th>
+                                                    <th scope="col">{{'amount'|translate}}</th>
+                                                    <th class="noprint" scope="col">{{'action'|translate}}</th>
+                                                </tr>
+                                                <tbody class="table-group-divider text-center">
+                                                    <tr *ngFor="let vacation of empVacation  ;let i = index">
+                                                        <td>{{i + 1}}</td>
+                                                        <td>{{vacation.amount}}</td>
+                                                        <td class="noprint">
+                                                            <button class="btn btn-icon-text"
+                                                                (click)="deleteVacation(vacation.contractVacationId)"><i
+                                                                    class="fe fe-trash-2 text-dark bd-black"
+                                                                    ngbTooltip="{{'delete'|translate}}"></i></button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </ng-template>
+                                </li>
+                                <li [ngbNavItem]="2">
+                                    <a ngbNavLink>{{'benefits'|translate}}</a>
+                                    <ng-template ngbNavContent>
+                                        <button class="btn bg-black-8 text-white mb-2 float-end"
+                                            style="background-color: #5666c0;" (click)="Select2Open(select2modal)"
+                                            type="submit">{{'add'|translate}}</button>
+                                        <div class="table-responsive">
+
+                                            <table class="table table-striped border">
+                                                <tr class="p-4 text-center aaa ">
+                                                    <th scope="col">{{'number'|translate}}</th>
+                                                    <th scope="col">{{'amount'|translate}}</th>
+                                                    <th class="noprint" scope="col">{{'action'|translate}}</th>
+                                                </tr>
+                                                <tbody class="table-group-divider text-center">
+                                                    <tr *ngFor="let benefits of empBenefits  ;let i = index">
+                                                        <td>{{i + 1}}</td>
+                                                        <td>{{benefits.amount}}</td>
+                                                        <td class="noprint">
+                                                            <button class="btn btn-icon-text"
+                                                                (click)="deleteVacation(benefits.contractBenefitsId)"><i
+                                                                    class="fe fe-trash-2 text-dark bd-black"
+                                                                    ngbTooltip="{{'delete'|translate}}"></i></button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </ng-template>
+                                </li>
+                                <li [ngbNavItem]="3">
+                                    <a ngbNavLink>{{'salaryObject'|translate}}</a>
+                                    <ng-template ngbNavContent>
+                                        <button class="btn bg-black-8 text-white mb-2 float-end"
+                                            style="background-color: #5666c0;" (click)="Select2Open(select3modal)"
+                                            type="submit">{{'add'|translate}}</button>
+                                        <div class="table-responsive">
+                                            <table class="table table-striped border">
+                                                <tr class="p-4 text-center aaa ">
+                                                    <th scope="col">{{'number'|translate}}</th>
+                                                    <th scope="col">{{'salaryObject'|translate}}</th>
+                                                    <th scope="col">{{'type'|translate}}</th>                                                    
+                                                    <th scope="col">{{'amount'|translate}}</th>
+                                                    <th class="noprint" scope="col">{{'action'|translate}}</th>
+                                                </tr>
+                                                <tbody class="table-group-divider text-center">
+                                                    <tr *ngFor="let sal of empSalaryObject  ;let i = index">
+                                                        <td>{{i + 1}}</td>
+                                                        <td>{{sal.salaryObject.salaryObjectName}}</td>
+                                                        <td>{{(sal.type==1)?"بدل":"اقتطاع"}}</td>
+                                                        <td>{{sal.amount}}</td>
+                                                        <td class="noprint">
+                                                            <button class="btn btn-icon-text"
+                                                                (click)="deleteVacation(sal.contractSalaryObjectId)"><i
+                                                                    class="fe fe-trash-2 text-dark bd-black"
+                                                                    ngbTooltip="{{'delete'|translate}}"></i></button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr class="border text-center font-weight-bold">
+                                                        <td colspan="2" class="border" width="33%">{{'exchangeValue'|translate}} : {{m}}</td>
+                                                        <td colspan="2" class="border" width="33%">{{'deductionValue'|translate}} : {{s}}</td>
+                                                        <td colspan="2" class="border" width="33%">{{'total'|translate}} : {{sum}}</td>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </ng-template>
+                                </li>
+                                <li [ngbNavItem]="4">
+                                    <a ngbNavLink>{{'additionalTerms'|translate}}</a>
+                                    <ng-template ngbNavContent>
+                                        <button class="btn bg-black-8 text-white mb-2 float-end"
+                                            style="background-color: #5666c0;" (click)="Select2Open(select4modal)"
+                                            type="submit">{{'add'|translate}}</button>
+                                        <div class="table-responsive">
+
+                                        </div>
+                                    </ng-template>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel-body tabs-menu-body main-content-body-right border-top-0 border">
+                        <div [ngbNavOutlet]="nav"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #select1modal let-modal>
+        <!-- Select2 modal -->
+        <div class="modal-header">
+            <h6 class="modal-title"> {{ "addvacation" | translate }}</h6>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="col-lg row">
+                <p class="tx-semibold col-lg-4">
+                    {{ "vaction" | translate }}<span class="tx-danger">*</span>
+                </p>
+                <ng-select [(ngModel)]="contractVacationData.vacation.vacationId" id="contractVacationId"
+                    name="contractVacationId" class="p-0 my-1 col-8 ">
+                    <ng-option *ngFor="let vacation of vacations " value={{vacation.vacationId}}>
+                        {{vacation.vacationType}}
+                    </ng-option>
+                </ng-select>
+            </div>
+
+            <div class="col-lg my-2 mg-t-10 mg-t-10 row">
+                <p class="mg-b-10 tx-semibold col-lg-4">
+                    {{ "amount" | translate
+                    }}<span class="tx-danger">*</span>
+                </p>
+                <input class="form-control input col-8" type="text" [(ngModel)]="contractVacationData.amount"
+                    id="amount" name="amount" placeholder='{{ "amount" | translate}}' />
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn bg-black-3 text-white" style="background-color: #7886d3;"
+                (click)="modal.close('Close click')">{{"cancel" | translate }}</button>
+            <button class="btn bg-black-8 text-white" style="background-color: #5666c0;" type="button" (click)="addVacation()">{{"save" |translate }} </button>
+        </div>
+    </ng-template>
+    <!-- End Row -->
+    <ng-template #select2modal let-modal>
+        <!-- Select2 modal -->
+        <div class="modal-header">
+            <h6 class="modal-title"> {{ "addbenefits" | translate }}</h6>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="col-lg row">
+                <p class="tx-semibold col-lg-4">
+                    {{ "benefits" | translate }}<span class="tx-danger">*</span>
+                </p>
+                <ng-select [(ngModel)]="contractBenefitsData.benefits.benefitsId" id="contractBenefitsId"
+                    name="contractBenefitsId" class="p-0 my-1 col-8 ">
+                    <ng-option *ngFor="let benefits of benefits " value={{benefits.benefitsId}}>
+                        {{benefits.benefitsType}}
+                    </ng-option>
+                </ng-select>
+            </div>
+
+            <!-- <div class="col-lg my-2 mg-t-10 mg-t-10 row">
+                <p class="mg-b-10 tx-semibold col-lg-4">
+                    {{ "amount" | translate
+                    }}<span class="tx-danger">*</span>
+                </p>
+                <input class="form-control input col-8" type="text" [(ngModel)]="contractBenefitsData.amount"
+                    id="amount" name="amount" placeholder='{{ "amount" | translate}}' />
+            </div> -->
+        </div>
+        
+        <div class="modal-footer">
+            <button type="button" class="btn bg-black-3 text-white" style="background-color: #7886d3;"
+                (click)="modal.close('Close click')">{{"cancel" | translate }}</button>
+            <button class="btn bg-black-8 text-white" style="background-color: #5666c0;" type="button" (click)="addBenefits()">{{"save" |
+                translate }} </button>
+        </div>
+    </ng-template>
+    <!-- End Row -->
+    <ng-template #select3modal let-modal>
+        <!-- Select2 modal -->
+        <div class="modal-header">
+            <h6 class="modal-title"> {{ "addSalaryObject" | translate }}</h6>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="col-lg row">
+                <p class="tx-semibold col-lg-4">
+                    {{ "addSalaryObject" | translate }}<span class="tx-danger">*</span>
+                </p>
+                <ng-select [(ngModel)]="contractSalaryObjectData.salaryObject.salaryObjectId" id="contractSalaryObjectId"
+                    name="contractSalaryObjectId" class="p-0 my-1 col-8 ">
+                    <ng-option *ngFor="let salaryObject of salaryObjects " value={{salaryObject.salaryObjectId}}>
+                        {{salaryObject.salaryObjectName}}
+                    </ng-option>
+                </ng-select>
+            </div>
+            <div class="col-lg my-2 mg-t-10 mg-t-10 row">
+                <p class="mg-b-10 tx-semibold col-lg-4">
+                    {{ "type" | translate   
+                    }}<span class="tx-danger">*</span>
+                </p>
+                <ng-select [(ngModel)]="contractSalaryObjectData.type" id="type"
+                    name="contractSalaryObjectId" class="p-0 my-1 col-8 ">
+                    <ng-option value="-1">{{ "deduction" | translate}}</ng-option>
+                    <ng-option value="1">{{ "exchange" | translate}}</ng-option>
+                </ng-select>
+            </div>
+            <div class="col-lg my-2 mg-t-10 mg-t-10 row">
+                <p class="mg-b-10 tx-semibold col-lg-4">
+                    {{ "amount" | translate
+                    }}<span class="tx-danger">*</span>
+                </p>
+                <input class="form-control input col-8" type="text" [(ngModel)]="contractSalaryObjectData.amount"
+                    id="amount" name="amount" placeholder='{{ "amount" | translate}}' />
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn bg-black-3 text-white" style="background-color: #7886d3;"
+                (click)="modal.close('Close click')">{{"cancel" | translate }}</button>
+            <button class="btn bg-black-8 text-white" style="background-color: #5666c0;" type="button" (click)="addSalaryObject()">{{"save" |
+                translate }} </button>
+        </div>
+    </ng-template>
+    <!-- End Row -->
+    <ng-template #select4modal let-modal>
+        <!-- Select2 modal -->
+        <div class="modal-header">
+            <h6 class="modal-title"> {{ "addadditionalTerms" | translate }}</h6>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            </button>
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn bg-black-3 text-white" style="background-color: #7886d3;"
+                (click)="modal.close('Close click')">{{"cancel" | translate }}</button>
+            <button class="btn bg-black-8 text-white" style="background-color: #5666c0;" type="button" >{{"save" |
+                translate }} </button>
+        </div>
+    </ng-template>
+    <!-- End Row -->

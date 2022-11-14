@@ -1,0 +1,84 @@
+<app-page-header [title]="'Compny'" [items]="['Compny']" [active_item]="'View'"></app-page-header>
+
+<div class="row row-sm">
+    <div class="col-xl-12">
+      <div class="card overflow-visible custom-card">
+        <div class="card-body p-0">
+          <div class="table-responsive rounded-top">
+            <div class="d-flex justify-content-between bg-black-2 align-items-center px-4 rounded-top">
+              <h4 class="main-content-label text-black tx-24">Company</h4>
+                            <a _ngcontent-xjy-c134="" routerLink="../add" type="button" class="btn bg-black-8 my-2 btn-icon-text d-inline-block">
+                <i _ngcontent-xjy-c134="" class="fe fe-plus text-white bg-transparent"></i>
+                <span _ngcontent-xjy-c134="" class="text-white">Company</span>
+              </a>
+            </div>
+            <!-- <form class="pos-relative p-4">
+                <div class="form-group form-inline d-flex justify-content-between">
+                    <div>
+                      Full text search: <input class="form-control ms-2" type="text" name="searchTerm" [(ngModel)]="service.searchTerm"/>
+                      <span class="ml-3" *ngIf="service.loading$ | async">Loading...</span>
+                    </div>
+                    <div class="table-btns">
+                      <button _ngcontent-xjy-c134="" type="button" class="btn my-2 btn-icon-text bg-black-8" style="margin-right: 5px; padding: 0px;"><i _ngcontent-xjy-c134="" class="fe fe-printer bg-transparent text-white p-2 m-2"></i></button>
+                      <button _ngcontent-xjy-c134="" type="button" class="btn my-2 btn-icon-text bg-black-8 text-white" style="margin-right: 5px; padding: 5px;"><i _ngcontent-aph-c190="" class="mdi mdi-file-pdf text-danger bg-transparent fs-18 p-0 me-1"></i>PDF</button>
+                      <button _ngcontent-xjy-c134="" type="button" class="btn btn-info my-2 btn-icon-text" style="margin-right: 5px; padding: 5px;">CSV</button>
+                      <button _ngcontent-xjy-c134="" type="button" class="btn my-2 btn-icon-text bg-black-8 text-white" style="margin-right: 5px; padding: 5px;"><i _ngcontent-rtg-c190="" class="mdi mdi-file-excel bg-transparent text-success fs-18 p-0 me-1"></i>XLS</button>
+                      <button _ngcontent-xjy-c134="" type="button" class="btn my-2 btn-icon-text bg-black-8" style="margin-right: 5px; padding: 0px;"><i _ngcontent-xjy-c134="" class="fe fe-filter bg-transparent text-white p-2 m-2"></i></button>
+                      <button _ngcontent-xjy-c134="" type="button" class="btn my-2 btn-icon-text bg-black-8" style="margin-right: 5px; padding: 0px;"><i _ngcontent-xjy-c134="" class="fe fe-delete bg-transparent text-white p-2 m-2"></i></button>
+                    </div>
+                </div>
+
+                <table class="table table-bordered table-shopping-cart">
+                  <thead>
+                  <tr style="text-align: center">
+                    <th scope="col">S.No</th>
+                    <th scope="col" (sort)="onSort($event)">companyName</th>
+                    <th scope="col" (sort)="onSort($event)">commercialNo</th>
+                    <th scope="col" (sort)="onSort($event)">commercialName</th>
+                    <th scope="col" (sort)="onSort($event)">issuesCommercialRegistration</th>
+                    <th scope="col" (sort)="onSort($event)">commercialRegistrationExpiry</th>
+                    <th scope="col" (sort)="onSort($event)">municipalLicenseNo</th>
+                    <th scope="col" (sort)="onSort($event)">issuesMunicipalLicenseNo</th>
+                    <th scope="col" (sort)="onSort($event)">municipalLicenseNoExpiry</th>
+                    <th scope="col" (sort)="onSort($event)">capitalAsPerCR</th>
+                    <th scope="col" (sort)="onSort($event)">taxNo</th>
+                    <th scope="col" (sort)="onSort($event)">companyLogo</th>
+                    <th scope="col" (sort)="onSort($event)">OP</th>
+                  </tr>
+                  </thead>
+                  <tbody class="table-group-divider">
+                    <tr style="text-align: center" *ngFor="let company of companies">
+                      <td>1</td>
+                      <td>{{company.companyName}}</td>
+                      <td>{{company.companyDescription}}</td>
+                      <td>
+                        <button class="btn btn-icon-text m-0"><i class="fe fe-edit text-dark p-2"></i></button>
+                        <button _ngcontent-xjy-c134="" type="button" class="btn btn-icon-text m-0" style="margin-right: 5px; padding: 0px;"><i _ngcontent-xjy-c134="" class="fe fe-trash-2 text-dark p-2 m-2"></i></button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div class="d-flex justify-content-between p-2">
+                  <ngb-pagination
+                    [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">
+                  </ngb-pagination>
+
+                  <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+                    <option [ngValue]="2">2 items</option>
+                    <option [ngValue]="4">4 items</option>
+                    <option [ngValue]="6">6 items</option>
+                  </select>
+                  <ng-select class="" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+                    <ng-option ng-option-selected value="0">--Select--</ng-option>
+                    <ng-option value="2">2 items</ng-option>
+                    <ng-option value="4">4 items</ng-option>
+                    <ng-option value="6">6 items</ng-option>
+                  </ng-select>
+                </div>
+
+              </form> -->
+          </div>
+        </div>
+      </div>
+    </div>

@@ -1,0 +1,1000 @@
+<app-page-header  [items]="['الموظف']" [active_item]="'moreDetails'|translate"></app-page-header>
+<div class="row row-sm">
+  <div class="col-lg-12 col-md-12">
+    <div class="card custom-card">
+      <div class="card-body">
+
+        <form  *ngIf="employees">
+          <div class="row border m-2 p-4">
+            <div class="col-lg-10 row">
+              <div class="mb-2 row mb-3 col-lg-6">
+                <p class="mg-b-10 tx-semibold col-lg-4"> {{'nameAr'|translate}} :</p>
+                <input class="form-control col-lg-8" type="text" disabled [value]="employees.employeeNameAr">
+              </div>
+              <div class="mb-2 row col-lg-6">
+                <p class="mg-b-10 tx-semibold col-lg-4"> {{'name'|translate}}  : </p>
+                <input class="form-control col-lg-8" type="text" disabled [value]="employees.employeeName">
+              </div>
+              <div class="mb-2 row mb-3 col-lg-6">
+                <p class="mg-b-10 tx-semibold col-lg-4">{{'employeeCode'|translate}}  : </p>
+                <input class="form-control col-lg-8" type="text" disabled [value]="employees.employeeCode">
+              </div>
+              <div class="mb-2 row mb-3 col-lg-6">
+                <p class="mg-b-10 tx-semibold col-lg-4">{{'gender'|translate}} : </p>
+                <input class="form-control col-lg-8" type="text" disabled [value]="employees.gender">
+              </div>
+            </div>
+            <div class="row col-lg-2 card ">
+              <img [src]="employees.image" alt="">
+            </div>
+          </div>
+
+          <div class="card custom-card" id="basic-alert">
+            <div class="card-body px-0">
+
+
+              <div class="text-wrap">
+                <div class="example">
+                  <div class="panel panel-primary tabs-style-1">
+                    <div class=" tab-menu-heading">
+                      <div class="tabs-menu1">
+                        <!-- Tabs -->
+                        <ul ngbNav #nav="ngbNav" [activeId]="1" class="panel-tabs main-nav-line">
+                          <li [ngbNavItem]="1">
+                            <a ngbNavLink>{{'banks'|translate}}</a>
+                            <ng-template ngbNavContent>
+
+
+                              <button class="btn bg-black-8 text-white mb-2 float-end" style="background-color: #5666c0;"
+                                (click)="Select2Open(select1modal)" type="submit">{{'add'|translate}}</button>
+                                <div class="table-responsive">
+
+                              <table class="table table-striped border">
+                                <tr class="p-4 text-center aaa ">
+                                  <th scope="col">{{'number'|translate}}</th>
+                                  <th scope="col" (sort)="onSort($event)">{{'banks'|translate}}</th>
+                                  <!-- <th scope="col" (sort)="onSort($event)">{{'الفرع'|translate}}</th> -->
+                                  <th class="noprint" scope="col" (sort)="onSort($event)">{{'action'|translate}}</th>
+                                </tr>
+                                <tbody class="table-group-divider">
+                                  <tr *ngFor="let bank of empBanks;let i = index">
+
+                                    <td>{{i + 1}}</td>
+                                    <td>{{bank.bank.bankName}}</td>
+                                    <td class="noprint">
+                                      <!-- <a class="btn btn-icon-text" routerLink=""><i
+                                          class="fe fe-edit text-dark bd-black "
+                                          ngbTooltip="{{'Update'|translate}}"></i></a> -->
+                                      <button class="btn btn-icon-text"  (click)="deleteBank(bank.employeeBankId)"><i class="fe fe-trash-2 text-dark bd-black"
+                                          ngbTooltip="{{'delete'|translate}}"></i></button>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                                </div>
+                            </ng-template>
+                          </li>
+                          <li [ngbNavItem]="2">
+                            <a ngbNavLink>{{'insuranceCompanies'|translate}}</a>
+                            <ng-template ngbNavContent>
+                              <button class="btn bg-black-8 text-white mb-2 float-end" style="background-color: #5666c0;"
+                                (click)="Select2Open(select2modal)" type="submit">{{'add'|translate}}</button>
+                                <div class="table-responsive">
+                              <table class="table table-striped border">
+                                <tr class="p-4 text-center aaa ">
+                                  <th scope="col">{{'number'|translate}}</th>
+                                  <th scope="col" (sort)="onSort($event)">{{'insuranceCompany'|translate}}</th>
+                                  <th scope="col" (sort)="onSort($event)">{{'insurancePolicyNum'|translate}}</th>
+                                  <th scope="col" (sort)="onSort($event)">{{'insurancePolicyType'|translate}}</th>
+                                  <th scope="col" (sort)="onSort($event)">{{'issueDate'|translate}}</th>
+                                  <th scope="col" (sort)="onSort($event)">{{'expiryData'|translate}}</th>
+                                  <th scope="col" (sort)="onSort($event)">{{'insurancePolicyDegree'|translate}}</th>
+                                  <th class="noprint" scope="col" (sort)="onSort($event)">{{'action'|translate}}</th>
+                                </tr>
+                                <tbody class="table-group-divider">
+                                  <tr *ngFor="let insuranceCompany of empInsuranceCompanies;let i = index">
+                                    <td>{{i + 1}}</td>
+                                    <td>{{insuranceCompany.insuranceCompany.insuranceCompanyName}}</td>
+                                    <td>{{insuranceCompany.insurancePolicyNumber}}</td>
+                                    <td>{{insuranceCompany.insurancePolicyType}}</td>
+                                    <td>{{insuranceCompany.issueDate}}</td>
+                                    <td>{{insuranceCompany.expiryDate}}</td>
+                                    <td>{{insuranceCompany.insuranceDegree}}</td>
+                                    <td class="noprint">
+                                      <!-- <a class="btn btn-icon-text" routerLink=""><i
+                                          class="fe fe-edit text-dark bd-black "
+                                          ngbTooltip="{{'Update'|translate}}"></i></a> -->
+                                      <button class="btn btn-icon-text"
+                                        (click)="deleteInsuranceCompany(insuranceCompany.employeeInsuranceCompanyId)"><i
+                                          class="fe fe-trash-2 text-dark bd-black"
+                                          ngbTooltip="{{'delete'|translate}}"></i></button>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                                </div>
+                            </ng-template>
+                          </li>
+                          <li [ngbNavItem]="3">
+                            <a ngbNavLink> {{'address'|translate}}</a>
+                            <ng-template ngbNavContent>
+                              <button class="btn bg-black-8 text-white mb-2 float-end" style="background-color: #5666c0;"
+                                (click)="Select2Open(select3modal)" type="submit">{{'add'|translate}}</button>
+                                <div class="table-responsive">
+                              <table class="table table-striped border">
+                                <tr class="p-4 text-center aaa ">
+                                  <th scope="col">{{'number'|translate}}</th>
+                                  <th scope="col" (sort)="onSort($event)">{{'address'|translate}}</th>
+                                  <th scope="col" (sort)="onSort($event)">{{'email'|translate}}</th>
+                                  <th scope="col" (sort)="onSort($event)">{{'phoneNumber'|translate}}</th>
+                                  <th class="noprint" scope="col" (sort)="onSort($event)">{{'action'|translate}}</th>
+                                </tr>
+                                <tbody class="table-group-divider">
+                                  <tr *ngFor="let address of addresses;let i = index">
+                                    <td>{{i+1}}</td>
+                                    <td>{{address.addressName}}</td>
+                                    <td>{{address.email}}</td>
+                                    <td>{{address.phoneNumber}}</td>
+                                    <td class="noprint">
+                                      <!-- <a class="btn btn-icon-text" routerLink=""><i
+                                          class="fe fe-edit text-dark bd-black "
+                                          ngbTooltip="{{'Update'|translate}}"></i></a> -->
+                                      <button class="btn btn-icon-text" (click)="deleteAddress(address.addressId)"><i
+                                          class="fe fe-trash-2 text-dark bd-black"
+                                          ngbTooltip="{{'delete'|translate}}"></i></button>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                                </div>
+                            </ng-template>
+                          </li>
+                          <li [ngbNavItem]="4">
+                            <a ngbNavLink>{{'qualifications'|translate}} </a>
+                            <ng-template ngbNavContent> 
+                              <button class="btn bg-black-8 text-white mb-2 float-end" style="background-color: #5666c0;"
+                                (click)="Select2Open(select4modal)" type="submit">{{'add'|translate}}</button>
+                                <div class="table-responsive">
+                              <table class="table table-striped border">
+                                <tr class="p-4 text-center aaa ">
+                                  <th scope="col">{{'number'|translate}}</th>
+                                  <th scope="col" (sort)="onSort($event)">{{'qualifications'|translate}}</th>
+                                  <th scope="col" (sort)="onSort($event)">{{'major'|translate}}</th>
+                                  <th scope="col" (sort)="onSort($event)">{{'univarsitis'|translate}}</th>
+                                  <th class="noprint" scope="col" (sort)="onSort($event)">{{'action'|translate}}</th>
+                                </tr>
+                                <tbody class="table-group-divider">
+                                  <tr *ngFor="let empQualification of empQualifications;let i = index">
+                                    <td>{{i + 1}}</td>
+                                    <td>{{empQualification.qualification.qualificationName}}</td>
+                                    <td>{{empQualification.major.majorName}}</td>
+                                    <td>{{empQualification.university.universityName}}</td>
+                                    <td class="noprint">
+                                      <!-- <a class="btn btn-icon-text" routerLink=""><i class="fe fe-edit text-dark bd-black "                                          ngbTooltip="{{'Update'|translate}}"></i></a> -->
+                                      <button class="btn btn-icon-text"
+                                        (click)="deleteQualification(empQualification.employeeQualificationId)"><i
+                                          class="fe fe-trash-2 text-dark bd-black"
+                                          ngbTooltip="{{'delete'|translate}}"></i></button>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                                </div>
+                            </ng-template>
+                          </li>
+                          <li [ngbNavItem]="5">
+                            <a ngbNavLink>{{'jobInformation'|translate}} </a>
+                            <ng-template ngbNavContent>
+                              <button class="btn bg-black-8 text-white mb-2 float-end" style="background-color: #5666c0;"
+                                (click)="Select2Open(select5modal)" type="submit">{{'add'|translate}}</button>
+                                <div class="table-responsive">
+                              <table class="table table-striped border">
+                                <tr class="p-4 text-center aaa">
+                                  <th scope="col">{{'number'|translate}}</th>
+                                  <th scope="col" (sort)="onSort($event)">{{'department'|translate}}</th>
+                                  <th scope="col" (sort)="onSort($event)">{{'sections'|translate}}</th>
+                                  <th scope="col" (sort)="onSort($event)">{{'jobTitle'|translate}}</th>
+                                  <th class="noprint" scope="col" (sort)="onSort($event)">{{'action'|translate}}</th>
+                                </tr>
+                                <tbody class="table-group-divider">
+                                  <tr *ngFor="let empJobInfo of empJobsInformation;let i = index">
+                                    <td>{{i + 1}}</td>
+                                    <td>{{empJobInfo.section.department.departmentName}}</td>
+                                    <td>{{empJobInfo.section.sectionName}}</td>
+                                    <td>{{empJobInfo.jobTitle.jobTitleName}}</td>
+                                    <td class="noprint">
+                                      <!-- <a class="btn btn-icon-text" routerLink=""><i class="fe fe-edit text-dark bd-black "                                          ngbTooltip="{{'Update'|translate}}"></i></a> -->
+                                      <button class="btn btn-icon-text"
+                                        (click)="deleteJobInformation(empJobInfo.jobInfoId)"><i
+                                          class="fe fe-trash-2 text-dark bd-black"
+                                          ngbTooltip="{{'delete'|translate}}"></i></button>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                                </div>
+                            </ng-template>
+                          </li>
+                          <li [ngbNavItem]="6">
+                            <a ngbNavLink> {{'experience'|translate}}</a>
+                            <ng-template ngbNavContent >
+                              <button class="btn bg-black-8 text-white mb-2 float-end" style="background-color: #5666c0;"
+                                (click)="Select2Open(select6modal)" type="submit">{{'add'|translate}}</button>
+                                
+                              <div class="table-responsive">
+                                <table class="table table-striped border">
+                                  <tr class="p-4 text-center aaa ">
+                                    <th scope="col">{{'number'|translate}}</th>
+                                    <th scope="col" (sort)="onSort($event)">{{'company'|translate}}</th>
+                                    <th scope="col" (sort)="onSort($event)">{{'startDate'|translate}}</th>
+                                    <th scope="col" (sort)="onSort($event)">{{'endDate'|translate}}</th>
+                                    <th scope="col" (sort)="onSort($event)">{{'position'|translate}}</th>
+                                    <th class="noprint" scope="col" (sort)="onSort($event)">{{'action'|translate}}</th>
+                                  </tr>
+                                  <tbody class="table-group-divider">
+                                    <tr *ngFor="let experience of empExperience;let i = index">
+                                      <td>{{i + 1}}</td>
+                                      <td>{{experience.company}}</td>
+                                      <td>{{experience.startDate}}</td>
+                                      <td>{{experience.endDate}}</td>
+                                      <td>{{experience.position}}</td>
+                                      <td class="noprint">
+                                        <!-- <a class="btn btn-icon-text" routerLink=""><i class="fe fe-edit text-dark bd-black "                                          ngbTooltip="{{'Update'|translate}}"></i></a> -->
+                                        <button class="btn btn-icon-text"
+                                          (click)="deleteExperience(experience.experienceId)"><i
+                                            class="fe fe-trash-2 text-dark bd-black"
+                                            ngbTooltip="{{'delete'|translate}}"></i></button>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                             </div>
+                            </ng-template>
+                          </li>
+                          <li [ngbNavItem]="7">
+                            <a ngbNavLink> {{'residence'|translate}}</a>
+                            <ng-template ngbNavContent>
+                              <button class="btn bg-black-8 text-white mb-2 float-end" style="background-color: #5666c0;"
+                                (click)="Select2Open(select7modal)" type="submit">{{'add'|translate}}</button>
+                                <div class="table-responsive">
+                                <table class="table table-striped border">
+                                  <tr class="p-4 text-center aaa ">
+                                    <th scope="col">{{'number'|translate}}</th>
+                                    <th scope="col" (sort)="onSort($event)">{{'residenceNumber'|translate}}</th>
+                                    <th scope="col" (sort)="onSort($event)">{{'jobBYResidence'|translate}}</th>
+                                    <th scope="col" (sort)="onSort($event)">{{'residenceIssueDate'|translate}}</th>
+                                    <th scope="col" (sort)="onSort($event)">{{'residenceExpiryDate'|translate}}</th>
+                                    <th scope="col" (sort)="onSort($event)">{{'sponsorTransferDate'|translate}}</th>
+                                    <th scope="col" (sort)="onSort($event)">{{'hijriSponsorTransferDate'|translate}}</th>
+                                    <th class="noprint" scope="col" (sort)="onSort($event)">{{'action'|translate}}</th>
+                                  </tr>
+                                  <tbody class="table-group-divider">
+                                    <tr *ngFor="let residence of empResidence;let i = index">
+                                      <td>{{i + 1}}</td>
+                                      <td>{{residence.residenceNumber}}</td>
+                                      <td>{{residence.jobBYResidence}}</td>
+                                      <td>{{residence.residenceIssueDate}}</td>
+                                      <td>{{residence.residenceExpiryDate}}</td>
+                                      <td>{{residence.sponsorTransferDate}}</td>
+                                      <td>{{residence.hijriSponsorTransferDate}}</td>
+                                      <td class="noprint">
+                                        <!-- <a class="btn btn-icon-text" routerLink=""><i class="fe fe-edit text-dark bd-black "                                          ngbTooltip="{{'Update'|translate}}"></i></a> -->
+                                        <button class="btn btn-icon-text"
+                                          (click)="deleteResidence(residence.residenceId)"><i
+                                            class="fe fe-trash-2 text-dark bd-black"
+                                            ngbTooltip="{{'delete'|translate}}"></i></button>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                                </div>
+                            </ng-template>
+                          </li>
+                          <li [ngbNavItem]="8">
+                            <a ngbNavLink> {{'visa'|translate}}</a>
+                            <ng-template ngbNavContent>
+                              <button class="btn bg-black-8 text-white mb-2 float-end" style="background-color: #5666c0;"
+                                (click)="Select2Open(select8modal)" type="submit">{{'add'|translate}}</button>
+                                <div class="table-responsive">
+                                <table class="table table-striped border">
+                                  <tr class="p-4 text-center aaa ">
+                                    <th scope="col">{{'number'|translate}}</th>
+                                    <th scope="col" (sort)="onSort($event)">{{'visaName'|translate}}</th>
+                                    <th scope="col" (sort)="onSort($event)">{{'visaType'|translate}}</th>
+                                    <th scope="col" (sort)="onSort($event)">{{'jobByVisa'|translate}}</th>
+                                    <th scope="col" (sort)="onSort($event)">{{'entryDate'|translate}}</th>
+                                    <th scope="col" (sort)="onSort($event)">{{'visaIssueDate'|translate}}</th>
+                                    <th scope="col" (sort)="onSort($event)">{{'visaExpiryDate'|translate}}</th>
+                                    <th class="noprint" scope="col" (sort)="onSort($event)">{{'action'|translate}}</th>
+                                  </tr>
+                                  <tbody class="table-group-divider">
+                                    <tr *ngFor="let visa of empVisa;let i = index">
+                                      <td>{{i + 1}}</td>
+                                      <td>{{visa.visaName}}</td>
+                                      <td>{{visa.visaType}}</td>
+                                      <td>{{visa.jobByVisa}}</td>
+                                      <td>{{visa.entryDate}}</td>
+                                      <td>{{visa.visaIssueDate}}</td>
+                                      <td>{{visa.visaExpiryDate}}</td>
+                                      <td class="noprint">
+                                        <!-- <a class="btn btn-icon-text" routerLink=""><i class="fe fe-edit text-dark bd-black "                                          ngbTooltip="{{'Update'|translate}}"></i></a> -->
+                                        <button class="btn btn-icon-text"
+                                          (click)="deleteVisa(visa.visaId)"><i
+                                            class="fe fe-trash-2 text-dark bd-black"
+                                            ngbTooltip="{{'delete'|translate}}"></i></button>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                                </div>
+                            </ng-template>
+                          </li>
+                          <li [ngbNavItem]="9">
+                            <a ngbNavLink> {{'medicalTest'|translate}}</a>
+                            <ng-template ngbNavContent>
+                              <button class="btn bg-black-8 text-white mb-2 float-end" style="background-color: #5666c0;"
+                                (click)="Select2Open(select9modal)" type="submit">{{'add'|translate}}</button>
+                                <div class="table-responsive">
+                              <table class="table table-striped border">
+                                  <tr class="p-4 text-center aaa ">
+                                    <th scope="col">{{'number'|translate}}</th>
+                                    <th scope="col" (sort)="onSort($event)">{{'medicalTestNumber'|translate}}</th>
+                                    <th scope="col" (sort)="onSort($event)">{{'medicalTestResult'|translate}}</th>
+                                    <th scope="col" (sort)="onSort($event)">{{'procedureDate'|translate}}</th>
+                                    <th scope="col" (sort)="onSort($event)">{{'medicalResultDate'|translate}}</th>
+                                    <th class="noprint" scope="col" (sort)="onSort($event)">{{'action'|translate}}</th>
+                                  </tr>
+                                  <tbody class="table-group-divider">
+                                    <tr *ngFor="let medicalTest of empMedicalTest;let i = index">
+                                      <td>{{i + 1}}</td>
+                                      <td>{{medicalTest.medicalTestNumber}}</td>
+                                      <td>{{medicalTest.medicalTestResult}}</td>
+                                      <td>{{medicalTest.procedureDate}}</td>
+                                      <td>{{medicalTest.medicalResultDate}}</td>
+                                      <td class="noprint">
+                                        <!-- <a class="btn btn-icon-text" routerLink=""><i class="fe fe-edit text-dark bd-black "                                          ngbTooltip="{{'Update'|translate}}"></i></a> -->
+                                        <button class="btn btn-icon-text"
+                                          (click)="deleteMedicalTest(medicalTest.medicalTestId)"><i
+                                            class="fe fe-trash-2 text-dark bd-black"
+                                            ngbTooltip="{{'delete'|translate}}"></i></button>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                                </div>
+                            </ng-template>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="panel-body tabs-menu-body main-content-body-right border-top-0 border">
+                      <div [ngbNavOutlet]="nav"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr class="border border-3" style="color:#ccc;height:1px">
+          <div class="">
+            <button class="btn bg-black-8 text-white" style="background-color: #5666c0;" type="submit">{{'save'|translate}}</button>
+            <a routerLink="/employee/view" class="btn bg-black-3 text-white mx-2" style="background-color: #7886d3;" type="submit">{{'cancel'|translate}}</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #select1modal let-modal>
+    <!-- Select2 modal -->
+    <div class="modal-header">
+      <h6 class="modal-title">  {{ "addBank" | translate }}</h6>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="col-lg row">
+        <p class="tx-semibold col-lg-4">
+          {{ "bank" | translate }}<span class="tx-danger">*</span>
+        </p>
+        <ng-select 
+        [(ngModel)]="employeeBankData.bank.bankId" class="p-0 my-1 col-8">
+          <ng-option *ngFor="let bank of banks" value={{bank.bankId}}>
+            {{bank.bankName}}
+          </ng-option>
+        </ng-select>
+        <div  class="invalid-feedback">
+          <div class="text-center">{{'isRequired'|translate}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button"  class="btn bg-black-3 text-white" style="background-color: #7886d3;" (click)="modal.close('Close click')">{{"cancel" | translate }}</button>
+      <button class="btn bg-black-8 text-white" style="background-color: #5666c0;" type="button" (click)="addBank()">{{"save" | translate }} </button>
+    </div>
+
+  </ng-template>
+  <!-- End Row -->
+  <ng-template #select2modal let-modal>
+    <!-- Select2 modal -->
+    <div class="modal-header">
+      <h6 class="modal-title"> {{ "addInsuranceCompany" | translate }}  </h6>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      </button>
+    </div>
+    
+    <div class="modal-body">
+      <div class="col-lg row">
+        <p class="tx-semibold col-lg-5">
+          {{ "insuranceCompany" | translate }}<span class="tx-danger">*</span>
+        </p>
+        <ng-select 
+          
+          [(ngModel)]="employeeInsuranceCompanyData.insuranceCompany.insuranceCompanyId" class="p-0 my-1 col-7 ">
+          <ng-option *ngFor="let insuranceCompany of insuranceCompanies" value={{insuranceCompany.insuranceCompanyId}}>
+            {{insuranceCompany.insuranceCompanyName}}
+          </ng-option>
+        </ng-select>
+        <div  class="invalid-feedback">
+          <div class="text-center">{{'isRequired'|translate}}</div>
+        </div>
+      </div>
+      
+      <div class="col-lg row">
+        <p class="tx-semibold col-lg-5">
+          {{ "insurancePolicyNum" | translate }}<span class="tx-danger">*</span>
+        </p>
+        <input 
+           type="text"
+          [(ngModel)]="employeeInsuranceCompanyData.insurancePolicyNumber" class="form-control my-1 col-7 ">
+        <div  class="invalid-feedback">
+          <div class="text-center">{{'isRequired'|translate}}</div>
+        </div>
+      </div>
+      <div class="col-lg row">
+        <p class="tx-semibold col-lg-5">
+          {{ "insurancePolicyType" | translate }}<span class="tx-danger">*</span>
+        </p>
+        <input 
+           type="text"
+          [(ngModel)]="employeeInsuranceCompanyData.insurancePolicyType" class="form-control my-1 col-7 ">
+        <div  class="invalid-feedback">
+          <div class="text-center">{{'isRequired'|translate}}</div>
+        </div>
+      </div>
+      
+      <div class="col-lg row">
+        <p class="tx-semibold col-lg-5">
+          {{ "issueDate" | translate }}<span class="tx-danger">*</span>
+        </p>
+        <input type="date" class="form-control my-1 col-7 " name="issueDate" id="issueDate" 
+        [(ngModel)]="employeeInsuranceCompanyData.issueDate" [ngModelOptions]="{standalone: true}">
+        <!-- <p class="tx-semibold col-lg-5">
+          {{ "issueDate" | translate }}<span class="tx-danger">*</span>
+        </p>
+        <input   type="text"
+          [(ngModel)]="employeeInsuranceCompanyData.issueDate" class="form-control my-1 col-7 ">
+        <div  class="invalid-feedback">
+          <div class="text-center">{{'isRequired'|translate}}</div>
+        </div> -->
+      </div>
+      <!-- <div class="col-lg-6">
+        <div class="col-lg row my-1 align-items-center">
+          <label for="" class="mg-b-10 tx-semibold col-lg-5">{{ 'issueDate' | translate }}</label>
+          <mat-form-field appearance="fill" class="col-md-6 p-0 my-1 ">
+            <mat-label>{{'DD/MM/YYYY'| translate}}</mat-label>
+            <input id="issueDate" name="issueDate" #issueDate
+              [(ngModel)]="employeeInsuranceCompanyData.issueDate" [ngModelOptions]="{standalone: true}" matInput
+              [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker" class="input-mini"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div> -->
+
+      <div class="col-lg row">
+        <p class="tx-semibold col-lg-5">
+          {{ "expiryData" | translate }}<span class="tx-danger">*</span>
+        </p>
+        <input type="date" class="form-control my-1 col-7 " name="expiryDate" id="expiryDate" 
+        [(ngModel)]="employeeInsuranceCompanyData.expiryDate" [ngModelOptions]="{standalone: true}">
+        <!-- <input  type="text" [(ngModel)]="employeeInsuranceCompanyData.expiryDate" class="form-control my-1 col-7 "> -->
+          <!-- <mat-form-field appearance="outline" class="col-md-6 p-0 my-1 ">
+            <mat-label>{{'DD/MM/YYYY'| translate}}</mat-label>
+            <input id="expiryDate" name="expiryDate" #expiryDate
+            [(ngModel)]="employeeInsuranceCompanyData.expiryDate" [ngModelOptions]="{standalone: true}" matInput
+              [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker" class="input-mini"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        <div  class="invalid-feedback">
+          <div class="text-center">{{'isRequired'|translate}}</div>
+        </div> -->
+       
+        
+      </div>
+      
+      <div class="col-lg row">
+        <p class="tx-semibold col-lg-5">
+          {{ "insurancePolicyDegree" | translate }}<span class="tx-danger">*</span>
+        </p>
+          <select class="form-select p-0 my-1 col-8 " [(ngModel)]="employeeInsuranceCompanyData.insuranceDegree">
+            <option [value]="1">1</option>
+            <option [value]="2">2</option>
+            <option [value]="3">3</option>
+            <option [value]="4">4</option>
+          </select>
+        <div  class="invalid-feedback">
+          <div class="text-center">{{'isRequired'|translate}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+
+      <button type="button" class="btn bg-black-3 text-white" style="background-color: #7886d3;" (click)="modal.close('Close click')">{{'cancel'|translate}}</button>
+      <button class="btn bg-black-8 text-white" style="background-color: #5666c0;" type="button" (click)="addInsuranceCompany()">{{'save'|translate}} </button>
+    </div>
+
+  </ng-template>
+  <!-- End Row -->
+  <ng-template #select3modal let-modal>
+    <!-- Select2 modal -->
+    <div class="modal-header">
+      <h6 class="modal-title"> {{'addAddress'|translate}}</h6>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      </button>
+    </div>
+    <div class="modal-body">
+      
+      <div class="col-lg row">
+        <p class="tx-semibold col-lg-4">  {{'address'|translate}}</p>
+        <input class="form-control col-lg-8" [(ngModel)]='addressData.addressName'>
+        <div  class="invalid-feedback">
+          <div class="text-center">{{'isRequired'|translate}}</div>
+        </div>
+      </div>
+    
+      <div class="col-lg row">
+        <p class="tx-semibold col-lg-4">  {{'email'|translate}}</p>
+        <input class="form-control col-lg-8" [(ngModel)]='addressData.email'>
+        <div  class="invalid-feedback">
+          <div class="text-center">{{'isRequired'|translate}}</div>
+        </div>
+      </div>
+    
+      <div class="col-lg row">
+        <p class="tx-semibold col-lg-4">  {{'phoneNumber'|translate}}</p>
+        <input class="form-control col-lg-8"   [(ngModel)]='addressData.phoneNumber'>
+        <div  class="invalid-feedback">
+          <div class="text-center">{{'isRequired'|translate}}</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn bg-black-3 text-white" style="background-color: #7886d3;" (click)="modal.close('Close click')">{{'cancel'|translate}}</button>
+      <button class="btn bg-black-8 text-white" style="background-color: #5666c0;" type="button" (click)="addAddress()">{{'save'|translate}} </button>
+    </div>
+
+  </ng-template>
+  <!-- End Row -->
+    
+  <ng-template #select4modal let-modal>
+    <!-- Select2 modal -->
+    <div class="modal-header">
+      <h6 class="modal-title"> {{ "addQualification" | translate }} </h6>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <div  class="col-lg row">
+        <p class="tx-semibold col-lg-4">
+          {{ "qualification" | translate }}<span class="tx-danger">*</span>
+        </p>
+        <ng-select [(ngModel)]="employeeQualificationData.qualification.qualificationId" class="p-0 my-1 col-8 ">
+          <ng-option *ngFor="let qualification of qualification " value={{qualification.qualificationId}}>
+            {{qualification.qualificationName}}
+          </ng-option>
+        </ng-select>
+        <div  class="invalid-feedback">
+          <div class="text-center">{{'isRequired'|translate}}
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="col-lg row">
+        <p class="tx-semibold col-lg-4">
+          {{ "university" | translate }}<span class="tx-danger">*</span>
+        </p>
+        <ng-select   [(ngModel)]="employeeQualificationData.university.universityId" class="p-0 my-1 col-8 ">
+          <ng-option *ngFor="let university of universities " value={{university.universityId}}>
+            {{university.universityName}}
+          </ng-option>
+        </ng-select>
+        <div  class="invalid-feedback">
+          <div class="text-center">{{'isRequired'|translate}}
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="col-lg row">
+        <p class="tx-semibold col-lg-4">
+          {{ "major" | translate }}<span class="tx-danger">*</span>
+        </p>
+        <ng-select   [(ngModel)]="employeeQualificationData.major.majorId" class="p-0 col-8 ">
+          <ng-option *ngFor="let major of majors " value={{major.majorId}}>
+            {{major.majorName}}
+          </ng-option>
+        </ng-select>
+        <div  class="invalid-feedback">
+          <div class="text-center">{{'isRequired'|translate}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn bg-black-3 text-white" style="background-color: #7886d3;" (click)="modal.close('Close click')">{{'cancel'|translate}}</button>
+      <button class="btn bg-black-8 text-white" style="background-color: #5666c0;" type="button" (click)="addQualification()">{{'save'|translate}} </button>
+    </div>
+
+  </ng-template>
+
+  <ng-template #select5modal let-modal>
+    <!-- Select2 modal -->
+    <div class="modal-header">
+      <h6 class="modal-title"> {{ "addJobInformation" | translate }}</h6>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+
+      <div class="col-lg row">
+        <p class="tx-semibold col-lg-5">
+          {{ "department" | translate }}<span class="tx-danger">*</span>
+        </p>
+        <ng-select   [(ngModel)]="employeeJobInfoData.department.departmentId" (change)="getSectionByDepartment($event)"
+          class="p-0 col-7 ">
+          <ng-option *ngFor="let department of departments " value={{department.departmentId}}>
+            {{department.departmentName}}
+          </ng-option>
+        </ng-select>
+        <div  class="invalid-feedback">
+          <div class="text-center">{{'isRequired'|translate}}
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="col-lg row">
+        <p class="tx-semibold col-lg-5">
+          {{ "section" | translate }}<span class="tx-danger">*</span>
+        </p>
+        <ng-select [(ngModel)]="employeeJobInfoData.section.sectionId" class="p-0 col-7 ">
+          <ng-option *ngFor="let section of sectionByDepartment " value={{section.sectionId}}>
+            {{section.sectionName}}
+          </ng-option>
+        </ng-select>
+        <div  class="invalid-feedback">
+          <div class="text-center">{{'isRequired'|translate}}
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="col-lg row">
+        <p class="tx-semibold col-lg-5">
+          {{ "jobTitle" | translate }}<span class="tx-danger">*</span>
+        </p>
+        <ng-select [(ngModel)]="employeeJobInfoData.jobTitle.jobTitleId" class="p-0 col-7 ">
+          <ng-option *ngFor="let jobTitle of jobTitles " value={{jobTitle.jobTitleId}}>
+            {{jobTitle.jobTitleName}}
+          </ng-option>
+        </ng-select>
+        <div  class="invalid-feedback">
+          <div class="text-center">{{'isRequired'|translate}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn bg-black-3 text-white" style="background-color: #7886d3;" (click)="modal.close('Close click')">{{'cancel'|translate}}</button>
+      <button class="btn bg-black-8 text-white" style="background-color: #5666c0;" type="button" (click)="addJobInfo()">{{'save'|translate}} </button>
+    </div>
+
+  </ng-template>
+  <!-- End Row -->
+
+  <ng-template #select6modal let-modal>
+    <!-- Select2 modal -->
+    <div class="modal-header">
+      <h6 class="modal-title">{{ "addExperience" | translate }}</h6>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="col-lg row">
+        <p class="tx-semibold col-lg-5">{{ "company" | translate }}</p>
+        <input class="form-control col-lg-7" 
+           [(ngModel)]='experienceData.company'>
+        <div  class="invalid-feedback">
+          <div class="text-center">{{'isRequired'|translate}}
+          </div>
+        </div>
+      </div>
+      <div class="col-lg row">
+        <p class="tx-semibold col-lg-5">
+          {{ "startDate" | translate }}<span class="tx-danger">*</span>
+        </p>
+        <input type="date" class="form-control my-1 col-7 " name="startDate" id="startDate" 
+        [(ngModel)]="experienceData.startDate" [ngModelOptions]="{standalone: true}">
+        <!-- <p class="tx-semibold col-lg-5">{{ "startDate" | translate }}</p>
+        <input class="form-control col-lg-7" 
+           [(ngModel)]='experienceData.startDate'>
+        <div  class="invalid-feedback">
+          <div class="text-center">{{'isRequired'|translate}}
+          </div>
+        </div> -->
+      </div>
+      <div class="col-lg row">
+        <p class="tx-semibold col-lg-5">
+          {{ "endDate" | translate }}<span class="tx-danger">*</span>
+        </p>
+        <input type="date" class="form-control my-1 col-7 " name="endDate" id="endDate" 
+        [(ngModel)]="experienceData.endDate" [ngModelOptions]="{standalone: true}">
+        <!-- <p class="tx-semibold col-lg-5">{{ "endDate" | translate }}</p>
+        <input class="form-control col-lg-7"   [(ngModel)]='experienceData.endDate'>
+        <div  class="invalid-feedback">
+          <div class="text-center">{{'isRequired'|translate}}
+          </div>
+        </div> -->
+      </div>
+      <div class="col-lg row">
+        <p class="tx-semibold col-lg-5">{{ "position" | translate }}</p>
+        <input class="form-control col-lg-7"   [(ngModel)]='experienceData.position'>
+        <div  class="invalid-feedback">
+          <div class="text-center">{{'isRequired'|translate}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn bg-black-3 text-white" style="background-color: #7886d3;" (click)="modal.close('Close click')">{{'cancel'|translate}}</button>
+      <button class="btn bg-black-8 text-white" style="background-color: #5666c0;" type="button" (click)="addExperience()">{{'save'|translate}} </button>
+    </div>
+
+  </ng-template>
+  <!-- End Row -->
+
+  <ng-template #select7modal let-modal>
+    <!-- Select2 modal -->
+    <div class="modal-header">
+      <h6 class="modal-title">{{'addResidence'|translate}}</h6>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="col-lg row">
+        <p class="tx-semibold col-lg-5"> {{'residenceNumber'|translate}}</p>
+        <input class="form-control col-lg-7" 
+           [(ngModel)]='residencData.residenceNumber'>
+        <div  class="invalid-feedback">
+          <div class="text-center">{{'isRequired'|translate}}
+          </div>
+        </div>
+      </div>
+      <div class="col-lg row">
+        <p class="tx-semibold col-lg-5"> {{'jobBYResidence'|translate}}</p>
+        <input class="form-control col-lg-7" 
+           [(ngModel)]='residencData.jobBYResidence'>
+        <div  class="invalid-feedback">
+          <div class="text-center">{{'isRequired'|translate}}
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg row">
+        <p class="tx-semibold col-lg-5">
+          {{ "residenceIssueDate" | translate }}<span class="tx-danger">*</span>
+        </p>
+        <input type="date" class="form-control my-1 col-7 " name="residenceIssueDate" id="residenceIssueDate" 
+        [(ngModel)]="residencData.residenceIssueDate" [ngModelOptions]="{standalone: true}">
+        <!-- <p class="tx-semibold col-lg-5"> {{'residenceIssueDate'|translate}}</p>
+        <input class="form-control col-lg-7"   [(ngModel)]='residencData.residenceIssueDate'>
+        <div  class="invalid-feedback">
+          <div class="text-center">{{'isRequired'|translate}}
+          </div>
+        </div> -->
+      </div>
+
+      <div class="col-lg row">
+        <p class="tx-semibold col-lg-5">
+          {{ "residenceExpiryDate" | translate }}<span class="tx-danger">*</span>
+        </p>
+        <input type="date" class="form-control my-1 col-7 " name="residenceExpiryDate" id="residenceExpiryDate" 
+        [(ngModel)]="residencData.residenceExpiryDate" [ngModelOptions]="{standalone: true}">
+
+        <!-- <p class="tx-semibold col-lg-5"> {{'residenceExpiryDate'|translate}}</p>
+        <input class="form-control col-lg-7"   [(ngModel)]='residencData.residenceExpiryDate'>
+        <div  class="invalid-feedback">
+          <div class="text-center">{{'isRequired'|translate}}
+          </div>
+        </div> -->
+      </div>
+
+      <div class="col-lg row">
+        <p class="tx-semibold col-lg-5">
+          {{ "sponsorTransferDate" | translate }}<span class="tx-danger">*</span>
+        </p>
+        <input type="date" class="form-control my-1 col-7 " name="sponsorTransferDate" id="sponsorTransferDate" 
+        [(ngModel)]="residencData.sponsorTransferDate" [ngModelOptions]="{standalone: true}">
+        <!-- <p class="tx-semibold col-lg-5"> {{'sponsorTransferDate'|translate}}</p>
+        <input class="form-control col-lg-7"   [(ngModel)]='residencData.sponsorTransferDate'>
+        <div  class="invalid-feedback">
+          <div class="text-center">{{'isRequired'|translate}}
+          </div>
+        </div> -->
+      </div>
+      <div class="col-lg row">
+        <p class="tx-semibold col-lg-5">
+          {{ "hijriSponsorTransferDate" | translate }}<span class="tx-danger">*</span>
+        </p>
+        <input type="date" class="form-control my-1 col-7 " name="hijriSponsorTransferDate" id="hijriSponsorTransferDate" 
+        [(ngModel)]="residencData.hijriSponsorTransferDate" [ngModelOptions]="{standalone: true}">
+        <!-- <p class="tx-semibold col-lg-5"> {{'hijriSponsorTransferDate'|translate}}</p>
+        <input class="form-control col-lg-7"   [(ngModel)]='residencData.hijriSponsorTransferDate'>
+        <div  class="invalid-feedback">
+          <div class="text-center">{{'isRequired'|translate}}
+          </div>
+        </div> -->
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn bg-black-3 text-white" style="background-color: #7886d3;" (click)="modal.close('Close click')">{{'cancel'|translate}}</button>
+      <button class="btn bg-black-8 text-white" style="background-color: #5666c0;" type="button" (click)="addResidence()">{{'save'|translate}} </button>
+    </div>
+  </ng-template>
+  <!-- End Row -->
+
+  <ng-template #select8modal let-modal>
+    <div class="modal-header">
+      <h6 class="modal-title">{{'addVisa'|translate}}</h6>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="col-lg row">
+        <p class="tx-semibold col-lg-5"> {{'visaName'|translate}}</p>
+        <input class="form-control col-lg-7"   [(ngModel)]='visaData.visaName'>
+        <div  class="invalid-feedback">
+          <div class="text-center">{{'isRequired'|translate}}
+          </div>
+        </div>
+      </div>
+      <div class="col-lg row">
+        <p class="tx-semibold col-lg-5"> {{'visaType'|translate}}</p>
+        <input class="form-control col-lg-7"   [(ngModel)]='visaData.visaType'>
+        <div  class="invalid-feedback">
+          <div class="text-center">{{'isRequired'|translate}}
+          </div>
+        </div>
+      </div>
+      <div class="col-lg row">
+        <p class="tx-semibold col-lg-5"> {{'jobByVisa'|translate}}</p>
+        <input class="form-control col-lg-7"   [(ngModel)]='visaData.jobByVisa'>
+        <div  class="invalid-feedback">
+          <div class="text-center">{{'isRequired'|translate}}
+          </div>
+        </div>
+      </div>
+      <div class="col-lg row">
+        <p class="tx-semibold col-lg-5">
+          {{ "entryDate" | translate }}<span class="tx-danger">*</span>
+        </p>
+        <input type="date" class="form-control my-1 col-7 " name="entryDate" id="entryDate" 
+        [(ngModel)]="visaData.entryDate" [ngModelOptions]="{standalone: true}">
+        <!-- <p class="tx-semibold col-lg-5"> {{'entryDate'|translate}}</p>
+        <input class="form-control col-lg-7"   [(ngModel)]='visaData.entryDate'>
+        <div  class="invalid-feedback">
+          <div class="text-center">{{'isRequired'|translate}}
+          </div>
+        </div> -->
+      </div>
+      <div class="col-lg row">
+        <p class="tx-semibold col-lg-5">
+          {{ "visaIssueDate" | translate }}<span class="tx-danger">*</span>
+        </p>
+        <input type="date" class="form-control my-1 col-7 " name="visaIssueDate" id="visaIssueDate" 
+        [(ngModel)]="visaData.visaIssueDate" [ngModelOptions]="{standalone: true}">
+        <!-- <p class="tx-semibold col-lg-5"> {{'visaIssueDate'|translate}}</p>
+        <input class="form-control col-lg-7"   [(ngModel)]='visaData.visaIssueDate'>
+        <div  class="invalid-feedback">
+          <div class="text-center">{{'isRequired'|translate}}
+          </div>
+        </div> -->
+      </div>
+      <div class="col-lg row">
+        <p class="tx-semibold col-lg-5">
+          {{ "visaExpiryDate" | translate }}<span class="tx-danger">*</span>
+        </p>
+        <input type="date" class="form-control my-1 col-7 " name="visaExpiryDate" id="visaExpiryDate" 
+        [(ngModel)]="visaData.visaExpiryDate" [ngModelOptions]="{standalone: true}">
+        <!-- <p class="tx-semibold col-lg-5"> {{'visaExpiryDate'|translate}}</p>
+        <input class="form-control col-lg-7"   [(ngModel)]='visaData.visaExpiryDate'>
+        <div  class="invalid-feedback">
+          <div class="text-center">{{'isRequired'|translate}}
+          </div>
+        </div> -->
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn bg-black-3 text-white" style="background-color: #7886d3;" (click)="modal.close('Close click')">{{'cancel'|translate}}</button>
+      <button class="btn bg-black-8 text-white" style="background-color: #5666c0;" type="button" (click)="addVisa()">{{'save'|translate}} </button>
+    </div>
+  </ng-template>
+  <!-- End Row -->
+
+  <ng-template #select9modal let-modal>
+    <!-- Select2 modal -->
+    <div class="modal-header">
+      <h6 class="modal-title">{{'addMedicalTest'|translate}}</h6>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="col-lg row">
+        <p class="tx-semibold col-lg-5"> {{'medicalTestNumber'|translate}}</p>
+        <input class="form-control col-lg-7"   [(ngModel)]='medicalTestData.medicalTestNumber'>
+        <div  class="invalid-feedback">
+          <div class="text-center">{{'isRequired'|translate}}
+          </div>
+        </div>
+      </div>
+      <div class="col-lg row">
+        <p class="tx-semibold col-lg-5"> {{'medicalTestResult'|translate}}</p>
+        <input class="form-control col-lg-7"   [(ngModel)]='medicalTestData.medicalTestResult'>
+        <div  class="invalid-feedback">
+          <div class="text-center">{{'isRequired'|translate}}
+          </div>
+        </div>
+      </div>
+      <div class="col-lg row">
+        <p class="tx-semibold col-lg-5">
+          {{ "procedureDate" | translate }}<span class="tx-danger">*</span>
+        </p>
+        <input type="date" class="form-control my-1 col-7 " name="procedureDate" id="procedureDate" 
+        [(ngModel)]="medicalTestData.procedureDate" [ngModelOptions]="{standalone: true}">
+        <!-- <p class="tx-semibold col-lg-5"> {{'procedureDate'|translate}}</p>
+        <input class="form-control col-lg-7"   [(ngModel)]='medicalTestData.procedureDate'>
+        <div  class="invalid-feedback">
+          <div class="text-center">{{'isRequired'|translate}}
+          </div>
+        </div> -->
+      </div>
+       <div class="col-lg row">
+        <p class="tx-semibold col-lg-5">
+          {{ "medicalResultDate" | translate }}<span class="tx-danger">*</span>
+        </p>
+        <input type="date" class="form-control my-1 col-7 " name="medicalResultDate" id="medicalResultDate" 
+        [(ngModel)]="medicalTestData.medicalResultDate" [ngModelOptions]="{standalone: true}">
+        <!-- <p class="tx-semibold col-lg-5"> {{'medicalResultDate'|translate}}</p>
+        <input class="form-control col-lg-7"   [(ngModel)]='medicalTestData.medicalResultDate'>
+        <div  class="invalid-feedback">
+          <div class="text-center">{{'isRequired'|translate}}
+          </div>
+        </div> -->
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn bg-black-3 text-white" style="background-color: #7886d3;" (click)="modal.close('Close click')">{{'cancel'|translate}}</button>
+      <button class="btn bg-black-8 text-white" style="background-color: #5666c0;" type="button" (click)="addMedicalTest()">{{'save'|translate}}</button>
+    </div>
+  </ng-template>
+  <!-- End Row -->

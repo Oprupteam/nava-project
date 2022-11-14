@@ -1,0 +1,75 @@
+.li{
+  border-bottom: 2px solid #4ca86a;;
+
+  th{
+  padding: 15px 0 !important;
+  }
+}
+tbody{
+  td{
+      padding: 0;
+      text-align: center;
+  }
+}
+@media print {
+  .noPrint{
+    display:  none !important;
+  }
+
+}
+.ngx-barcode .barcode .svg{
+  width: 200px;
+  height: 112px;
+}
+
+::ng-deep .mat-form-field-flex > .mat-form-field-infix { padding: 0.6em 0px !important;}
+::ng-deep .mat-form-field-label-wrapper { top: -1.2em; }
+
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+    transform: translateY(-1.1em) scale(.75);
+    width: 133.33333%;
+}
+.li{
+  border-bottom: 2px solid #4ca86a;
+
+  th{
+  // padding: 5px 0 !important;
+  font-weight: bold;
+
+  }
+}
+tbody{
+  td{
+      padding: 0;
+      text-align: center;
+  }
+}
+@media print {
+  .noPrint{
+    display:  none !important;
+  }
+
+}
+@media print {
+  .noPrint[hidden] {
+     display: block;
+  }
+
+}
+table {
+  width: 100%;
+
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+
+}
+
+td, th {
+  width: 10%;
+  text-align: center !important;
+  font-family:cairo ;
+}
+

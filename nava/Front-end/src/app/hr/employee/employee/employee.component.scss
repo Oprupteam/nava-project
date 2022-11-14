@@ -1,0 +1,55 @@
+
+
+  .li{
+    border-bottom: 2px solid #5666c0;
+    height: 30px;
+
+    th{
+
+   padding: 8px 0 !important;
+    font-weight: bold;
+    border-bottom: 2px solid  #5666c0 !important;
+
+    }
+  }tbody{
+    td{
+        padding: 0;
+        text-align: center;
+    }
+  }
+  @media print {
+    .noPrint{
+      display:  none !important;
+    }
+
+  }
+  @media print {
+    .noPrint[hidden] {
+       display: block;
+    }
+
+  }
+  table {
+    width: 100%;
+  }
+
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+
+  td, th {
+    // width: 10%;
+    text-align: center !important;
+    font-family:cairo ;
+    font-size: 11px;
+  }
+
+
+  .aaa{
+    border-bottom: 2px solid #5666c0;
+  }
+
+  .my-action{
+    padding: 3px 8px;
+  }

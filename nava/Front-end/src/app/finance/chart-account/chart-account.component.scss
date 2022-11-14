@@ -1,0 +1,29 @@
+table {
+  width: 100%;
+
+}
+th{
+  padding-left: 8px;
+  font-weight: normal;
+}
+
+
+
+::ng-deep th.mat-header-cell{
+
+  // background-color: #fff;
+  // color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+
+
+
+}
+
+th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+  padding: 5px;
+}
+.theChart{
+  overflow-y: scroll;
+
+}

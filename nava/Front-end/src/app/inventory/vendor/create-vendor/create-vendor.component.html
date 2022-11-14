@@ -1,0 +1,109 @@
+
+<app-page-header title="{{'vendor' | translate}}" [items]="['vendor'| translate]" active_item="{{'add' | translate}}"></app-page-header>
+
+<div class="row row-sm">
+    <div class="col-lg-12 col-md-12">
+        <div class="card  ">
+            <div class="card-body">
+                <form [formGroup]="form" (ngSubmit)="addVendor()">
+                  <div class="border m-2 p-2">
+                    <div class="row">
+                      <div class="col-lg-6">
+                    <div class="col-lg row my-1 align-items-center">
+                      <p class="mg-b-10 tx-semibold col-lg-5">{{'vendorAccountant' | translate}}<span class="tx-danger">*</span></p>
+                      <input class="form-control input col-lg-7 my-1" name="vendorAccountantNumber" id="vendorAccountantNumber" placeholder="{{'vendorAccountant' | translate}}"
+                      type="text" formControlName="vendorAccountantNumber"
+                      [ngClass]="{ 'is-invalid': submitted && f['vendorAccountantNumber'].errors }"
+                      [(ngModel)]='vendorData.vendorAccountantNumber'>
+                      <div  *ngIf="submitted && f['vendorAccountantNumber'].errors" class="invalid-feedback">
+                        <div class="text-end"
+                        *ngIf="f['vendorAccountantNumber'].errors['required']">{{'isRequired'|translate}}</div>
+                        <div class="text-end" *ngIf="f['vendorAccountantNumber'].errors['pattern']">{{'enterOnlyNumbers' |translate}}</div>
+                      </div>
+                  </div>
+
+                    <div class="col-lg row my-1 align-items-center">
+                      <p class="mg-b-10 tx-semibold col-lg-5">{{'vendorName' | translate}}<span class="tx-danger">*</span></p>
+                      <input class="form-control input col-lg-7 my-1" name="vendorName" id="vendorName" placeholder="{{'vendorName' | translate}}"
+                      type="text" formControlName="vendorName"
+                      [ngClass]="{ 'is-invalid': submitted && f['vendorName'].errors }" [(ngModel)]='vendorData.vendorName'>
+                      <div  *ngIf="submitted && f['vendorName'].errors" class="invalid-feedback">
+                        <div class="text-end"
+                        *ngIf="f['vendorName'].errors['required']">{{'isRequired'|translate}}</div>
+                      </div>
+                  </div>
+
+                  <div class="col-lg my-1 row align-items-center">
+                    <p class="mg-b-10 tx-semibold col-lg-5" >{{'description' | translate}}</p>
+                    <textarea class="form-control col-lg-7 my-1" placeholder="{{'description' | translate}}" name="Details"
+                     id="Details" rows="3" [(ngModel)]='vendorData.details' [ngModelOptions]="{standalone: true}"></textarea>
+                  </div>
+                      </div>
+
+                      <div class="col-lg-6">
+                        <div class="col-lg my-1 row align-items-center">
+                          <p class="mg-b-10 tx-semibold col-lg-5">{{'contactPerson' | translate}}<span class="tx-danger">*</span></p>
+                          <input class="form-control input col-lg-7 my-1" name="contactPerson" id="contactPerson" placeholder="{{'contactPerson' | translate}}"
+                          type="text" formControlName="contactPerson"
+                          [ngClass]="{ 'is-invalid': submitted && f['contactPerson'].errors }"  [(ngModel)]='vendorData.contactPerson'>
+                          <div  *ngIf="submitted && f['contactPerson'].errors" class="invalid-feedback">
+                            <div class="text-end"
+                            *ngIf="f['contactPerson'].errors['required']">{{'isRequired'|translate}}</div>
+                          </div>
+                      </div>
+
+                        <div class="col-lg row my-1 align-items-center">
+                          <p class="mg-b-10 tx-semibold col-lg-5">{{'contactNumber' | translate}}<span class="tx-danger">*</span></p>
+                          <input class="form-control input col-lg-7 my-1" name="contactNumber" id="contactNumber" placeholder="{{'contactNumber' | translate}}"
+                          type="text" formControlName="contactNumber"
+                          [ngClass]="{ 'is-invalid': submitted && f['contactNumber'].errors }"  [(ngModel)]='vendorData.contactNumber'>
+                          <div  *ngIf="submitted && f['contactNumber'].errors" class="invalid-feedback">
+                            <div class="text-end"
+                            *ngIf="f['contactNumber'].errors['required']">{{'isRequired'|translate}}</div>
+                            <div class="text-end" *ngIf="f['contactNumber'].errors['pattern']">{{'enterOnlyNumbers' |translate}}</div>
+                          </div>
+                      </div>
+
+                      <div class="col-lg row">
+                        <p class="mg-b-10 tx-semibold col-lg-5">
+                          {{ "country" | translate}}<span class="tx-danger">*</span>
+                        </p>
+
+                        <ng-select formControlName="country"
+                          [ngClass]="{ 'is-invalid': submitted && f['country'].errors }"
+                          [(ngModel)]="vendorData.country" name="country" class="p-0 my-2 col-7 form-select "
+                          placeholder="-- {{'country' | translate }} --">
+                          <span *ngIf="this.translate.currentLang=='ar'">
+                            <ng-option *ngFor="let item of countryList" value="{{item.name}}">
+                              {{item.name}}
+                            </ng-option>
+                          </span>
+                          <span *ngIf="this.translate.currentLang=='en'">
+                            <ng-option *ngFor="let item of countryListEn" value="{{item.name}}">
+                              {{item.name}}
+                            </ng-option>
+                          </span>
+
+                        </ng-select>
+
+                        <div *ngIf="submitted && f['country'].errors" class="invalid-feedback">
+                          <div class="text-end" *ngIf="f['country'].errors['required']">
+                            {{'isRequired'|translate}}
+                          </div>
+                        </div>
+
+                      </div>
+
+                      </div>
+                      </div>
+                    </div>
+                    <hr  class="" style="color:#ccc;height:1px">
+                    <div class="">
+                        <button style="background-color:#ddda66;" class="btn bg-black-8 text-black" type="submit" >{{'save' | translate}}</button>
+                        <a style="background-color:#fcf6b6;" [routerLink]="['/vendor/vendor']" class="btn bg-black-3 text-black mx-2" type="submit">{{'cancel' | translate}}</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- End Row -->

@@ -1,0 +1,86 @@
+<app-page-header title="{{'store' | translate}}" [items]="['store'| translate]" active_item="{{'edit' | translate}}"></app-page-header>
+<div class="row row-sm">
+    <div class="col-lg-12 col-md-12">
+        <div class="card  ">
+            <!-- <div class="d-flex justify-content-between  align-items-center px-3 rounded-top">
+                <h4 class="main-content-label text-black tx-24 py-3">Edit Store</h4>
+            </div> -->
+            <div class="card-body">
+
+
+                <form [formGroup]="form" *ngIf="store">
+                  <div class="border m-2 p-2">
+
+
+<div class="row">
+<div class="col-lg-6">
+  <div class="col-lg my-4  row">
+    <p class="mg-b-10 tx-semibold col-lg-4">{{'stroeCode' | translate}}</p>
+    <input class="form-control input col-lg-8" name="stroeCode" id="stroeCode" placeholder="{{'stroeCode' | translate}}"
+    type="text" formControlName="stroeCode"
+    [ngClass]="{ 'is-invalid': submitted && f['stroeCode'].errors }"   [(ngModel)]='store.stroeCode'>
+    <div *ngIf="submitted && f['stroeCode'].errors" class="invalid-feedback">
+      <div class="text-end"
+      *ngIf="f['stroeCode'].errors['required']">{{'isRequired'|translate}}</div>
+      <div class="text-end" *ngIf="f['stroeCode'].errors['pattern']">{{'enterOnlyNumbers' |translate}}</div>
+
+    </div>
+
+
+</div>
+<div class="col-lg my-4 row">
+    <p class="mg-b-10 tx-semibold col-lg-4">{{'storePlace' | translate}}</p>
+    <input class="form-control input col-lg-8" name="storePlace" id="storePlace" placeholder="{{'storePlace' | translate}}"
+    type="text" formControlName="storePlace"
+    [ngClass]="{ 'is-invalid': submitted && f['storePlace'].errors }"  [(ngModel)]='store.storePlace'>
+    <div  *ngIf="submitted && f['storePlace'].errors" class="invalid-feedback">
+      <div class="text-end"
+      *ngIf="f['storePlace'].errors['required']">{{'isRequired'|translate}}</div>
+      <!-- <div *ngIf="f['storePlace'].errors['pattern']">Enter only characters</div> -->
+    </div>
+
+</div>
+</div>
+
+<div class="col-lg-6">
+  <div class="col-lg my-4 row">
+    <p class="mg-b-10 tx-semibold col-lg-4">{{'storeContact' | translate}}</p>
+    <input class="form-control input col-lg-8" name="storeContact" id="storeContact" placeholder="{{'storeContact' | translate}}"
+    type="text" formControlName="storeContact"
+    [ngClass]="{ 'is-invalid': submitted && f['storeContact'].errors }"  [(ngModel)]='store.storeContact'>
+    <div *ngIf="submitted && f['storeContact'].errors" class="invalid-feedback">
+      <div class="text-end"
+      *ngIf="f['storeContact'].errors['required']">{{'isRequired'|translate}}</div>
+      <div class="text-end" class="text-end" *ngIf="f['storeContact'].errors['pattern']">{{'enterOnlyNumbers' |translate}}</div>
+    </div>
+
+</div>
+<div class="col-lg my-4 row">
+    <p class="mg-b-10 tx-semibold col-lg-4">{{'storekeeper' | translate}}</p>
+    <input class="form-control input col-lg-8" name="storeKeeper" id="storeKeeper" placeholder="{{'storekeeper' | translate}}"
+    type="text" formControlName="storeKeeper"
+    [ngClass]="{ 'is-invalid': submitted && f['storeKeeper'].errors }"  [(ngModel)]='store.storeKeeper'>
+    <div *ngIf="submitted && f['storeKeeper'].errors" class="invalid-feedback">
+      <div class="text-end"
+      *ngIf="f['storeKeeper'].errors['required']">{{'isRequired'|translate}}</div>
+      <!-- <div *ngIf="f['storeKeeper'].errors['pattern']">Enter only characters</div> -->
+    </div>
+
+</div>
+</div>
+</div>
+
+                    </div>
+                    <hr  class="border border-3" style="color:#ccc;height:1px">
+
+                    <div class="">
+                        <button style="background-color:#ddda66;" class="btn bg-black-8 text-black" type="submit" (click)="storeUpdate()">{{'save' | translate}}</button>
+                        <a style="background-color:#fcf6b6;"  [routerLink]="['/store/store']" class="btn bg-black-3 text-black mx-2" type="submit">{{'cancel' | translate}}</a>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+    <!-- End Row -->

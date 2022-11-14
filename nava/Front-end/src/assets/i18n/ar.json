@@ -1,0 +1,417 @@
+{
+
+    "category" : "المجموعة",
+    "error" : "خطأ",
+    "categoryName" : "اسم المجموعة",
+    "description" : "الوصف",
+    "action" : "الاجراء",
+    "S.No" : "الرقم ",
+    "save" : "حفظ",
+    "DD/MM/YYYY" : "يوم/شهر/سنة",
+    "close" : "إلغاء",
+    "itemRequest" : "طلب مادة",
+    "addItem" : "إضافة مادة",
+    "itemRequestDate" : "تاريخ الطلب",
+    "requestNumber" : "رقم الطلب",
+    "quantityPackage" : "عدد الطرود",
+    "generate" : "إنشاء",
+    "itemNameEn" : "اسم المادة بالانجليزي",
+    "itemNameAr" : "اسم المادة بالعربي",
+    "clickheretoaddapicture" : "انقر هنا لإضافة صورة",
+
+    "enterOnlyNumbers":"أرقام فقط",
+    "errorwhiledeletingData" : "تم حذف البيانات",
+    "store" : "المستودع",
+    "success" : "تم ",
+
+    "unit" : "الوحدة",
+    "dataisDeleted" : "تم حذف البيانات",
+    "vendor" : "الموردون",
+    "contactPerson" : "الشخص المسؤول",
+    "vendorName" : "اسم المورد",
+    "contactNumber" : "رقم الاتصال",
+    "view" : "عرض",
+    "expiryDate" : "تاريخ الانتهاء",
+    "edit" : "تعديل",
+    "lastBuyingPrice" : "اخر سعر شراء",
+    "buyingPrice" : "سعر الشراء",
+    "sellingPrice" : "سعر البيع",
+    "barCode" : "الباركود",
+    "itemCode" : "رمز المادة",
+    "itemName" : "اسم المادة",
+    "countryOfOrigin" : "بلد المنشأ",
+    "items" : "المادة",
+    "upload" : "تحميل",
+    "vendorAccountant" : "رقم حساب المورد",
+    "unitName" : "اسم الوحدة",
+    "storekeeper" : "امين المستودع",
+    "stroeCode" : "رمز المستودع",
+    "storePlace" : "مكان المستودع",
+    "storeContact" : "معلومات الاتصال بالمخزن",
+    "subcategory" : "الفئة  ",
+    "subcategoryName" : "اسم الفئة  ",
+    "areyousuretodeletetherecord" : "هل انت متاكد من حذف السجل؟",
+    "qualification" : "المؤهلات",
+    "search" : "بحث",
+    "yes" : "نعم",
+    "no" : "لا",
+    "tax" : "الضريبة",
+    "quantity" : "الكمية",
+    "netprice" : "السعر مع الضريبة",
+    "taxfree" : "معفي من الضريبة",
+    "ItemPicture" : "صورة المادة",
+    "loading..." : "تحميل ... ",
+    "insurance company" : "شركات التأمين ",
+
+
+
+
+
+  "insuranceCompany" : "شركة التأمين ",
+  "insuranceCompanies" : "التأمينات",
+  "update":"تعديل",
+  "isRequired":"مطلوب",
+  "delete":"حذف",
+
+  "passportNumber":"رقم جواز السفر",
+
+
+  "bankName":"اسم البنك",
+  "updateBank":"تعديل البنك",
+
+  "addBank":"اضافة بنك",
+  "add":"اضافة",
+  "gender":"الجنس",
+  "city":"المدينة",
+  "managment":"الادارة",
+
+  "fullTextSearch":"بحث:",
+
+  "insuranceCompanyName":"اسم شركة التأمين ",
+  "addAInsuranceCompany":"اضافة شركة تأمين ",
+  "updateIInsuranceCompany":"تعديل شركة التأمين ",
+
+
+
+  "salaryObjectName":"اسم عنصر الراتب ",
+  "salaryObject":" عناصر الراتب ",
+  "addSalaryObject":"اضافة عنصر راتب",
+
+
+
+
+  "startDate":"تاريخ بداية الادارة",
+  "endDate":"تاريخ انتهاء الادارة",
+
+
+  "management":" الادارة",
+  "mangmentName":"اسم الادارة",
+  "higherManagement":"الادارةالعليا",
+  "Administrative_Affairs":"الشؤون الادارية",
+  "administrativeAffairs":"الادارة المالية",
+  "financialManagement":"الشؤون القانونية" ,
+  "salesAdministration":"ادارة المبيعات",
+  "purchaseManagement":"ادارة المشتريات",
+  "followUpDepartment":"ادارة المتابعة",
+  "yyyy_mm_dd":"سنة-شهر-يوم",
+  "loading":"...جاري التحميل",
+
+
+
+  "major":"التخصصات",
+  "addMajor":"اضافة تخصص",
+  "majorName":"اسم التخصص",
+  "updateMajor":"تعديل التخصص",
+  "stockInStore":"البضاعة في المستودع",
+
+
+
+
+
+  "qualifications":"المؤهلات",
+  "qualificationsName":"اسم المؤهل",
+
+  "universities":"الجامعات",
+  "universityName":"اسم الجامعة",
+  "country":"الدولة",
+  "universityType":"نوع الجامعة",
+
+
+  "topManagement":"الادارة العليا",
+  "basicInformation":"المعلومات الاساسية",
+  "companyName":"اسم الشركة",
+  "commercialFeature":"السمة التجارية",
+  "companyLogo":"شعار الشركة",
+  "commercialRegistrationInformation":"معلومات السجل التجاري",
+  "CommerciaNo":"رقم السجل التجاري ",
+  "commercialname":"الاسم التجاري",
+  "releaseDate":"ناريخ الاصدار",
+  "municipalLicenseInformation":"معلومات رخصة البلدية",
+
+
+  "Are you Sure to delete The Record":"هل انت متاكد من عملية الحذف   ",
+  "Error while Deleting Data":"خطأ في عملية الحذف",
+  "Data Is Deleted":"تم الحذف بنجاح ",
+  "employeeType":"نوع الوظيفة",
+  "bank":"البنوك",
+  "department":"الدائرة",
+  "departmentName":"اسم الدائرة",
+  "jobTitle":"المسمى الوظيفي",
+  "jobTitleName":"المسمى الوظيفي",
+  "sections":"الاقسام",
+  "section":"القسم",
+  "sectionName":"القسم ",
+  "cancel" : "إلغاء",
+  "name":"الاسم",
+  "number":"الرقم التسلسلي",
+  "moreDetails":"معلومات اضافية",
+  "banks":"البنوك",
+  "nameAr":"الاسم بالعربي",
+  "employeeCode":"الرمز الوظيفي ",
+  "address":"العنوان",
+  "jobInformation":"معلومات الوظيفة ",
+  "experience":"الخبرات",
+  "insurancePolicyNum":"رقم بوليصة التأمين ",
+  "insurancePolicyType":"نوع بوليصة التأمين  ",
+  "issueDate":"تاريخ الاصدار",
+  "expiryData":"تاريخ الانتهاء",
+  "insurancePolicyDegree":"درجة بوليصة التأمين  ",
+  "email":"البريد الالكتروني",
+  "phoneNumber":"رقم الهاتف",
+  "univarsitis":"الجامعات",
+  "company":"الشركة",
+  "position":"المنصب",
+  "addInsuranceCompany":"اضافة شركة تأمين ",
+  "addAddress":"اضافة عنوان",
+  "addQualification":"اضافة شركة تأمين ",
+  "addJobInformation":"اضافة معلومات الوظيفة  ",
+
+  "addExperience" : "اضافة خبرات",
+  "addResidence" : "اضافة اقامة",
+  "addVisa" : "اضافة تأشيرة",
+  "addMedicalTest" : "اضافة فحص طبي",
+  "residence" : "الإقامة",
+  "residenceNumber" : "رقم الإقامة",
+  "jobBYResidence" : "الوظيفة حسب الإقامة",
+  "residenceIssueDate" : "تاريخ اصدار الاقامة",
+  "residenceExpiryDate" : "تاريخ انتهاء الاقامة",
+  "sponsorTransferDate" : "تاريخ انتقال الكفيل",
+  "hijriSponsorTransferDate" : "التاريخ الهجري لانتقال الكفيل",
+  "visa" : "التأشيرة",
+  "visaName" : "اسم التأشيرة",
+  "visaType" : "نوع التأشيرة",
+  "jobByVisa" : "الوظيفة حسب الإقامة",
+  "entryDate" : "موعد الدخول",
+  "visaIssueDate" : "تاريخ إصدار التأشيرة",
+  "visaExpiryDate" : "تاريخ انتهاء التأشيرة",
+  "medicalTest" : "الفحص الطبي",
+  "medicalTestNumber" : "رقم الفحص الطبي",
+  "medicalTestResult" : "نتيجة الفحص الطبي",
+  "procedureDate" : "تاريخ العملية",
+  "medicalResultDate" : "تاريخ النتيجة الطبية",
+
+
+
+  "employeeInformation":"معلومات الموظف",
+"emdloyeeId":"رقم الموظف",
+
+"jobStatus":"الحالة الوظيفية",
+"male":"ذكر",
+"fMale":"أُنثى",
+
+"add_photo":"أضف صورة",
+"dateOfBirth":"تاريخ الميلاد",
+"placeOfBirth":"مكان الولادة",
+"religion":"الديانة",
+"maritalStatus":"الحالة الاجتماعية",
+"muslim":"مسلم",
+"christian":"مسيحي",
+"others":"إخرى",
+"married":"متزوج",
+"single":"أعزب",
+"onTheJob":"على رأس عمله",
+"quit":"أنها العمل",
+"employeeId":"رقم الموظف",
+"nationality":"الجنسية",
+"taxRates" : "نسبة الضريبة",
+  "discount" : "نسبة الخصم",
+  "total" : "الصافي",
+  "purchasingPrice" : "سعر الشراء",
+  "localPurchaceOrderType" : "نوع",
+    "localPurchaceOrderData" : "تاريخ",
+    "localPurchaceOrderNumber" : "رقم طلب الشراء",
+    "localPurchaceOrder" : "طلب شراء محلي",
+
+
+  "employee":"الموظف",
+  "receivables":"ذمم",
+  "cash":"نقدي",
+  "print":"طباعة",
+  "university":"الجامعة ",
+
+
+
+
+
+"dashboard" : "لوحة التحكم",
+
+
+"vacation":"اجازة",
+"benefitType":"نوع الامتياز",
+"leaves":"المغادرات",
+
+
+
+
+"Attendenceisadded": "تم اضافة قائمة الحضور والغياب",
+    "Addingtheattendencehasbeenfaild,pleasemakesurethisemployeehavecontract": "خطأ في اضافة الحضور والغياب الرجاء التاكد من وجود عقد للموظف",
+    "ErrorWhileUpdatingSheet":"خطأ عند تعديل قيمة الحضور والغياب",
+    "SheetisUpdated":"تم تعديل الحضور والغياب بنجاح",
+    "Attendenceisexist":"قائمة الحضور والغياب تم انشاؤها سابقا",
+    "AttendenceisAdded":"تم اضافة الحضور والغياب",
+    "ErrorWhileAddingAttendence":"خطأ عند اضافة الحضور والغياب",
+    "ErrorAttContract":"خطأ في اضافة الحضور والغياب ، يرجى التأكد ان لدى هذا الموظف عقد",
+
+
+    "AttendHour" : "مجموع س.ف",
+
+    "AttDate":"تاريخ",
+    "AttDay":"يوم",
+    "ATT":"الحضور",
+    "ATTValue":"يومية",
+    "OverTime":"عمل اضافي",
+    "OverTimeValue":"ق.ع.أ",
+    "TotalAttValue":"مجموع ع.ف.",
+    "TotalOverTime":"مجموع س.ع.أ",
+    "TotalOverTimeValue":"مجموع ع.أ.",
+    "TotalAmount":"المجموع الاجمالي",
+
+"employeeName":"اسم الموظف",
+"benefits":"امتيازات",
+"addbenefits":"اضافة امتياز",
+
+"additionalTerms":"شروط  اضافية ",
+"addadditionalTerms":"اضافة  شروط اضافية",
+
+
+
+"contracts":"العقود",
+"vacationType":"نوع الاجازة",
+"contract":"العقود",
+"contractType":"نوع العقد",
+"contractStart":"بداية العقد",
+"contractEnd":" نهاية العقد",
+
+"type":"النوع",
+"amount":"القيمة",
+"exchangeValue":"قيمة البدالات ",
+"deductionValue":"قيمة الاقتطاع ",
+
+
+"advance":"السلف",
+"submissionDate":"تارخ طلب السلفة ",
+"advanceAmount":"مبلغ السلفة",
+"choseAdvanceAmount":"اختر مبلغ السلفة",
+"numberOfInstallment":"عدد الاقساط",
+"choseNumberOfInstallment":"اختر عدد الاقساط",
+"monthlyPayment":"القسط الشهري",
+"advanceRequest":"طلب سلفة",
+"deductionStartMonth":"شهر بدء الاقتطاع",
+"choseDeductionStartMonth":"اختر شهر بدء الاقتطاع ",
+"deductionStartYear":"سنة بدء الاقتطاع",
+"choseDeductionStartYear":"اختر سنة بدء الاقتطاع ",
+"paymentMethod":"طرقة الدفع",
+"chosePaymentMethod":"اختر طريقة الدفع",
+"approvedBy":"المدير المباشر",
+"choseApprovedBy":"اختر المدير المباشر",
+"reason":"سبب السلفة",
+"deductionEndMontn":"شهر نهاية الاقتطاع",
+"deductionEndYear":"سنة نهاية الاقتطاع",
+"discard":"تجاهل",
+"reasonOfAdvance":"السبب من السلفة",
+"calculate":"احتساب",
+"pending":"بالانتظار",
+"deduction":"اقتطاع",
+"exchange":"بدل",
+
+
+
+
+
+
+
+
+
+
+
+
+"accountcodeisexist,trytochangeit!":"كود الحساب موجود ، حاول تغييره!",
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  "dateOfJoin":"تاريخ الالتحاق بالعمل",
+
+  "headOfDepartment":"رئيس قسم",
+  "nameEn":"الاسم بالانجليزي",
+
+  "vacationNumber":"عدد الاجازات",
+  "maneger":"مدير",
+
+
+"timeSheet" : "سجل الدوام",
+"date" : "التايخ",
+"invoicesNumber" : "رقم الفاتورة",
+"invoicesDate" : "تاريخ الفاتورة",
+"vendorNumber" : " رقم المورد",
+"purchaseInvoices" : "فاتورة الشراء",
+"purchaseInvoicesNumber":"رقم فاتورة الشراء",
+"purchaseInvoicesTax":"الضريبة حسب الفاتورة",
+"vendorVatNumber":"الرقم الضريبي للمورد",
+"cost":"الكلفة",
+"purchaseInvoicesType":"نوع الفاتورة",
+"lastPurchasePrice":"آخر سعر شراء",
+"purchaseInvoicesDate":"ت.ف.الشراء",
+"quantityAvailable":"الكمية المتوفرة",
+"quantityPurchaseInvoices":"الكمية",
+"totalBeforeTax":"الاجمالي ق.ض",
+"totalAfterTax":"الاجمالي ب.ض",
+"unitBeforeTax":"الافرادي ق.ض",
+"unitAfterTax":"الافرادي ب.ض",
+"discountPercentage":"قيمة الخصم ",
+"net":"صافي ب.ض",
+"expiryDateItem":"ت.الانتهاء",
+"directOrder":"طلب مباشر",
+"indirectOrder":"طلب غير مباشر",
+"salary" : "الراتب",
+"addvacation":"اضافة اجازة",
+"costCenter":"مركز الكلفة",
+"purchasingAccount":"حساب المشتريات ",
+"fundAccount":"حساب الصندوق",
+"taxCalculation":"حساب الضريبة",
+"purchasingAmount":" المجموع قبل الضريبة",
+"purchasingDiscount":"مجموع الخصومات ",
+"purchasingTax":"الضريبة",
+"purchasingTotal":"الصافي",
+"purchasingNet":"الاجمالي",
+"vaction":"اجازة"
+
+
+
+
+
+
+
+  }
+

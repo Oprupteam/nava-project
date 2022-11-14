@@ -1,0 +1,286 @@
+<app-page-header class="noPrint" title="{{ 'purchaseInvoices' | translate }}" [items]="['purchaseInvoices' | translate]"
+  active_item="{{'print' | translate }}"></app-page-header>
+
+
+  <div class="col-lg-12 col-md-12">
+
+
+
+    <div class="card">
+      <div class="form-group my-2 m-3 noPrint form-inline d-flex justify-content-between">
+        <div>
+        </div>
+
+        <div class="table-btns">
+          <button (click)="generatePDF()" _ngcontent-xjy-c134="" type="button" class="btn my-2 btn-icon-text text-white" style="margin-right: 5px; padding: 5px; background-color:#4ca86a; "><i _ngcontent-aph-c190="" class="mdi mdi-file-pdf text-white bg-transparent fs-18 p-0 me-1"></i>PDF</button>
+          <!-- <button _ngcontent-xjy-c134="" type="button" class="btn btn-info my-2 btn-icon-text" style="margin-right: 5px; padding: 5px;">CSV</button> -->
+          <button (click)="ExportTOExcel()" _ngcontent-xjy-c134="" type="button" class="btn my-2 btn-icon-text text-white " style="margin-right: 5px; padding: 5px;  background-color:#4ca86a; "><i _ngcontent-rtg-c190="" class="mdi mdi-file-excel bg-transparent text-white fs-18 p-0 me-1"></i>XLS</button>
+          <button (click)="printPage()" _ngcontent-xjy-c134="" type="button" class="btn my-2 btn-icon-text text-white" style="margin-right: 5px; padding: 0px;  background-color:#4ca86a; "><i _ngcontent-xjy-c134="" class="fe fe-printer bg-transparent text-white  p-2 m-2"></i></button>
+          <!-- <button _ngcontent-xjy-c134="" type="button" class="btn my-2 btn-icon-text bg-black-7" style="margin-right: 5px; padding: 0px;"><i _ngcontent-xjy-c134="" class="fe fe-filter bg-transparent text-white p-2 m-2"></i></button>
+          <button _ngcontent-xjy-c134="" type="button" class="btn my-2 btn-icon-text bg-black-7" style="margin-right: 5px; padding: 0px;"><i _ngcontent-xjy-c134="" class="fe fe-delete bg-transparent text-white p-2 m-2"></i></button> -->
+        </div>
+    </div>
+      <div class="card-body border m-4 p-4" id="purchaseInvoicesPrint" #purchaseInvoicesPrint>
+
+<h2 class="header" >{{'purchaseInvoices' | translate }}</h2>
+<br>
+<hr  class="border border-3" style="color:#4ca86a;height:4px">
+
+        <form *ngIf="PurchaseInvoicesDetailsById" >
+
+          <div class="border m-2 p-2">
+            <div class="row">
+              <div class="col-lg-7">
+                <div class="col-lg my-2 row align-items-center">
+                   <h6 class="col-lg-6">
+                      {{ "invoicesNumber" | translate }} :<span class="col-6"> {{PurchaseInvoicesDetailsById[0].purchaseInvoices.invoicesNumber}}</span>
+                    </h6>
+                </div>
+
+                <div class="col-lg my-1 row align-items-center">
+
+                    <h6 class="col-lg-6">
+                      {{ "vendorNumber" | translate }} :<span class="col-6"> {{PurchaseInvoicesDetailsById[0].purchaseInvoices.vendorNumber}}</span>
+                    </h6>
+                </div>
+
+                <div class="col-lg my-1 row align-items-center">
+
+                  <h6 class="mg-b-10 tx-semibold col-lg-6">
+                    {{
+                      "invoicesDate" | translate
+                      }} :<span class="col-6"> {{PurchaseInvoicesDetailsById[0].purchaseInvoices.invoicesDate}}</span>
+                  </h6>
+                </div>
+                <div class="col-lg my-1 row align-items-center">
+
+                  <h6 class="mg-b-10 tx-semibold col-lg-6">
+                    {{
+                      "purchaseInvoicesDate" | translate
+                      }} :<span class="col-6"> {{PurchaseInvoicesDetailsById[0].purchaseInvoices.purchaseInvoicesDate}}</span>
+                  </h6>
+                </div>
+
+                <div class="col-lg my-1 row align-items-center">
+
+                    <h6 class="col-lg-6">
+                      {{ "purchaseInvoicesType" | translate
+                    }} :<span class="col-6"> {{PurchaseInvoicesDetailsById[0].purchaseInvoices.purchaseInvoicesType}}</span>
+                    </h6>
+
+
+
+
+
+
+
+                  </div>
+
+                  <div class="col-lg my-1 row align-items-center">
+
+                    <h6 class="col-lg-6">
+                      {{ 'cost' | translate }} :<span class="col-6"> {{PurchaseInvoicesDetailsById[0].purchaseInvoices.cost}}</span>
+                    </h6>
+                </div>
+
+
+
+
+
+
+              </div>
+
+              <div class="col-lg-5">
+
+
+                <div class="col-lg my-1 row align-items-center">
+
+                    <h6 class="col-lg-6">
+                      {{ "purchaseInvoicesNumber" | translate }} :<span class="col-6"> {{PurchaseInvoicesDetailsById[0].purchaseInvoices.purchaseInvoicesNumber}}</span>
+                    </h6>
+                </div>
+                <div class="col-lg my-1 row align-items-center">
+
+                  <h6 class="col-lg-6">
+                    {{ "lastPurchasePrice" | translate }} :<span class="col-6"> {{PurchaseInvoicesDetailsById[0].purchaseInvoices.lastPurchasePrice}}</span>
+                  </h6>
+              </div>
+
+                <div class="col-lg my-1 row align-items-center">
+
+                    <h6 class="col-lg-6">
+                      {{ "purchaseInvoicesTax" | translate }} :<span class="col-6"> {{PurchaseInvoicesDetailsById[0].purchaseInvoices.purchaseInvoicesTax}}</span>
+                    </h6>
+                </div>
+
+                <div class="col-lg my-1 row align-items-center">
+
+                    <h6 class="col-lg-6">
+                      {{ "vendorVatNumber" | translate }} :<span class="col-6"> {{PurchaseInvoicesDetailsById[0].purchaseInvoices.vendorVatNumber}}</span>
+                    </h6>
+                </div>
+
+
+
+
+                <div class="col-lg my-1 row align-items-center">
+
+                  <h6 class="col-lg-6">
+                    {{ 'quantityAvailable' | translate }} :<span class="col-6"> {{PurchaseInvoicesDetailsById[0].purchaseInvoices.quantityAvailable}}</span>
+                  </h6>
+              </div>
+
+
+
+
+              </div>
+
+
+            </div>
+          </div>
+<br>
+              <div class="table-responsive">
+                <table class="table table-striped border" #TABLE #table>
+
+                  <tr class="text-center li">
+                    <td scope="col">{{'itemCode' | translate}}</td>
+                    <td scope="col">{{'barCode' | translate}}</td>
+                    <td scope="col">{{'itemName' | translate}}</td>
+                    <!-- <td scope="col">{{'unit' | translate}}</td> -->
+                    <td scope="col">{{'stroeCode' | translate}}</td>
+                    <td scope="col">{{'storePlace' | translate}}</td>
+                    <td scope="col">{{'stockInStore' | translate}}</td>
+                    <td scope="col">{{'quantityPurchaseInvoices' | translate}}</td>
+                    <td scope="col">{{'totalBeforeTax' | translate}}</td>
+                    <!-- <td scope="col">{{'totalAfterTax' | translate}}</td> -->
+                    <td scope="col">{{'unitBeforeTax' | translate}}</td>
+                    <!-- <td scope="col">{{'unitAfterTax' | translate}}</td> -->
+                    <td scope="col">{{'discountPercentage' | translate}}</td>
+                    <!-- <td scope="col">{{'net' | translate}}</td> -->
+                    <td scope="col">{{'expiryDateItem' | translate}}</td>
+                    <!-- <td scope="col" data-html2canvas-ignore="true" class="noPrint">{{'action' | translate}}</td> -->
+                  </tr>
+
+                  <tbody class="table-group-divider">
+                    <tr *ngFor="let item of PurchaseInvoicesDetailsById">
+                      <td>{{item.items.itemCode}}</td>
+                      <td>{{item.items.barCode}}
+                        <!-- <ngx-barcode [bc-value]="item.items.barCode" [bc-line-color]="lineColor" bc-element-type="svg"
+                          [bc-width]="width" [bc-height]="height" [bc-display-value]="displayValue"
+                          [bc-font-options]="fontOptions" [bc-font]="font" [bc-text-align]="textAlign"
+                          [bc-text-position]="textPosition" [bc-text-margin]="textMargin" [bc-font-size]="fontSize"
+                          [bc-background]="background" [bc-margin]="margin" [bc-margin-top]="marginTop"
+                          [bc-margin-bottom]="marginBottom" [bc-margin-left]="marginLeft" [bc-margin-right]="marginRight">
+                        </ngx-barcode> -->
+                      </td>
+                      <td>{{item.items.itemName}}</td>
+                      <!-- <td>{{item.items.unit.unitName}}</td> -->
+                      <td>{{item.store.stroeCode}}</td>
+                      <td>{{item.store.storePlace}}</td>
+                      <td>{{item.items.quantity}}</td>
+                      <td>{{item.quantityPurchaseInvoices}}</td>
+                      <td>{{item.totalBeforeTax}}</td>
+                      <!-- <td>{{item.totalAfterTax}}</td> -->
+                      <td>{{item.unitBeforeTax}}</td>
+                      <!-- <td>{{item.unitAfterTax}}</td> -->
+                      <td>{{item.discountPercentage}}</td>
+                      <!-- <td>{{item.net}}</td> -->
+                      <td>{{item.expiryDateItem}}</td>
+
+                    </tr>
+                  </tbody>
+                </table>
+      </div>
+        </form>
+        <br>
+        <hr  class="border border-3" style="color:#4ca86a;height:4px">
+
+        <div class="row" *ngIf="PurchaseInvoicesItemById">
+          <div class="col-lg-6">
+            <div class="col-lg my-2 row align-items-center">
+               <h6 class="col-lg-6">
+                  {{ "costCenter" | translate }} :<span class="col-6"> {{PurchaseInvoicesItemById[0].costCenter}}</span>
+                </h6>
+            </div>
+
+            <div class="col-lg my-1 row align-items-center">
+
+                <h6 class="col-lg-6">
+                  {{ "purchasingAccount" | translate }} :<span class="col-6"> {{PurchaseInvoicesItemById[0].purchasingAccount}}</span>
+                </h6>
+            </div>
+
+            <div class="col-lg my-1 row align-items-center">
+
+              <h6 class="mg-b-10 tx-semibold col-lg-6">
+                {{
+                  "fundAccount" | translate
+                  }} :<span class="col-6"> {{PurchaseInvoicesItemById[0].fundAccount}}</span>
+              </h6>
+            </div>
+            <div class="col-lg my-1 row align-items-center">
+
+              <h6 class="mg-b-10 tx-semibold col-lg-6">
+                {{
+                  "taxCalculation" | translate
+                  }} :<span class="col-6"> {{PurchaseInvoicesItemById[0].taxCalculation}}</span>
+              </h6>
+            </div>
+
+          </div>
+
+          <div class="col-lg-6">
+
+
+            <div class="col-lg my-1 row align-items-center">
+
+                <h6 class="col-lg-6">
+                  {{ "purchasingAmount" | translate }} :<span class="col-6"> {{PurchaseInvoicesItemById[0].purchasingAmount}}</span>
+                </h6>
+            </div>
+            <div class="col-lg my-1 row align-items-center">
+
+              <h6 class="col-lg-6">
+                {{ "purchasingDiscount" | translate }} :<span class="col-6"> {{PurchaseInvoicesItemById[0].purchasingDiscount}}</span>
+              </h6>
+          </div>
+
+            <div class="col-lg my-1 row align-items-center">
+
+                <h6 class="col-lg-6">
+                  {{ "purchasingTax" | translate }} :<span class="col-6"> {{PurchaseInvoicesItemById[0].purchasingTax}}</span>
+                </h6>
+            </div>
+
+            <div class="col-lg my-1 row align-items-center">
+
+                <h6 class="col-lg-6">
+                  {{ "purchasingTotal" | translate }} :<span class="col-6"> {{PurchaseInvoicesItemById[0].purchasingTotal}}</span>
+                </h6>
+            </div>
+
+
+
+
+            <div class="col-lg my-1 row align-items-center">
+
+              <h6 class="col-lg-6">
+                {{ 'purchasingNet' | translate }} :<span class="col-6"> {{PurchaseInvoicesItemById[0].purchasingNet}}</span>
+              </h6>
+          </div>
+
+
+
+
+          </div>
+
+
+        </div>
+
+      </div>
+</div>
+ </div>
+
+
+
+

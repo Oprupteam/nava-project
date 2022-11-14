@@ -1,0 +1,43 @@
+<app-page-header [items]="['salaryObject'|translate]" [active_item]="'add'|translate"></app-page-header>
+
+<div class="row row-sm">
+    <div class="col-lg-12 col-md-12">
+        <div class="card custom-card">
+            <!-- <div class="d-flex justify-content-between bg-black-2 align-items-center px-4 rounded-top">
+                <h4 class="main-content-label text-black tx-24 py-3">Salary Objects</h4>
+            </div> -->
+            <div class="card-body" >
+                <form [formGroup]="form"
+                >
+                <div class="border m-2 p-2">
+                    <div class="col-lg my-4 row">
+                        <p class="mg-b-10 tx-semibold col-lg-2">{{'salaryObjectName'|translate}}<span style="color:red ;"> *</span></p>
+                        <input class="form-control col-lg-4" name="salaryObjectName" id="salaryObjectName" placeholder="{{'salaryObjectName'|translate}}" type="text" formControlName="salaryObjectName"
+                        [ngClass]="{ 'is-invalid': submitted && f['salaryObjectName'].errors }"  [(ngModel)]='salaryObjectData.salaryObjectName'>
+                        <div *ngIf="submitted && f['salaryObjectName'].errors" class="invalid-feedback col-lg-11" >
+                            <div class="text-center" *ngIf="f['salaryObjectName'].errors['required']">{{'isRequired'|translate}}</div>
+
+                          </div>
+                    </div>
+                    <div class="col-lg my-4 row">
+                        <p class="mg-b-10 tx-semibold col-lg-2" >{{'description'|translate}}</p>
+                        <textarea class="form-control col-lg-4" placeholder="{{'description'|translate}}" name="salaryObjectDescription" id="salaryObjectDescription" rows="3"
+                        formControlName="salaryObjectDescription"
+                        [ngClass]="{ 'is-invalid': submitted && f['salaryObjectDescription'].errors }"  [(ngModel)]='salaryObjectData.salaryObjectDescription'  ></textarea>
+                        <div *ngIf="submitted && f['salaryObjectDescription'].errors" class="invalid-feedback">
+                            <div
+                            *ngIf="f['salaryObjectDescription'].errors['required']">Is required</div>
+                          </div>
+                    </div>
+                </div>
+                <hr  class="border border-3" style="color:#ccc;height:1px">
+                    <div class="">
+                        <button class="btn bg-black-8 text-white" type="submit" (click)="addSalaryObject()" style="background-color: #5666c0;" >{{'save'|translate}}</button>
+                        <a routerLink="/salary-object/view" class="btn bg-black-3 text-white mx-2" type="submit" style="background-color: #7886d3;" >{{'cancel'|translate}}</a>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div></div>
+    <!-- End Row -->

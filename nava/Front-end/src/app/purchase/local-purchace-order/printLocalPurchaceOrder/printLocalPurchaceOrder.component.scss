@@ -1,0 +1,51 @@
+.li{
+  border-bottom: 2px solid #4ca86a;
+  height: 30px;
+
+
+  th{
+  // padding: 5px 0 !important;
+  font-weight: bold;
+
+  }
+}
+.header {
+  color: #4ca86a;
+  text-align: center;
+  font-weight: bold;
+
+
+}
+
+
+
+tbody{
+  td{
+      padding: 0;
+      text-align: center;
+  }
+}
+@media print {
+  .noPrint{
+    display:  none !important;
+  }
+
+}
+
+table {
+  width: 100%;
+
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+
+}
+
+td, th {
+  width: 10%;
+  text-align: center !important;
+  font-family:cairo ;
+}
+

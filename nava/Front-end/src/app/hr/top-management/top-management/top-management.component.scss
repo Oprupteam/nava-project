@@ -1,0 +1,19 @@
+.table-header-line{
+  border-bottom: 2px solid #5666c0;
+
+  th{
+  padding: 15px 0 !important;
+  }
+}
+tbody{
+    td{
+        padding: 0;
+        text-align: center;
+    }
+}
+@media print {
+    .noprint{
+        display: none !important;
+
+    }
+}

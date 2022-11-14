@@ -1,0 +1,60 @@
+<app-page-header  [items]="['management'|translate]" [active_item]="'update'|translate"></app-page-header>
+
+<div class="row row-sm">
+    <div class="col-lg-12 col-md-12">
+        <div class="card custom-card">
+            <!-- <div class="d-flex justify-content-between bg-black-2 align-items-center px-4 rounded-top">
+                <h4 class="main-content-label text-black tx-24 py-3">{{'Add_Medical_insurance_company'|translate}}</h4>
+            </div> -->
+            <div class="card-body">
+
+                <form [formGroup]="form" >
+                    <div class="border m-2 p-2">
+                    <div class="col-lg row my-4">
+                        <p class="mg-b-10 tx-semibold col-lg-2">{{'managementName'|translate}}<span style="color:red ;"> *</span></p>
+                        <input class="form-control col-lg-4" name="managementName" id="managementName" placeholder="{{'managementName'|translate}}" type="text" formControlName="managementName"
+                        [ngClass]="{ 'is-invalid': submitted && f['managementName'].errors }"   [(ngModel)]='management.managementName'>
+                        <div *ngIf="submitted && f['managementName'].errors" class="invalid-feedback col-lg-11">
+                            <div class="text-center"ass="" *ngIf="f['managementName'].errors['required']">{{'isRequired'|translate}}</div>
+                            <div class="text-center" *ngIf="f['managementName'].errors['pattern']">Enter only characters</div>
+                          </div>
+                    </div>
+                    <div class="col-lg my-4 row">
+                        <p class="mg-b-10 tx-semibold col-lg-2" >{{'topManagement'|translate}}<span style="color:red ;"> *</span></p>
+                        <input class="form-control col-lg-4" placeholder="{{'topManagement'|translate}}" name="topManagement" id="topManagement" rows="3" formControlName="topManagement"
+                        [ngClass]="{ 'is-invalid': submitted && f['topManagement'].errors }"  [(ngModel)]='management.topManagement'  >
+                        <div *ngIf="submitted && f['topManagement'].errors" class="invalid-feedback">
+                            <div
+                            *ngIf="f['topManagement'].errors['required']">{{'isRequired'|translate}}</div>
+                          </div>
+                    </div>
+                    <div class="col-lg my-4 row">
+                        <p class="mg-b-10 tx-semibold col-lg-2" >{{'startDate'|translate}}<span style="color:red ;"> *</span></p>
+                        <input class="form-control col-lg-4" placeholder="{{'yyyy_mm_dd'|translate}}" name="startDate" id="startDate" rows="3" formControlName="startDate"
+                        [ngClass]="{ 'is-invalid': submitted && f['startDate'].errors }"  [(ngModel)]='management.startDate'  >
+                        <div *ngIf="submitted && f['startDate'].errors" class="invalid-feedback">
+                            <div
+                            *ngIf="f['startDate'].errors['required']">{{'isRequired'|translate}}</div>
+                          </div>
+                    </div>
+                    <div class="col-lg my-4 row">
+                        <p class="mg-b-10 tx-semibold col-lg-2" >{{'endDate'|translate}}<span style="color:red ;"> *</span></p>
+                        <input class="form-control col-lg-4" placeholder="{{'yyyy_mm_dd'|translate}}" name="endDate" id="endDate" rows="3" formControlName="endDate"
+                        [ngClass]="{ 'is-invalid': submitted && f['endDate'].errors }"  [(ngModel)]='management.endDate'  >
+                        <div *ngIf="submitted && f['endDate'].errors" class="invalid-feedback">
+                            <div
+                            *ngIf="f['endDate'].errors['required']">{{'isRequired'|translate}}</div>
+                          </div>
+                    </div>
+
+                </div>
+                <hr  class="border border-3" style="color:#ccc;height:1px">
+                <div class="">
+                    <button class="btn bg-black-8 text-white" type="submit" (click)="managementUpdate()">{{'save'|translate}}</button>
+                    <a routerLink="/management/view" class="btn bg-black-3 text-white mx-2" type="submit">{{'cancel'|translate}}</a>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- End Row -->

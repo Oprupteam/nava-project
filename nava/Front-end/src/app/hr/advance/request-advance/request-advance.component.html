@@ -1,0 +1,131 @@
+<app-page-header [items]="['advanceRequest'|translate]" [active_item]="'add'|translate" class="noprint"></app-page-header>
+
+<div class="row">
+  <div class="col-xl-12">
+    <div class="card">
+      <form  >
+       
+        <div class="card-body">
+
+          <div class="row">
+            <div class="col">
+              <div class="form-outline">
+                <label class="form-label" for="form8Example1"> {{'employeeCode'|translate}} <span style="font-size: large;color: red;">*</span></label>
+                <ng-select name="employeeId"   [(ngModel)]="advanceData.employee.employeeId" (change)="getEmployeeInfo($event);getSectionByEmpId($event)" placeholder="-- اختر رمز الموظف --">
+                  <ng-option *ngFor="let emp of employees" value="{{emp.employeeId}}" >{{emp.employeeCode}}</ng-option>
+              </ng-select>
+              </div>
+
+            </div>
+
+          </div>
+
+      <div class="row justify-content-evenly p-1 pt-4">
+
+            <div class="row col-lg-6 my-1" *ngIf="employeeInfo">
+              <p class="tx-semibold col-lg-4"> {{'nameAr'|translate}} :</p>
+              <input class="form-control col-lg-8" type="text" disabled [(ngModel)]="employeeInfo.employeeNameAr" name="employeeNameAr" id="employeeNameAr">
+          </div>
+          <div class="row col-lg-6 my-1" *ngIf="employeeInfo">
+            <p class="tx-semibold col-lg-4"> {{'name'|translate}}</p>
+            <input class="form-control col-lg-8" type="text" disabled [(ngModel)]="employeeInfo.employeeName" name="employeeName" id="employeeName">
+        </div>
+        <div class="row col-lg-6 my-1" *ngIf="section">
+          <p class="tx-semibold col-lg-4"> {{'departmentName'|translate}}</p>
+
+          <input class="form-control col-lg-8" type="text" disabled [(ngModel)]="section.department.departmentName" name="departmentName" id="departmentName">
+
+      </div>
+       <div class="row col-lg-6 my-1" *ngIf="section">
+        <p class="tx-semibold col-lg-4"> {{'sectionName'|translate}}</p>
+        <input class="form-control col-lg-8" type="text" disabled [(ngModel)]="section.sectionName" name="sectionName" id="sectionName">
+      </div>
+
+   </div>
+   <hr />
+   <div class="row justify-content-evenly p-1 pt-4">
+
+    <div class="row col-lg-6 my-1" >
+      <p class="tx-semibold col-lg-4"> {{'submissionDate'|translate}} :</p>
+      <input class="form-control col-lg-8"  id="submissionDate" name="submissionDate" type="date" [(ngModel)]="advanceData.submissionDate">
+  </div>
+  <div class="row col-lg-6 my-1" >
+    <p class="tx-semibold col-lg-4"> {{'advanceAmount'|translate}}</p>
+    <input class="form-control col-lg-8" id="advanceAmount" name="advanceAmount" type="number" placeholder="{{'choseAdvanceAmount'|translate}}" [(ngModel)]="advanceData.advanceAmount">
+</div>
+<div class="row col-lg-6 my-1" >
+  <p class="tx-semibold col-lg-4"> {{'numberOfInstallment'|translate}}</p>
+  <input class="form-control col-lg-8" id="numberOfInstallment" name="numberOfInstallment" type="number" placeholder="{{'choseNumberOfInstallment'|translate}}" [(ngModel)]="advanceData.numberOfInstallment">
+</div>
+<div class="row col-lg-6 my-1" >
+  <p class="tx-semibold col-lg-4"> {{'reason'|translate}}</p>
+  <input class="form-control col-lg-8" id="advanceAmount" name="advanceAmount" type="text" placeholder="{{'reasonOfAdvance'|translate}}" [(ngModel)]="advanceData.reason" >
+  </div>
+<div class="row col-lg-6 my-1" >
+<p class="tx-semibold col-lg-4"> {{'deductionStartMonth'|translate}}</p>
+<input class="form-control col-lg-8" id="deductionStartMonth" name="deductionStartMonth" type="text" placeholder="{{'choseDeductionStartMonth'|translate}}" [(ngModel)]="advanceData.deductionStartMonth">
+</div>
+    <div class="row col-lg-6 my-1" >
+      <p class="tx-semibold col-lg-4"> {{'deductionStartYear'|translate}}</p>
+      <input class="form-control col-lg-8" id="deductionStartYear" name="deductionStartYear" type="text"  placeholder="{{'choseDeductionStartYear'|translate}}" [(ngModel)]="advanceData.deductionStartYear">
+      </div>
+    <!-- <div class="row col-lg-6 my-1" *ngIf="employeeInfo" >
+      <p class="tx-semibold col-lg-4"> {{'approvedBy'|translate}}</p>
+      <input class="form-control col-lg-8" id="approvedBy" name="approvedBy" type="text"   [(ngModel)]="employeeInfo.approvedBy">
+      </div>
+      <div class="row col-lg-6 my-1">
+        <p class="tx-semibold col-lg-4"> {{'paymentMethod'|translate}}</p>
+        <input class="form-control col-lg-8" id="paymentMethod" name="paymentMethod" type="text" placeholder="{{'chosePaymentMethod'|translate}}" [(ngModel)]="advanceData.paymentMethod">
+       </div> -->
+      
+
+</div>
+
+
+          <hr />
+          <div>  <button type="submit" id="add-contract-details-form" class="btn btn-dark m-3" (click)="calculate()"  style="background-color: #6b6eac;" >{{ 'calculate' | translate }}</button>
+          </div>
+          <hr />
+
+          <div class="row">
+            <div class="col-4">
+              <div class="form-outline">
+                <label class="form-label" for="form8Example1"> {{'monthlyPayment'|translate}} </label>
+                <input type="text"   [(ngModel)]="advanceData.monthlyPayment"
+                value="" id="monthlyPayment" name="monthlyPayment" class="form-control" disabled />
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-outline">
+                <label class="form-label" for="form8Example1"> {{'deductionEndMontn'|translate}} </label>
+                <input type="text"   [(ngModel)]="deductionEndMonth"
+                value="" id="deductionEndMonth" name="deductionEndMonth" class="form-control" disabled />
+              </div>
+            </div>
+            <div class="col-4">
+                <div class="form-outline">
+                <label class="form-label" for="form8Example1"> {{'deductionEndYear'|translate}} </label>
+                <input type="text"   [(ngModel)]="deductionEndYear"
+                value="" id="deductionEndYear" name="deductionEndYear" class="form-control" disabled />
+              </div>
+            </div>
+
+          </div>
+      </div>
+
+      </form>
+
+      <div >
+        <br>
+          <button type="submit" id="add-contract-details-form" class="btn btn-dark m-3" (click)="onAddAdvance()" style="background-color: #5666c0;" >{{ 'save' | translate }}</button>
+          <a [routerLink]="['/advance/view']" class="btn btn-light m-3" style="background-color: #7886d3;">{{'cancel' | translate}}</a>
+
+      </div>
+
+
+  </div>
+</div>
+
+  
+  
+  

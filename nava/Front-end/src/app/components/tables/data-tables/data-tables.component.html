@@ -1,0 +1,125 @@
+<app-page-header [title]="'Data Tables'" [items]="['Tables']" [active_item]="'Data Tables'"></app-page-header>
+
+<!-- row opened -->
+<div class="row row-sm">
+  <div class="col-xl-12">
+    <div class="card overflow-visible custom-card">
+      <div class="card-body p-0">
+        <div class="table-responsive rounded-top">
+          <div class="d-flex justify-content-between bg-black-2 align-items-center px-4 rounded-top">
+            <h4 class="main-content-label text-black tx-24">Employees</h4>
+            <button _ngcontent-xjy-c134="" type="button" class="btn bg-black-8 my-2 btn-icon-text d-inline-block">
+              <i _ngcontent-xjy-c134="" class="fe fe-plus text-white bg-transparent"></i>
+              <span _ngcontent-xjy-c134="" class="text-white">Add Employee</span>
+            </button>
+          </div>
+          <app-ngb-table></app-ngb-table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!--div-->
+  <div class="col-xl-12">
+    <div class="card custom-card">
+      <div class="card-header pb-0">
+        <div>
+          <h6 class="main-content-label mb-1">Ngx DataTable</h6>
+          <p class="text-muted card-sub-title">Ngx-DataTable using material theme DataTables.</p>
+        </div>
+      </div>
+      <div class="card-body">
+
+        <ngx-datatable class="material" [rows]="dataTable" columnMode="force" [headerHeight]="50" [footerHeight]="50"
+          [rowHeight]="50" [scrollbarV]="true" [summaryRow]="true" [summaryPosition]="'bottom'">
+          <ngx-datatable-column name="First Name" [width]="100"></ngx-datatable-column>
+          <ngx-datatable-column name="Last Name" [width]="100"></ngx-datatable-column>
+          <ngx-datatable-column name="Position" [width]="100"></ngx-datatable-column>
+          <ngx-datatable-column name="Email" [width]="100"></ngx-datatable-column>
+
+        </ngx-datatable>
+      </div>
+    </div>
+  </div>
+  <!--/div-->
+  <div class="col-xl-12">
+    <div class="card custom-card">
+      <div class="card-header pb-0">
+        <div>
+          <h6 class="main-content-label mb-1">Basic Table</h6>
+          <p class="text-muted card-sub-title">Basic Angular material table, as shown in this example.</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <app-basic-angular-table></app-basic-angular-table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-12">
+    <div class="card custom-card">
+      <div class="card-header pb-0">
+        <div>
+          <h6 class="main-content-label mb-1">Add/Remove Table</h6>
+          <p class="text-muted card-sub-title">Adding and removing data when using an observable-based
+            datasource, as shown in this example.</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <app-add-remove-data></app-add-remove-data>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-12">
+    <div class="card custom-card">
+      <div class="card-header pb-0">
+        <div>
+          <h6 class="main-content-label mb-1">Data Table</h6>
+          <p class="text-muted card-sub-title">Data table with sorting, pagination, and filtering., as
+            shown in this example.</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <app-sorting-filter-pagination-table></app-sorting-filter-pagination-table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-12">
+    <div class="card custom-card">
+      <div class="card-header pb-0">
+        <div>
+          <h6 class="main-content-label mb-1">Table with selection</h6>
+          <p class="text-muted card-sub-title">Table with selection Angular material, as shown in this
+            example.</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <app-selection-table></app-selection-table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-12">
+    <div class="card custom-card">
+      <div class="card-header pb-0">
+        <div>
+          <h6 class="main-content-label mb-1">Sticky Table</h6>
+          <p class="text-muted card-sub-title">Sticky Table with Angular material, as shown in this
+            example.</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <app-stickyheader></app-stickyheader>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

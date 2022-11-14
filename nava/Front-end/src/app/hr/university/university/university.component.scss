@@ -1,0 +1,38 @@
+
+  tbody{
+    td{
+        padding: 0;
+        text-align: center;
+    }
+  }
+  @media print {
+    .noPrint{
+      display:  none !important;
+    }
+  
+  }
+  @media print {
+    .noPrint[hidden] {
+       display: block;
+    }
+  
+  }
+  table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  td, th {
+    width: 10%;
+    text-align: center !important;
+    font-family:cairo ;
+  }
+  
+
+  .aaa{
+    border-bottom: 2px solid #5666c0;
+  }

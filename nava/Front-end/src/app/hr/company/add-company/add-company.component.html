@@ -1,0 +1,241 @@
+<app-page-header [title]="'معلومات الشركة'" [items]="['الشركة']" [active_item]="'معلومات الشركة'"></app-page-header>
+
+<div class="row row-sm">
+  <div class="col-lg-12 col-md-12">
+    <div class="card custom-card">
+      <div class="card-body row">
+        <div class="row border m-0 p-2">
+          <!-- المعلومات الاساسية -->
+          <h5 class="border-bottom py-2 mb-4 mt-2">{{'basicInformation'|translate}}</h5>
+          <div class="col-lg-6">
+            <div class="mb-2 row mb-3">
+              <p class="mg-b-10 tx-semibold col-lg-3">{{'companyName'|translate}}</p>
+              <input class="form-control col-lg-8" type="text" [(ngModel)]='companyData.companyName'>
+            </div>
+            <div class="mb-2 row">
+              <div class="mg-b-10 tx-semibold col-lg-3">{{'commercialFeature'|translate}}</div>
+              <input class="form-control col-lg-8" type="text" [(ngModel)]='companyData.tradingName'>
+            </div>
+          </div>
+          <div class="col-lg-6 row">
+            <div class="mb-2 row">
+              <p class="tx-semibold col-3">{{'companyLogo'|translate}}</p>
+              <div class="col-lg-6 col-sm-12 mb-2">
+                <!-- <input type="file" class="dropify" disabled="disabled"  /> -->
+                <ngx-dropzone [multiple]="false" (change)="onPreviewFileSelect($event)" >
+                  <ngx-dropzone-label>
+                    <div>
+                      <h4>اضعط هنا لاضافة صورة</h4>
+                    </div>
+                  </ngx-dropzone-label>
+                  <ngx-dropzone-image-preview  ngProjectAs="ngx-dropzone-preview" *ngFor="let f of filesPreview" [file]="f"
+                    [removable]="true" (removed)="onPreviewFileRemove(f)" class="">
+                    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                  </ngx-dropzone-image-preview>
+                </ngx-dropzone>
+              </div>
+            </div>
+            <!-- <button (click)="onUpload()">{{'upload'|translate}}</button> -->
+          </div>
+          <!-- معلومات السجل التجاري -->
+          <h5 class="border-bottom py-2 mb-4 mt-2">{{'commercialRegistrationInformation'|translate}}</h5>
+          <div class="mb-2 row  col-lg-6">
+            <p class="mg-b-10 tx-semibold col-lg-3">{{'CommerciaNo'|translate}}</p>
+            <input class="form-control col-lg-8" type="text" [(ngModel)]='companyData.commercialNo'>
+          </div>
+          <div class="mb-2 row  col-lg-6">
+            <p class="mg-b-10 tx-semibold col-lg-3">{{'commercialname'|translate}}</p>
+            <input class="form-control col-lg-8" type="text" [(ngModel)]='companyData.commercialName'>
+          </div>
+          <div class="row">
+            <div class="col-lg-6 mg-t-10 mg-t-10 row">
+              <p class="mg-b-10 tx-semibold col-lg-3">{{'releaseDate'|translate}}</p>
+              <div class="input-group col-lg-9">
+                <div class="input-group-text">
+                  <i class="typcn typcn-calendar-outline tx-24 lh--9 op-6"></i>
+                </div>
+                <input class="form-control" value="2020-20-10" (click)="a.toggle()" placeholder="yyyy-mm-dd"
+                  [(ngModel)]='companyData.issuesCommercialRegistration' ngbDatepicker #a="ngbDatepicker">
+              </div>
+            </div>
+            <div class="col-lg-6 mg-t-10 mg-t-10 row">
+              <p class="mg-b-10 tx-semibold col-lg-3">{{'expiryDate'|translate}}</p>
+              <div class="input-group col-lg-9">
+                <div class="input-group-text">
+                  <i class="typcn typcn-calendar-outline tx-24 lh--9 op-6"></i>
+                </div>
+                <input class="form-control" (click)="b.toggle()" placeholder="yyyy-mm-dd"
+                  [(ngModel)]='companyData.commercialRegistrationExpiry' ngbDatepicker #b="ngbDatepicker">
+              </div>
+            </div>
+          </div>
+          <!-- معلومات رخصة البلدية -->
+          <h5 class="border-bottom py-2 mb-4 mt-2">{{'municipalLicenseInformation'|translate}}</h5>
+          <div class="mb-2 row col-lg-6">
+            <p class="mg-b-10 tx-semibold col-lg-3">رقم الرخصة</p>
+            <input class="form-control col-lg-8" type="text" [(ngModel)]='companyData.municipalLicenseNo'>
+          </div>
+          <div class="row">
+            <div class="col-lg-6 mg-t-10 mg-t-10 row">
+              <p class="mg-b-10 tx-semibold col-lg-3">تاريخ الإصدار</p>
+              <div class="input-group col-lg-9">
+                <div class="input-group-text">
+                  <i class="typcn typcn-calendar-outline tx-24 lh--9 op-6"></i>
+                </div>
+                <input class="form-control" (click)="c.toggle()" placeholder="yyyy-mm-dd"
+                  [(ngModel)]='companyData.issuesMunicipalLicenseNo' ngbDatepicker #c="ngbDatepicker">
+              </div>
+            </div>
+            <div class="col-lg-6 mg-t-10 mg-t-10 row">
+              <p class="mg-b-10 tx-semibold col-lg-3">تاريخ الانتهاء</p>
+              <div class="input-group col-lg-9">
+                <div class="input-group-text">
+                  <i class="typcn typcn-calendar-outline tx-24 lh--9 op-6"></i>
+                </div>
+                <input class="form-control" (click)="d.toggle()" placeholder="yyyy-mm-dd"
+                  [(ngModel)]='companyData.municipalLicenseNoExpiry' ngbDatepicker #d="ngbDatepicker">
+              </div>
+            </div>
+            <!--  -->
+            <!-- <div  class="col-md-3">
+              <label for="" class="form-label">الى<span style="font-size: large;color: red;">*</span></label>
+              <mat-form-field appearance="outline">
+                <mat-label>DD/MM/YYYY</mat-label>
+                <input name="endDate"  [(ngModel)]="companyData.issuesMunicipalLicenseNo" matInput [matDatepicker]="picker2">
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker  #picker2></mat-datepicker>
+              </mat-form-field>
+            </div> -->
+            <!--  -->
+          </div>
+          <!-- المعلومات الضريبية -->
+          <h5 class="border-bottom py-2 mb-4 mt-2">المعلومات الضريبية</h5>
+          <div class="mb-2 row col-lg-6">
+            <p class="mg-b-10 tx-semibold col-lg-3">رأس مال المسجل</p>
+            <input class="form-control col-lg-8" type="text" [(ngModel)]='companyData.capitalAsPerCR'>
+          </div>
+          <div class="mb-2 row col-lg-6">
+            <p class="mg-b-10 tx-semibold col-lg-3">الرقم الضريبي</p>
+            <input class="form-control col-lg-8" type="text" [(ngModel)]='companyData.taxNo'>
+          </div>
+          <h5 class="border-bottom py-2 mb-4 mt-2">معلومات اخرى</h5>
+          <div class="mb-2 row col-lg-6">
+            <p class="mg-b-10 tx-semibold col-lg-3">نوع النشاط</p>
+            <input class="form-control col-lg-8" type="text" [(ngModel)]='companyData.activityType'>
+          </div>
+
+          <div class="mb-2">
+            <div class="my-2">
+              <p class="h5 border-bottom py-2">الشركاء</p>
+              <button class="btn bg-black-8 text-white" (click)="Select2Open(select2modal)">اضافة شريك</button>
+            </div>
+            <table class="table table-striped border">
+              <thead>
+                <tr class="p-4 text-center">
+                  <th scope="col">S.No</th>
+                  <th scope="col">اسم الشريك</th>
+                  <th scope="col">الجنسية</th>
+                  <th scope="col">رقم البطاقة</th>
+                  <th scope="col">النسبة من رأس المال</th>
+                  <th scope="col">OP</th>
+                </tr>
+              </thead>
+              <tbody class="table-group-divider text-center">
+                <tr *ngFor="let partner of partners;">
+                  <td>{{1}}</td>
+                  <td>{{partner.partnerName}}</td>
+                  <td>{{partner.nationality }}</td>
+                  <td>{{partner.cardNumber}}</td>
+                  <td>{{partner.percentage}}</td>
+                  <td>
+                    <a class="btn btn-icon-text" (click)="Select2Update(select2modal2,partner)"><i
+                        class="fe fe-edit text-dark bd-black"></i></a>
+                    <button class="btn btn-icon-text" (click)="deletePartner(partner.partnerId)"><i
+                        class="fe fe-trash-2 text-dark bd-black"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+              <tbody class="table-group-divider">
+                <tr>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+        <hr class="border border-3 text-white h-20">
+        <div class="">
+          <button class="btn bg-black-8 text-white" (click)="addCompany()" type="submit">Save</button>
+          <a routerLink="../view" class="btn bg-black-4 text-white mx-2" type="submit">Cancel</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Row -->
+
+  <ng-template #select2modal2 let-modal>
+    <!-- Select2 modal -->
+    <div class="modal-header">
+      <h6 class="modal-title">تعديل بيانات الشريك</h6>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="mb-2 row">
+        <p class="mg-b-10 tx-semibold col-4">اسم الشريك</p>
+        <input class="form-control col-8" [(ngModel)]='partnerData.partnerName'>
+      </div>
+      <div class="mb-2 row">
+        <p class="mg-b-10 tx-semibold col-4">الجنسية</p>
+        <input class="form-control col-8" [(ngModel)]='partnerData.nationality'>
+      </div>
+      <div class="mb-2 row">
+        <p class="mg-b-10 tx-semibold col-4">رقم البطاقة</p>
+        <input class="form-control col-8" [(ngModel)]='partnerData.cardNumber'>
+      </div>
+      <div class="mb-2 row">
+        <p class="mg-b-10 tx-semibold col-4">النسبة من رأس المال</p>
+        <input class="form-control col-8" [(ngModel)]='partnerData.percentage'>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn bg-black-4 text-white" (click)="modal.close('Close click')">Close</button>
+      <button class="btn bg-black-8 text-white" (click)="addPartner();modal.close()" type="button">Save changes</button>
+    </div>
+
+  </ng-template>
+
+  <ng-template #select2modal let-modal>
+    <!-- Select2 modal -->
+    <div class="modal-header">
+      <h6 class="modal-title">اضافة شريك</h6>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="mb-2 row">
+        <!-- <div>{{partnerById.partnerName}}</div> -->
+        <p class="mg-b-10 tx-semibold col-4">اسم الشريك</p>
+        <input class="form-control col-8" [(ngModel)]='partnerData.partnerName'>
+      </div>
+      <div class="mb-2 row">
+        <p class="mg-b-10 tx-semibold col-4">الجنسية</p>
+        <input class="form-control col-8" [(ngModel)]='partnerData.nationality'>
+      </div>
+      <div class="mb-2 row">
+        <p class="mg-b-10 tx-semibold col-4">رقم البطاقة</p>
+        <input class="form-control col-8" [(ngModel)]='partnerData.cardNumber'>
+      </div>
+      <div class="mb-2 row">
+        <p class="mg-b-10 tx-semibold col-4">النسبة من رأس المال</p>
+        <input class="form-control col-8" [(ngModel)]='partnerData.percentage'>
+      </div>
+    </div>
+    <div class="modal-footer">
+
+
+      <button class="btn  text-white" (click)="addPartner();modal.close()" type="button" style="background-color: #5666c0;" >Save changes</button>
+      <button type="button" class="btn text-white" (click)="modal.close('Close click')" style="background-color: #7886d3;">Close</button>
+    </div>
+
+  </ng-template>
